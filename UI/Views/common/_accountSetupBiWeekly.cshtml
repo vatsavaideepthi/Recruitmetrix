@@ -1,0 +1,96 @@
+﻿@model UI.Models.AccountCollection
+
+<div style="width: 880px; margin: 0px auto;">
+        <div class="ptcontent" style="margin-top: 20px;">
+            <h3>Set up your Bi-Weekly Expenses</h3>
+            <table class="bordered-table normal-table " id="monthaccsetuptable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Payee</th>
+                        <th>Budget</th>
+                        <th>On Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (UI.Models.AccountgroupCollection accountgroup in Model.accountcollection)
+                    {
+                            
+                               
+                        <tr class="recordheader hide" style="width: 100%;" data-accname="@accountgroup.categoryname" data-catid="@accountgroup.categoryid">
+                            <td colspan="4" style="width: 100%;">
+                                <div style="float: left;">
+                                    <button class="jscollapse"><i class="glyphglyphicon-chevron-down glyphglyphicon-black" style="background-color: #FFF; border: 0px; height: 16px; margin-top: 0px; padding-right: 5px;"></i></button>
+                                </div>
+                                <div class="paymentheader">
+                                    <div>@accountgroup.categoryname</div>
+                                </div>
+                            </td>
+                        </tr>
+                                
+                               
+                                
+                        foreach (UI.Models.PTAccount account in accountgroup.accounts.Where(ac => ac.initial == true))
+                        {
+
+                            if (account.codes == "1")
+                            {             
+                        <tr class="accountrecord" data-accountid="@Html.Raw(account.accountId)" data-accounttype="@Html.Raw(account.accounttype)" data-userid="@Html.Raw(account.userid)"  data-catname="@Html.Raw(account.categoryname)" data-catid="@Html.Raw(account.categoryid)" data-subcatid="@Html.Raw(account.subcatid)">
+                            <td class="optionset">
+                               <div>
+                                    <span class="btn btn-info jsReplicateAccount" style="float: left;" title="Create another Account For @account.accountName"><i class="glyphglyphicon-cog glyphglyphicon-white"></i></span>
+                               </div>
+                                 <div>
+                                    <div class="@(account.initial ? "" : "accactive")" style="width:5px;" title="Active Account"></div>
+                                    <label data-accountid="@Html.Raw(account.accountId)" class="accname pull-right" style="margin-right:25px;">@Html.Raw(account.accountName)</label>
+                                </div>
+                            </td>
+                            <td class="lacell">
+                                <div>
+                                    <input type="text" class="prname"  style="float: right;" value="@Html.Raw(account.providername)" data-accountid="@Html.Raw(account.providerid)" data-unid="@Html.Raw(account.uniqueid)" data-prid=""/>
+                                </div>
+                            </td>
+                            <td class="smcell">
+                                <div>
+                                    <input type="text" class="budget" style="float: right;text-align:right;" value="@Html.Raw(account.amount == 0 ? string.Empty : account.amount.ToString())" placeholder="0.00"/>
+                                </div>
+                            </td>
+                            <td class="">
+                                <div style="width: 100px;">
+                                    <input id="" class="duedate" type="text" style="float: right;width: 40% !important;text-align: center;padding-left: 0px !important;" value="@Html.Raw(account.duedate == 0 ? string.Empty : account.duedate.ToString())" placeholder="dd"/>
+                                </div>
+                            </td>
+                        </tr>
+                            }
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    @if (Model.accountcollection.Count > 0)
+    {
+        <div style="width: 700px; margin: 10px auto;">
+            <input type="button"  id="biweeklyaccountsetup"  class="btn btn-primary" style="float: right;" value="Setup"/>
+            @Html.ActionLink("Skip","index","expenses",null,new {id="skipbiweekaccountsetup",@class="btn",@style="float:right;margin-right:15px;"})
+        </div>
+    }
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.jsReplicateAccount').click(function () {
+
+            var HolderElement = $(this).closest('tr').clone();
+            $(HolderElement).removeClass('accountrecord').addClass('newaccountrecord');
+            $(HolderElement).find('.glyphglyphicon-cog').removeClass('glyphglyphicon-cog').addClass('glyphglyphicon-ok');
+            $(HolderElement).find('.jsReplicateAccount').removeClass('jsReplicateAccount').addClass('jsSetupAccount').attr('title', 'Setup New Acount');
+            $(HolderElement).find('.prname').val('');
+            $(HolderElement).find('.budget').val('');
+            $(HolderElement).find('.duedate').val('');
+            $(this).parents('tr').before(HolderElement);
+
+        });
+    });
+</script>

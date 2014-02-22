@@ -1,0 +1,18 @@
+﻿@{
+  
+    Layout = "~/Views/Shared/_JobPortalMasterView.cshtml";
+}
+
+@RenderBody()
+
+
+
+@section modalpopups
+    {
+    @Html.Partial("~/Views/Supplier/_SupplierModalPopups.cshtml",null )
+}
+
+@section alerts
+    {
+    @Html.Partial("~/Views/Supplier/_SupplierAlerts.cshtml", null)
+}

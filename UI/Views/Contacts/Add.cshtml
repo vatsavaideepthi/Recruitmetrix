@@ -1,0 +1,30 @@
+﻿@model UI.Models.PortalContact
+@{
+    ViewBag.Title = "Add Contact";
+    ViewBag.highlight = "contacts";
+    Layout = "~/Views/Shared/_JobPortalMasterView.cshtml";
+}
+<div class="page-header-row">
+    <div class="pull-left">
+        <span class="pageheader">Add New Contact</span>
+    </div>
+    <div class="pull-right">
+        <a href="/contacts" class="btn-grey btn-flat">Back To Contacts List</a>
+        @* <a href="/contacts/import" class="btn btn-info btn-grey btn-flat">Import Contacts</a>*@
+    </div>
+</div>
+
+<div class="">
+        @Html.Partial("~/Views/common/_AddNewContact.cshtml", new UI.Models.PortalContact())
+</div>
+@section Scripts{
+    <script src="~/Scripts/jobportal/portalcontact.js"></script>
+    <script src="~/Scripts/jobportal/maskedinput.js"></script>
+    <script>
+        $('#contacphonenumber').mask("9999-999-999");
+        $('#contactmobilephone').mask("9999-999-999");
+    </script>
+    }
+@section pagealerts{
+    @Html.Partial("~/Views/contacts/_ContactAlertView.cshtml", null)
+}

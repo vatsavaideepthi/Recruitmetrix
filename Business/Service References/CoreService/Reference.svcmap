@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="281e468a-c446-4603-9869-03d671f233ab" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://192.168.1.252:5000/WsObjectServicesWebappVer2.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="objectServicesWebappVer21.wsdl" MetadataType="Wsdl" ID="5193a3ec-3136-490c-a0de-6bd72a7f2548" SourceId="1" SourceUrl="http://192.168.1.252:5000/WsObjectServicesWebappVer2.svc?wsdl" />
+    <MetadataFile FileName="WsObjectServicesWebappVer21.disco" MetadataType="Disco" ID="3a1c890b-6cca-4ab3-93bc-f7072ca744b8" SourceId="1" SourceUrl="http://192.168.1.252:5000/WsObjectServicesWebappVer2.svc?disco" />
+    <MetadataFile FileName="WsObjectServicesWebappVer25.xsd" MetadataType="Schema" ID="109fa711-e787-4bd8-8332-011347b54016" SourceId="1" SourceUrl="http://192.168.1.252:5000/WsObjectServicesWebappVer2.svc?xsd=xsd4" />
+    <MetadataFile FileName="WsObjectServicesWebappVer26.xsd" MetadataType="Schema" ID="eee9c408-49ef-4831-8ae2-36d74c33fad4" SourceId="1" SourceUrl="http://192.168.1.252:5000/WsObjectServicesWebappVer2.svc?xsd=xsd3" />
+    <MetadataFile FileName="WsObjectServicesWebappVer27.xsd" MetadataType="Schema" ID="bed07ca0-1cdd-4f7b-95d7-8780562d6cc0" SourceId="1" SourceUrl="http://192.168.1.252:5000/WsObjectServicesWebappVer2.svc?xsd=xsd2" />
+    <MetadataFile FileName="WsObjectServicesWebappVer28.xsd" MetadataType="Schema" ID="dac79609-c0c5-4e2e-be60-9a91b97354c6" SourceId="1" SourceUrl="http://192.168.1.252:5000/WsObjectServicesWebappVer2.svc?xsd=xsd1" />
+    <MetadataFile FileName="WsObjectServicesWebappVer29.xsd" MetadataType="Schema" ID="9fb00c94-e62f-4ea5-b95e-c83ef7633a07" SourceId="1" SourceUrl="http://192.168.1.252:5000/WsObjectServicesWebappVer2.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,187 @@
+﻿@model UI.Models.LoginModel.User
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>@* @Styles.Render("~/css/css")*@
+    <!-- Description -->
+    <meta name="description" content="Track Your Expenses.">
+    <meta name="keywords" content="#" />
+    <!-- IE FIX -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Views -->
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <!--Jquery Scripts -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/tracker/PaymentTrackerData.js"></script>
+    <!--Custom Scripts -->
+
+    <script src="/Scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/tracker/utilities.js"></script>
+    <script src="~/Scripts/tracker/login.js"></script>
+    <!--Jquery Styles -->
+    <link href="~/Content/tracker/jobportal.css" rel="stylesheet" />
+    <link href="/Content/themes/base/jquery.ui.theme.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/themes/smoothness/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/fonts/AppFonts.css" rel="stylesheet" />
+    <!-- Bootstrap Styles-->
+    <link href="/Content/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/Content/bootstrap-responsive.css" rel="stylesheet" media="screen">
+    <style>
+        ul.menu {
+            padding: 0px;
+        }
+
+            ul.menu li {
+                list-style: none;
+            }
+
+        ul.horizontal li {
+            float: left;
+            padding: 2px 2px 2px 5px;
+            text-transform: capitalize;
+        }
+
+        .lato-header {
+            font-family: Lato-Reg;
+            clear: both;
+            width: 100%;
+            background: transparent;
+            color: #333;
+            line-height: 40px;
+            font-weight: 200;
+            letter-spacing: .5em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-size: 120%;
+        }
+
+        .lato-signupbutton {
+            cursor: pointer;
+            font-family: Lato-Reg;
+            display: inline-block;
+            background-color: #40C5A8;
+            text-transform: uppercase;
+            letter-spacing: .3em;
+            padding: 12px 20px 13px;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+            color: #f5f5f5;
+            font-size: 13px;
+            line-height: normal;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            border-radius: 2px;
+            -webkit-transition: all 0.2s;
+            -moz-transition: all 0.2s;
+            -o-transition: all 0.2s;
+            transition: all 0.2s;
+            -webkit-box-shadow: inset 0 -2px rgba(0,0,0,0.1);
+            -moz-box-shadow: inset 0 -2px rgba(0,0,0,0.1);
+            box-shadow: inset 0 -2px rgba(0,0,0,0.1);
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+
+        .noborder-straight {
+            border-radius: 0px !important;
+            border: 0px solid !important;
+            outline:none !important;
+            box-shadow:transparent 0px 0px inset !important;
+            -webkit-box-shadow:transparent 0px 0px inset !important;
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <article class="marketing-wrapper">
+
+        <div class="navbar navbar-top" style="background-color: #3498db; color: #FFFFFF; border-radius: 0px; display: none;">
+            <div class="navbar-inner" style="padding: 0px 20px;">
+                <div style="font-size: 30px; margin: 10px 5px;"><span>Login</span></div>
+            </div>
+        </div>
+
+        <div class="container" id="login-page" style="margin-top: 150px;color: #404040;">
+            <div class="row">
+                <div class="col-md-6" id="login-form" style="padding: 30px; background-color: #f5f5f5; float: right;">
+                    @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { id = "UserLoginForm", role = "form" }))
+                    {
+                        <div>
+                            <div class="alert alert-error hide" id="LVE001">Enter Valid Email.</div>
+                            <div class="alert alert-error hide" id="LVE002">Email Cannot be Empty</div>
+                            <div class="alert alert-error hide" id="LVE003">Password Cannot be Empty</div>
+                            @if (Model != null && !Model.isLoginValid)
+                            {
+                                    
+                                <div class="alert alert-error" id="E-MC007" style="display: block;">Invalid email address or password.</div>
+                            }
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <span class="lato-header">SIGNIN</span>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <div class="form-group">
+                                @* <label class="" for="email">Email:</label>*@
+                                @Html.TextBoxFor(m => m.userEmail, new { @class = "noborder-straight form-control input-text ", name = "email", id = "email", placeholder = "Username / Email", autocomplete = "off" })
+                            </div>
+                            <div class="form-group">
+                                @* <label class="control-label" for="password">Password:</label>*@
+                                @Html.PasswordFor(m => m.password, new { @class = " noborder-straight form-control input-text ", name = "password", id = "password", placeholder = "Password", autocomplete = "off" })
+                            </div>
+
+
+                        </div>
+                        <div style="margin-top: -20px; margin-bottom: 15px;"><span class="forgotpassword"><a id="" href="/forgot" style="color:#3AAD94;">Forgot your Password ?</a></span></div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" style="margin-top: 15px;">
+                                    <input type="checkbox" id="rememberme" />
+                                    Remember me
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <input id="userlogin" type="submit" value="Log in" style="width: 115px;border:0px solid transparent;float:right;" class="lato-signupbutton " />
+                            </div>
+                        </div>
+                       
+                    }
+                </div>
+            </div>
+            <div style="padding: 5px 2px;float:right;">
+                <ul class="menu horizontal">
+                    <li>
+                        <span class="showsignup">Dont have an account yet <a id="" href="/signup" style="color:#3AAD94;">Signup</a> here</span>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="push"></div>
+        </div>
+    </article>
+    <div id="marketing-footer">
+        <footer class="container">
+        </footer>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#email').focus();
+
+        });
+    </script>
+</body>
+</html>

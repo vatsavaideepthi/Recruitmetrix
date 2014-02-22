@@ -1,0 +1,190 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Invoicetemplate</title>
+    <script src="~/Scripts/jquery-2.0.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/css/tracker/tracker.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap-responsive.min.css" rel="stylesheet" />
+    <script src="~/Scripts/tracker/generateinvoice.js"></script>
+
+</head>
+
+<body>
+    <div class="navbar ">
+        <div class="navbar-inner">
+            @*<a href="#" class="brand">@Session["title"].ToString()</a>*@
+            <ul class="nav">
+                <li class=""><a href="/invoice">All Invoices</a></li>
+                <li class=""><a href="/invoice/inbound">Inbound Invoice</a></li>
+                <li class=""><a href="/invoice/outbound">Outbound Invoices</a></li>
+                <li class="active"><a href="/invoice/generateinvoice">Create Invoice</a></li>
+            </ul>
+        </div>
+    </div>
+    <div>
+         @using (Html.BeginForm("GenerateInvoice", "Invoice", FormMethod.Post, new { id = "generateinvoiceform" }))
+        {
+            
+             <div class="invoice" style="background-color: white;">
+            <div class="template-header container">
+                <div style="width: 100%; clear: right;">
+                    <div class="span8" style="display: table-cell; vertical-align: middle; text-align: center;">
+                        <img alt="" src="/img/palni.jpg" class="" style="margin: 0px auto;" width="299" height="118">
+                    </div>
+                    <div class="span3 pull-right">
+                        <h3>Invoice</h3>
+                    </div>
+                </div>
+                <div style="padding: 25px 0px; clear: both;">
+                    <div class="row self" style="width: 1024px; margin: 0px auto;" data-id="" data-taxid="">
+                        <div class="address clear" contenteditable="" style="text-align: center;">
+                            <strong><span class="singleline">1901 North Roselle Road, #800, Scaumburg, IL 60195 Ph No: 847 592 7182, Fax: 847 890 6394</span></strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="self col-md-6 pull-right">
+                        <div class="pull-left col-md-10 invoice-meta">
+                            <strong><span>Invoice Summary:</span></strong>
+                            <table style="text-align: left;">
+                                <tbody>
+                                    <tr>
+                                        <th><span contenteditable="true">Consultant:</span></th>
+                                        <td><span id="prefix" contenteditable="true" class="invdesc">Enter Consultant Name</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th><span contenteditable="false">Invoice Number:</span></th>
+                                        <td><span contenteditable="true" class="invnumber">101138</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th><span contenteditable="false">Invoice Date</span></th>
+                                        <td><span contenteditable="true" class="duedate">January 1, 2012</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="client col-md-6 pull-left" data-id="" data-taxid="">
+
+                        <div class="col-md-6 info" style="margin-left: 0px;">
+                            <strong><span>Billing Address:</span></strong>
+                            <p class="compname" contenteditable="">Enter Client Company Name </p>
+                        </div>
+                        <div class="address clear span" style="margin-left: 0px;">
+                            <p class="line1" contenteditable="">Address Line 1</p>
+                            <p class="line2" contenteditable="">Address Line 2</p>
+                        </div>
+                        <div class="col-md-6 info" style="margin-left: 0px;">
+                            <span style="float: left;">Attn:</span><p class="email" contenteditable="">Enter client Email </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container" style="margin-top: 50px;">
+                <table style="margin: 0 auto; width: 750px;" class="table table-bordered invoice-box">
+                    <thead>
+                        <tr>
+                            <td>Description</td>
+                            <td>Hours</td>
+                            <td>Rate/Hour</td>
+                            <td>Tax</td>
+                            <td>Total</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="clonelineitem" class="hide">
+                            <td>
+                                <input type="text" class="rowdescription"></td>
+                            <td>
+                                <input type="text" class="rowquantity"></td>
+
+                            <td>
+                                <input type="text" class="rowunitprice"></td>
+                            <td>
+                                <input type="text" class="rowtax"></td>
+                            <td>
+                                <input class="rowtotal" type="text" aria-disabled="true"></td>
+                        </tr>
+                        <tr class="lineitem">
+                            <td>
+                                <input type="text" class="rowdescription" name="description"></td>
+                            <td>
+                                <input type="text" class="rowquantity" name="quantity"></td>
+
+                            <td>
+                                <input type="text" class="rowunitprice" name="unitprice"></td>
+                            <td>
+                                <input type="text" class="rowtax"></td>
+                            <td>
+                                <input class="rowtotal" type="text" aria-disabled="true" name="linetotal"></td>
+                        </tr>
+                        <tr style="cursor: pointer;">
+                            <td colspan="5" class="addlineitem"><i class="icon glyphicon-plus"></i>New Line</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                 <strong><label class="">Check Payable to: Palni Inc</label></strong>
+                            </td>
+                            <td>
+                                <label class="label label-info">Sub Total</label></td>
+                            <td>
+                                <input class="discount" type="text" aria-disabled="true" name="discount"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <span>Any questions, please contact Siri at 847 592 7182 or email at siri@palniinc.com</span>
+                            </td>
+                            <td>
+                                <label class="label label-info">Shipping</label></td>
+                            <td>
+                                <input class="shipping" type="text" aria-disabled="true" name="shipping"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <span class="pull-left">Comments:</span><span contenteditable="true"></span>
+                            </td>
+                            <td>
+                                <label class="label label-info">Total Amount</label></td>
+                            <td>
+                                <input class="totalamount" type="text" aria-disabled="true" name="totalamount"></td>
+                        </tr>
+                       @* <tr>
+                            <td colspan="3"></td>
+                            <td>
+                                <label class="label label-info">Paid Amount</label></td>
+                            <td>
+                                <input class="paid" type="text" aria-disabled="true" name="paid"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"></td>
+                            <td>
+                                <label class="label label-info">Balance</label></td>
+                            <td>
+                                <input class="balance" type="text" aria-disabled="true" name="balance"></td>
+                        </tr>*@
+                    </tbody>
+                </table>
+                <div class="pull-right" style="width: 750px; margin-top: 50px;">
+                    <input type="submit" value="Generate Invoice">
+                </div>
+            </div>
+            <div style="margin-top: 50px;">
+                <hr>
+                <div style="width: 1024px; margin: 0px auto;" class="inv-terms">
+                    Make all checks payable to <span class="compname">Medien Digital Networks</span>Payment is due within <span class="dpay-duration">30</span>days.If you have any questions concerning this invoice, contact [<span class="contact-name">Name</span>, <span class="contact-number">phone number</span>, <span class="contact-email">e-mail</span>]<br>
+                    <h4>Thank you for your business!</h4>
+                </div>
+            </div>
+        </div>
+         }
+    </div>
+</body>
+</html>

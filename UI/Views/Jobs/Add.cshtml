@@ -1,0 +1,241 @@
+﻿@model UI.Models.Job
+@{
+    ViewBag.Title = "Add Job";
+    ViewBag.highlight = "jobs";
+    Layout = "~/Views/Shared/_JobPortalMasterView.cshtml";
+
+            //Model.payratemode = "hour";
+}
+
+
+<div class="page-header-row">
+    <div class="col-md-8">
+        <span class="pageheader jobheader">Add Job</span>
+    </div>
+    <div class="col-md-4">
+        @Html.ActionLink("Back To Job List", "index", "jobs", null, new { @class = "btn-wide pull-right btn-flat btn-grey ", style = "" })
+    </div>
+</div>
+
+@using (Html.BeginForm("Add", "jobs", FormMethod.Post, new { id = "addjobform", style = "clear:both;" }))
+{
+    <div class="row page-block-row">
+        <div class="col-md-4">
+            <p class="info-header">Basic Details</p>
+            <span class="info-subheader">Highlight your requirements with single line</span>
+        </div>
+        <div class="col-md-8">
+
+            <div class="input-group" style="margin-bottom: -5px; padding-bottom: 15px">
+                @Html.TextBoxFor(m => m.JobName, new Dictionary<string, object>() { { "id", "jobtitle" }, { "class", "form-control" }, { "placeholder", "Enter Job Title" }, { "style", "" }, { "data-content", "Job title Cannot be Empty" }, { "data-placement", "top" } })
+                <span class="input-group-addon" style="padding: 9px;">@@</span>
+                <input id="selectedcityid" type="hidden" value="" />
+                @Html.TextBoxFor(m => m.City, new { id = "joblocation", @class = "autocomplete-city form-control", placeholder = "Enter Location", style = "" })
+
+            </div>
+
+            <div class="input-group" style="width: 100%;">
+                <input id="selectedskills" type="hidden" value="" />
+                @Html.TextBoxFor(m => m.PrefSkills, new { id = "jobskills", @class = "autocomplete-skills", placeholder = "Preferred Skills", style = "width: 100% !important;", autocomplete = "off" })
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row page-block-row">
+        <div class="col-md-4">
+            <p class="info-header">More Info</p>
+            <span class="info-subheader">Provide more info for your requirement</span>
+
+            <p class="info-header" style="margin-top: 19px;">Job Info</p>
+            <span class="info-subheader">Provide payrate and Expiry date</span>
+        </div>
+        <div class="col-md-8">
+            <div class="row page-block-row" style="border-bottom: none">
+                <div class="col-md-4 nopad">
+                    <div id="jobpositionconainer" class="input-group" style="margin-bottom: 15px;">
+                        @Html.DropDownList("Position Types", new SelectList(ViewData["PostTypes"] as List<string>, "", ""), new { @class = "select wd300 form-control chosen-select-pos", style = "width:263px;", multiple = "" })
+                    </div>
+                </div>
+                <div class="col-md-4 ">
+                    <div id="jobexpcontainer" class="input-group">
+                        @Html.DropDownListFor(model => model.Exp, ViewData["Exps"] as SelectList, "Select Experience", new { @class = "select form-control wd300 chosen-select-exp", style = "width:263px;", placeholder = "Add Experience " })
+                    </div>
+                </div>
+                <div class="col-md-4 nopad">
+
+                    @Html.TextBoxFor(m => m.additionaldetails, new { id = "joblength", placeholder = "Job Length", @class = "form-control", style = "width: 100%;" })
+                </div>
+                @Html.HiddenFor(m => m.postype, new { id = "seletcedpositions" });
+            </div>
+
+            <div class="row page-block-row" style="border-bottom: none;">
+                <div class="col-md-6 nopad">
+                    <div class="input-group" style="margin-bottom: -5px;">
+                        <span class="input-group-addon" style="padding: 9px;">$</span>
+                        @Html.TextBoxFor(m => m.PayRate, new { id = "jobsalary", @class = "form-control onumeric", placeholder = "From", style = "width: 100% !important;" })
+                        <span class="input-group-addon" style="padding: 9px;">-</span>
+                        @Html.TextBoxFor(m => m.payratemax, new { id = "jobsalaryend", @class = "form-control onumeric", placeholder = "To", style = "width: 100% !important;" })
+                        @* <span class="input-group-addon" style="padding: 9px;">/Hr</span>*@
+                        <div class="btn-group input-group-addon">
+                            <span id="payrate-selection" class="">/ Hour</span>
+                            @Html.HiddenFor(m => m.payratemode, new { id = "payratemode" })
+                            <span class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </span>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="payratemodetype" data-contenttype="hour"><a style="font-weight: bold;" class="">HOUR</a></li>
+                                <li class="payratemodetype" data-contenttype="day"><a style="font-weight: bold;" class="">DAY</a></li>
+                                <li class="payratemodetype" data-contenttype="week"><a style="font-weight: bold;" class="">WEEK</a></li>
+                                <li class="payratemodetype" data-contenttype="month"><a style="font-weight: bold;" class="">MONTH</a></li>
+                                <li class="payratemodetype" data-contenttype="year"><a style="font-weight: bold;" class="">YEAR</a></li>
+                            </ul>
+                        </div>
+                        <script>
+                            $(document).ready(function () {
+                                $('#payratemode').val('hour');
+                                $('.payratemodetype').click(function () {
+                                    $('#payrate-selection').text('/ ' +$(this).data('contenttype').toUpperCase());
+                                    $('.payratemode').val($(this).data('contenttype'));
+                                });
+
+                                //$('#payratehour-selection').click(function () {
+                                //    $('#payrate-selection').text('/ HOUR');
+                                //    $('#payratemode').val('hour');
+                                //});
+                            });
+                        </script>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="input-group" style="margin-left: 25px; margin-bottom: -5px;">
+                        @Html.HiddenFor(m => m.ExpDate, new { id = "jobexpdateactual", placeholder = "Expiry Date", @class = "form-control", style = "width: 220px;" })
+                        <input type="text" id="jobexpdate" class="form-control" style="width: 233px;" disabled="disabled" placeholder="Expiry Date" />
+                        <span id="jobexpdatetrigger" class="input-group-addon" style="height: 20px; padding: 9px;"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="margin-top: 10px; margin-left: 10px;">
+
+                <span>@Html.CheckBoxFor(m => m.payratenegotaible, new { id = "payratenegotiator", style = "margin-right:10px;margin-top:-3px" })<span style="margin-top: 2px;">Negotiable</span></span>
+            </div>
+        </div>
+    </div>
+       
+  
+    <div class="row page-block-row">
+        <div class="col-md-4">
+            <p class="info-header" style="margin-top: 19px;">Travel</p>
+            <span class="info-subheader"></span>
+        </div>
+        <div class="col-md-8">
+            <div class="" style="display: inline-block; width: 100%; margin: 15px 0px 15px 0px;">
+                <div class="value ">
+                    <label class="radio-inline pull-left" style="margin-top: 0px;">
+                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="yes" class="chsimagselect">
+                        Yes
+                    </label>
+                    <label class="radio-inline pull-left" style="margin-left: 15px;">
+                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="no" class="chsimagselect">
+                        No
+                    </label>
+                    <script>
+                        $("input:radio[name=optionsRadios].chsimagselect").on('change', function () {
+                            var selectedtraveloption = $("input:radio[name=optionsRadios]:checked.chsimagselect").val();
+                            $('#traveloptionselection').val(selectedtraveloption);
+                        });
+
+                    </script>
+                    @Html.HiddenFor(m => m.Travel, new { id = "traveloptionselection", name = "traveloptionholder" })
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+          
+    <div class="row page-block-row">
+        <div class="col-md-4">
+            <p class="info-header">Description</p>
+            <span class="info-subheader">Brief about your job,Job roles and requirements etc..</span>
+        </div>
+        <div class="col-md-8">
+            <div class="value">
+                @Html.TextAreaFor(m => m.JobDesc, new { @class = "textareasp wd290 hgt110", placeholder = "Add Job Description", style = "width: 100% !important;height:130px;margin-bottom: 19px;resize: vertical;" })
+            </div>
+        </div>
+
+    </div>
+    
+    <div class="row page-block-row">
+        <div class="col-md-4">
+            <p class="info-header">Poster's Information</p>
+            <span class="info-subheader">Provide details of job provider</span>
+        </div>
+        <div class="col-md-8 pull-left">
+            <div class="value" style="width: 606px;">
+                @Html.TextBoxFor(m => m.Email, new { id = "jobposteremail", @class = "form-control", placeholder = "Email", style = "width: 263px;" })
+                @Html.TextBoxFor(m => m.Phone, new { id = "jobpostercontact", @class = "form-control", placeholder = "Contact", style = "width: 263px;margin-left:36px;" })
+            </div>
+        </div>
+    </div>
+              
+    <div class="block" style="padding-top: 20px;">
+        <div class="pull-right">
+            <span class="btn-green btn-flat" id="btnpostforValidation" data-loading-text="Saving Job...">Save This Job</span>
+            <input class="btn-green btn-flat hide" type="submit" name="" value="Save This Job"
+                id="cpAfterLogin_btnSave" tabindex="22" style="display: none;" />
+        </div>
+        <div class="pull-left hide" style="margin-left: 20px">
+            <a href="#ShareJob" data-toggle="modal">Share</a>
+        </div>
+    </div>
+
+                 
+}
+
+@section Scripts{
+    <script src="~/Scripts/jobportal/maskedinput.js"></script>
+    <script src="~/Plugins/MultiselectDropdown/bootstrap-multiselect.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".chosen-select-exp").chosen({ disable_search: true });
+            //$(".chosen-select-pos").chosen({ disable_search: true });
+            $(".chosen-select-exp").on('change', function (evt, params) {
+                $(".chosen-select-exp").val(params.selected);
+
+            });
+            //$(".chosen-select-pos").on('change', function (evt, params) {
+            //    $(".chosen-select-pos").val(params.selected);
+
+            //});
+
+            $('#jobsalary').numeric();
+            $('.onumeric').numeric();
+
+            $('#jobpostercontact').mask("9999 999 999");
+        });
+    </script>
+    <script src="~/Scripts/jobportal/PortalJobs.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.chosen-select-pos').multiselect({
+                numberDisplayed: 1
+            });
+            $(".chosen-select-pos").on('change', function (element, checked) {
+                $('#seletcedpositions').val($(".chosen-select-pos").val());
+
+            });
+        });
+    </script>
+}
+
+@section pagealerts{
+    @Html.Partial("~/Views/jobs/_JobAlertsView.cshtml", null)
+}

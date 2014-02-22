@@ -1,0 +1,191 @@
+﻿@model UI.Models.MessagingObjectModel.JObsBulkMail
+@{
+    string subject = Session["companyname"].ToString()+ " " +" has Shared jobs with you";
+    Model.mailsubject = subject;
+    }
+@using (Html.BeginForm("SendMail", "messaging", FormMethod.Post, new { enctype = "multipart/form-data", id = "SendBulkMailForm", @style = "width:100%;background:#fff;margin:auto;position:relative;" }))
+{
+    <div class="modal-header" style="background: #404040; color: #fff;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="height: 17px; margin-top:3px;color: #FFF;">&times;</button>
+        <span style="font-size: 19px;">Send Bulk Mail</span>
+    </div>
+    <div class="modal-body" style="padding: 0px;">
+        <div>
+            <div>
+                <div>
+                    @Html.HiddenFor(m => m.jobs, new { id = "jobcollectionstring" })
+                    @Html.DropDownList("MailListCollection", (List<SelectListItem>)ViewBag.MailListCollection, "", new { id = "postmaillists", @class = "chosen-select-exp", multiple = "multiple" })
+                    @Html.HiddenFor(m => m.recipients, new { id = "sitems" })
+                    @Html.TextBoxFor(m => m.mailsubject, new { @class = "bm-mail-subject-holder", id = "bmmailsubjectholder"})
+                    @*  <input id="bmmailsubjectholder" class="bm-mail-subject-holder" type="text" value="Mail Subject"/> *@
+                </div>
+                <div id="mailbodyholder" style="position: relative;">
+                    <div style="border-top: 1px solid #eee; border-bottom: 1px solid #eee; width: 100%; min-height: 300px;">
+                        <div>
+                            <span id="" class="pull-right emailpreviewline" style="font-weight: bold; clear: both; padding-right: 25px; color: #ccc;">(Email Preview)</span>
+                           @* <h4 style="padding-left: 15px; clear: both; text-align: center;">@Session["companyname"].ToString()  Has Shared Jobs With You</h4>*@
+
+                        </div>
+                        <ul id="bulkjoblist" style="word-break: break-all; width: 98%; padding-left: 0px !important; width: 500px; margin: 20px auto !important; padding: 20px 0px; border: 1px solid rgba(0,0,0,0.2); -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.2); -moz-box-shadow: 0 5px 10px rgba(0,0,0,0.2); box-shadow: 0 5px 10px rgba(0,0,0,0.2); -webkit-background-clip: padding-box; -moz-background-clip: padding; background-clip: padding-box; border-radius: 0px; padding: 0px 0px;">
+                        </ul>
+                        <div style="width: 75%; text-align: justify; margin: 0 auto; bottom: 0; position: absolute; left: 10%;">
+                            <span>This is not an unsolicited eMail. Under Bill 1618 Title III passed by the 105th USA Congress this eMail cannot be considered as spam as long as we include our contact information and an option to be removed from our eMailing list. If you have received this message in error or, are not interested in receiving our eMails, please click "Unsubscribe" link to remove your email from our Mailing list.</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer" style="background-color: #fff;">
+        <div id="emailemptyerroralert" class="alert alert-error" style="display: none;">
+            <div>
+                <span class="">Email Addresses cannot be Empty</span>
+                <a class="close" id="emailemptyhide" href="#">&times;</a>
+            </div>
+
+        </div>
+        @Html.HiddenFor(m => m.mailsubject, new { id = "mailmessagesubject" })
+        @Html.HiddenFor(m => m.messagebody, new { id = "mailmessagebody" })
+        @*  <a href="#" class="btn-grey btn-flat">Close</a>*@
+        <input type="submit" id="sendbulkemailtocandidates" class="btn-green btn-flat" value="Send Mail" />
+        <input type="hidden" value="@Session["usertoken"].ToString()" id="sessiontoken" />
+        <input type="hidden" value="@Session["companyid"].ToString()" id="companyid" />
+        <input type="hidden" value="@Session["companyname"].ToString()" id="companyname" />
+    </div>
+}
+<div>
+    <script>
+        //$(function () {
+
+        //    //$('#jobpostrecipients').val()
+
+
+        //    function split(val) {
+        //        return val.split(/,\s*/);
+        //    }
+        //    function extractLast(term) {
+        //        return split(term).pop();
+        //    }
+
+        //    var token = $('#sessiontoken').val();
+        //    var companyid = $('#companyid').val();
+        //    $("#jobpostrecipients")
+        //      // don't navigate away from the field on tab when selecting an item
+        //      .bind("keydown", function (event) {
+        //          if (event.keyCode === $.ui.keyCode.TAB &&
+        //              $(this).data("ui-autocomplete").menu.active) {
+        //              event.preventDefault();
+        //          }
+        //      })
+        //      .autocomplete({
+        //          minLength: 0,
+        //          source: function (request, response) {
+        //              $.ajax({
+        //                  type: "POST",
+        //                  contentType: "application/json; charset=utf-8",
+        //                  url: '/AjaxData/GetMailingLists',
+        //                  dataType: "json",
+        //                  data: '{companyid:' + JSON.stringify(companyid) + ',usertoken:' + JSON.stringify(token) + '}',
+        //                  success: function (data) {
+        //                      var result = data;
+        //                      response($.map(result, function (k, v) {
+        //                          return {
+        //                              label: k.Title,
+        //                              value: k.Id
+        //                          }
+        //                      }))
+        //                  },
+        //                  search: function (event, ui) {
+        //                      $(this).addClass("wait");
+        //                  },
+        //                  open: function () {
+        //                      $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+        //                      $(this).removeClass("wait");
+        //                  },
+        //                  close: function () {
+        //                      $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+        //                  }
+        //              });
+        //          },
+        //          focus: function () {
+        //              // prevent value inserted on focus
+        //              return false;
+        //          },
+        //          select: function (event, ui) {
+        //              var terms = split(this.value);
+        //              // remove the current input
+        //              terms.pop();
+        //              // add the selected item
+        //              var selem = '<div class="sitem"><span class="sitem-value" style="color:red;">' + ui.item.label + '</span></div>';
+        //              terms.push(ui.item.label);
+        //              // add placeholder to get the comma-and-space at the end
+        //              terms.push("");
+        //              this.value = terms.join(", ");
+        //              if ($('#sitems').val() == '') {
+        //                  $('#sitems').val(ui.item.value);
+        //              }
+        //              else {
+        //                  $('#sitems').val($('#sitems').val() + ';' + ui.item.value);
+        //              }
+
+        //              return false;
+        //          }
+        //      });
+        //});
+
+        $(".chosen-select-exp").chosen({ disable_search: true, width: "100%", max_selected_options: Infinity, placeholder_text_multiple: "Select mailing Lists" });
+        $(".chosen-select-exp").on('change', function (evt, params) {
+            if ($("#sitems").val() == "") {
+                $("#sitems").val(params.selected);
+            }
+            else {
+                $("#sitems").val($("#sitems").val() + ',' + params.selected);
+            }
+        });
+        //$('#jobpostrecipients').autocomplete({
+        //    source: function (request, response) {
+        //        $.ajax({
+        //            url: "/AjaxData/GetMailingLists",
+        //            dataType: "json",
+        //            beforeSend: function () { $('ul.chzn-results').empty(); },
+        //            success: function (data) {
+        //                response($.map(data, function (item) {
+        //                    $('ul.chzn-results').append('<li class="active-result">' + item.name + '</li>');
+        //                }));
+        //            }
+        //        });
+        //    }
+        //});
+
+        $("#jobpostrecipients").chosen();
+    </script>
+    <script>
+        $(function () {
+            $('#SendBulkMailForm').submit(function (e) {
+                if ($('#jobpostrecipients').val() == "") {
+                    e.preventDefault();
+                    $('#emailemptyerroralert').show();
+                }
+                else {
+
+                }
+            });
+
+
+            $('#emailemptyhide').click(function () {
+                $('#emailemptyerroralert').hide();
+            });
+
+            $('#jobpostrecipients').on('input propertychange', function () {
+
+                if ($('#jobpostrecipients').val() == "") {
+                    $('#emailemptyerroralert').show();
+                }
+                else {
+                    $('#emailemptyerroralert').hide();
+                }
+            });
+        });
+    </script>
+</div>

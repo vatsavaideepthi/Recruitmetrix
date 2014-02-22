@@ -1,0 +1,159 @@
+﻿@model Business.ApplicationService.maillist
+@using Newtonsoft.Json
+@{
+    ViewBag.Title = "list";
+    ViewBag.highlight = "mailinglists";
+    Layout = "~/Views/Shared/_JobPortalMasterView.cshtml";
+    UI.Models.Mailinglist thislist = new UI.Models.Mailinglist();
+    thislist.id = Request.QueryString["listid"].ToString();
+}
+
+
+<div style="clear: both;">
+    <div class="pull-left">
+        <span class="pageheader">@Model.Title</span>
+    </div>
+    <div class="pull-right">
+        <a href="/lists" class="btn-grey btn-flat">Back To Mailing Lists</a>
+        @* <a href="/lists/import" class="btn btn-info btn-grey btn-flat">Import Members</a>*@
+        @Html.ActionLink("Import Contacts", "import", "lists", thislist, new { @class = "btn-green btn-flat", style = "margin-left:10px;" })
+    </div>
+</div>
+<div style="padding-top: 50px;margin-bottom: 20px;border-bottom: 1px solid #e5e5e5;"></div>
+<div>
+    <div>
+        <div class="well">
+            <input type="hidden" id="listid" value="@Model.Id" />
+            <div style="display: inline-block; clear: both;">
+                <div class="span pull-left">
+                    <input id="membermailaddress" type="text" placeholder="Enter Email Address" class="input input-wide input-well" />
+                    <input id="membername" type="text" placeholder="Member Name" class="input input-wide input-well ml10" />
+                </div>
+                <div class="span pull-left" style="clear: both; width: 510px;display:none;">
+                    <textarea id="memberdescription" placeholder="Description" style="width: 100%; height: 75px; text-indent: 10px; resize: vertical; margin-top: 0px; margin-bottom: 20px; padding: 5px 0px 0px 0px;"></textarea>
+                </div>
+                <div>
+                    <span id="addnewlistmember" class="btn-green btn-flat span">Add Member</span>
+
+                </div>
+                <div style="display: inline-block; width: 100%; margin-top: 19px;">
+                    <div class="alert alert-error" id="memberemailempty" style="display: none;">
+                        <span>Email address should not be empty</span>
+                    </div>
+                    <div class="alert alert-error" id="memeberemailnotvalid" style="display: none;">
+                        <span>Provide valid Email Id for Member</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div>
+
+        <table class="table table-hover" style="border: 1px solid #ddd;">
+            <tbody>
+                @if (Model != null && Model.members != null && Model.members.Items !=null && Model.members.Items.ToList().Count > 0)
+                {
+                    foreach (Business.ApplicationService.contact member in Model.members.Items.ToList())
+                    {
+                    <tr>
+                        <td>
+                            <div style="padding: 5px 20px 0px 20px">
+                                <div style="width: 100%; display: inline-block;">
+                                    <div class="pull-left" style="">
+                                        <div style="color: #000; font-size: 15px; font-weight: bold;">
+                                            <span>@member.title</span>
+                                        </div>
+                                        <div style="color: #aaa; font-size: 13px;">
+                                            <span>@member.emailid</span>
+                                        </div>
+                                    </div>
+                                    <div class="pull-right">
+                                        <span class="btn-green btn-flat hide" style="display: none;">Remove</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                
+                    }
+                }
+                else
+                {
+                    
+                    <tr>
+                        <td>
+                            <div class="">
+                                <div class="pull-left" style="margin: 5px 0px 10px 0px; font-size: 25px; font-weight: bold;">
+                                    <span>No members found in this list</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                
+                }
+
+
+
+
+            </tbody>
+        </table>
+
+        @* <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display: block; position: relative; width: 100%;">
+            @if (Model.members.Items.ToList().Count > 0)
+            {
+                foreach (Business.ApplicationService.Item member in Model.members.Items.ToList())
+                {
+                <li data-listid="@Model.Id">
+                    <div style="padding: 10px 20px;">
+                        <div style="width: 100%; display: inline-block;">
+                            <div class="pull-left">
+                                <div style="color: #000; font-size: 15px; font-weight: bold;">
+                                    <span>@member.name</span>
+                                </div>
+                                <div style="color: #aaa; font-size: 13px;">
+                                    <span>@member.address</span>
+                                </div>
+                            </div>
+                            <div class="pull-right">
+                                <span class="btn-green btn-flat">Remove</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    if (member != Model.members.Items.ToList().Last())
+                    {
+                <li class="divider clear" style="margin: 0px 0px;"></li>
+                    }
+
+                }
+            }
+            else
+            {
+                <li>
+                    <div class="well" style="margin-top: 20px;">
+                        <div class="pull-left" style="margin: 5px 0px 10px 0px; font-size: 25px; font-weight: bold;">
+                            <span>No memebers found in this list</span>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>*@
+        <div style="padding-top: 25px; clear: both;">
+@*            <div class="pagination pagination-centered">
+                <ul>
+                    <li class="disabled"><a href="#">Prev</a></li>
+                    <li class="disabled"><a href="#" class="disabled">1</a></li>
+                    <li class="disabled"><a href="#" class="disabled">2</a></li>
+                    <li class="disabled"><a href="#" class="disabled">3</a></li>
+                    <li class="disabled"><a href="#" class="disabled">4</a></li>
+                    <li class="disabled"><a href="#" class="disabled">5</a></li>
+                    <li class="disabled"><a href="#" class="disabled">Next</a></li>
+                </ul>
+            </div>*@
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/Scripts/jobportal/maillist.js"></script>
+}

@@ -1,0 +1,32 @@
+﻿@model UI.Models.portaluser
+@{
+    ViewBag.Title = "admin";
+    Layout = "~/Views/Shared/_JobPortalMasterView.cshtml";
+}
+<div style="clear: both;">
+    <div class="pull-left">
+        <span class="pageheader">Add Admins</span>
+    </div>
+    <div class="pull-right" style="margin-left:10px;">
+        <a href="/users" role="button" class="btn-green btn-flat" data-toggle="modal">View Users</a>
+    </div>
+   
+</div>
+<div style="padding-top: 50px;margin-bottom: 20px;border-bottom: 1px solid #e5e5e5;"></div>
+<div>
+@using (Html.BeginForm("admin", "users", FormMethod.Post, new { enctype = "multipart/form-data", id = "addadmin", style = "max-width:550px;padding: 0px 20px;" }))
+ {
+     <div>
+         <div>
+             @Html.TextBoxFor(m=>m.usermail, new {id="",@class="input input-wide",placeholder="Add Admin Email"})
+         </div>
+         <div>
+             @Html.TextBoxFor(m=>m.userpassword, new {id="",@class="input input-wide",placeholder="Enter Password"})
+         </div>
+         <div>
+             @Html.TextBoxFor(m=>m.usertitle, new {id="",@class="input input-wide",placeholder="Add Admin Title"})
+         </div>
+         <input type="submit" class="btn-green btn-flat" value="Add Admin"/>
+     </div>
+ }
+</div>

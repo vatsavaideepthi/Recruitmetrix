@@ -1,0 +1,205 @@
+﻿@model UI.Models.Job
+@{
+
+    ViewBag.Title = "Apply Job";
+    ViewBag.highlight = "jobs";
+    Layout = "~/Views/Shared/_PublicViewJobPortal.cshtml";
+    
+    UI.Models.JObApplicationdata objJobappdata = new UI.Models.JObApplicationdata();
+    objJobappdata.jobid = Model.JobId;
+    objJobappdata.companyid = Model.CompanyId;
+    
+}
+
+<div class="row">
+
+
+    @if (DateTime.Now.Subtract(Model .ExpiryDate).TotalDays > 1)
+    {
+        <div>
+            <span>Oops... Job has been Expired..
+            </span>
+        </div>
+    }
+    else
+    {
+        using (Html.BeginForm("AddApplicant", "jobs", FormMethod.Post, new { enctype = "multipart/form-data", id = "addcandidateform" }))
+        {
+            <div class="page-header-row" style="margin-bottom: 0px;">
+            <div class="col-md-7" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+                <span class="pageheader" title="job name displayed as title">You're applying for "@Model.JobName" </span>
+            </div>
+            <div class="col-md-5">
+                <a class="querypopup btn-wide pull-right btn-flat btn-grey">Send a Query on this Requirement</a>
+            </div>
+        </div>
+           @Html.Partial("~/Views/common/_addJobApplicantPublic.cshtml", objJobappdata)
+
+        }
+           
+        <div class="" style="margin-top: 100px;">
+            <div class="pull-left col-md-5" style="margin-left: 0px;">
+                <div>
+                    <p>
+                        <span style="clear: both; margin-top: 5px;" class="pull-left"><span style="font-size: 15px;">@Model.Exp</span> <span class="gridLabelValues location" style="font-size: 15px;">@Model.State</span></span>
+                    </p>
+                </div>
+
+                <div style="clear: both;">
+                    <div style="padding: 5px 0px 0px 0px;">
+                        <span class=" job-subheader">Skill set: <span style="font-weight: normal; display: inline-block;">
+
+                            <span class="  pull-left" style="width: 510px; text-align: justify; word-break: break-all; white-space: normal;">@Model.PrefSkills</span>
+                        </span>
+                        </span>
+
+                    </div>
+                    <div style="padding: 5px 0px 4px 0px;">
+                        <div id="jobinforow" class="">
+                            <span class="pull-left job-subheader">Job Description : <span style="font-weight: normal; display: inline-block;">
+
+                                <span class=" job-desc-holder job-desc-truncator pull-left" style="width: 510px; text-align: justify; word-break: break-all; white-space: normal;">@Model.JobDesc</span>
+
+
+
+
+                            </span>
+                                @if (@Model.JobDesc.Length > 40)
+                                {
+                                       
+                                    <span style="color: #26b89a; cursor: pointer;" class="showmore">View More </span>
+                                       
+                                }
+                                <a style="color: #26b89a; cursor: pointer;" class="viewlessproxy hide">View Less </a>
+
+                            </span>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <span class=" job-subheader">Contact Details : </span>
+
+                <span class="  pull-left" style="width: 600px; text-align: justify;">@Model.Email,@Model.Phone</span>
+
+
+
+
+
+
+            </div>
+
+
+            <div class="pull-right job-description-meta-holder col-md-4" style="margin-top: 30px;">
+                <table class="table normal-table jobtable" style="padding: 10px !important; display: inline-block; margin-bottom: 0px; font-weight: bold; font-size: 13px;">
+                    <tr>
+                        <td>Expires On</td>
+                        <td>&nbsp;<span> : </span>&nbsp; </td>
+                        <td>@Model.ExpiryDate.ToShortDateString()</td>
+                    </tr>
+                    <tr>
+                        <td>Pay Rate</td>
+                        <td>&nbsp;<span> : </span>&nbsp;</td>
+                        <td>@Model.PayRate</td>
+                    </tr>
+                    <tr>
+                        <td>Job Type</td>
+                        <td>&nbsp;<span> : </span>&nbsp;</td>
+                        <td>@Model.postype</td>
+                    </tr>
+                    <tr>
+                        <td>Job Length</td>
+                        <td>&nbsp;<span> : </span>&nbsp;</td>
+                        <td>@Model.JobLength</td>
+                    </tr>
+                    <tr>
+                        <td>Travel</td>
+                        <td>&nbsp;<span> : </span>&nbsp;</td>
+                        <td>@Model.Travel</td>
+                    </tr>
+
+
+                </table>
+            </div>
+
+        </div>   
+    }
+
+
+
+    <div id="sendaquery" class="modal fade" style="min-width: 650px !important;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <div id="" style="display: inline-block; float: right;">
+                        <div class="top-action-set">
+                        </div>
+                    </div>
+
+                    <h3 id="">Send a Query </h3>
+                </div>
+                <div class="modal-body">
+
+                    <div>
+
+                        <div class="pull-left" style="clear: both;">
+                            <span style="font-size: 15px; font-weight: bold;">Request On</span>
+                        </div>
+                        <div class="pull-left" style="margin-left: 15px;">
+
+
+                            <label class="radio-inline pull-left">
+                                <input type="radio" name="optionsRadios" id="optionsradio1" value="" checked="checked">
+                                Requirement Type
+                            </label>
+                            <label class="radio-inline pull-left" style="margin-left: 10px;">
+                                <input type="radio" name="optionsRadios" id="optionsradio2" value="">
+                                Client Info
+                            </label>
+                            <label class="radio-inline pull-left" style="margin-left: 10px;">
+                                <input type="radio" name="optionsRadios" id="optionsradio3" value="">
+                                Payrate
+                            </label>
+                            <label class="radio-inline pull-left" style="margin-left: 10px;">
+                                <input type="radio" name="optionsRadios" id="optionsradio4" value="">
+                                Status
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="" class="">
+                        <div>
+                            <textarea id="" style="width: 98%; resize-horizontal: none; height: 150px; max-width: 98%; margin-top: 15px;" placeholder="" disabled="disabled">Enter your Personalized message here</textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal-footer">
+                    <div id="" class="">
+
+                        <a id="" class="btn-flat btn-green pull-right" style="margin-left: 10px;">Send a Query</a>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('.querypopup').click(function () {
+
+            $('#sendaquery').modal('show');
+        });
+
+
+    </script>
+
+</div>
+@section Scripts{
+    <script src="~/Scripts/jobportal/portalcandidates.js"></script>
+}

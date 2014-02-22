@@ -1,0 +1,27 @@
+﻿@model UI.Models.PortalContact
+@{
+    ViewBag.Title = "Edit";
+    ViewBag.highlight = "contacts";
+    Layout = "~/Views/Shared/_loggedin.cshtml";
+}
+
+<h2>Edit Contact</h2>
+
+@using (Html.BeginForm("Edit", "Contacts", FormMethod.Post, new { enctype = "multipart/form-data", id = "addcandidateform" }))
+{
+    @*<div class="row">
+        @Html.HiddenFor(m => m.ContactId, new { id = "contactid" })
+        <div>
+            @Html.EditorFor(m => m.FirstName, new { id = "contactfirstname", placeholder = "Enter First Name" })
+            @Html.EditorFor(m => m.LastName, new { id = "contactlastname", placeholder = "Enter Last Name" })
+        </div>
+        <div>
+            @Html.EditorFor(m => m.EmailAddress, new { id = "contactemailid", placeholder = "Enter Email Address" })
+        </div>
+
+        <div>
+            <span class="btn btn-info">Cancel</span>
+            <input type="submit" class="btn btn-info" value="Update Contact" />
+        </div>
+    </div>*@
+}

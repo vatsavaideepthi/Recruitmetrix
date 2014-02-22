@@ -1,0 +1,79 @@
+﻿@model UI.Models.JObApplicationdata
+
+@using (Html.BeginForm("AddApplicant", "jobs", FormMethod.Post, new { enctype = "multipart/form-data", id = "addcandidateform" }))
+        {
+       
+            <div class="" style="width:600px;">
+                <div style="padding: 0px 0px 20px 0px; margin-top: 10px; font-size: 20px;">
+                    @*<span>Expires On:</span><span style="margin-left: 10px;">@Model[0].ExpiryDate.ToString("d MMMM , yyyy")</span>*@
+                </div>
+                <div>
+                    <div class="pull-left" style="width: 50%; text-align: center; font-weight: bold;">
+                        <span style="font-size: 20px;">You are a</span>
+                    </div>
+                    <div class="pull-right" style="width: 50%">
+                        <select id="jobapplicantmode">
+                            <option>Candidate</option>
+                            <option>Recruiter</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <input type="text" id="candname" placeholder="Name" style="width: 100%;" />
+                </div>
+                <div>
+                    <input type="text" id="candskills" placeholder="Skills" style="width: 100%;" />
+                </div>
+                <div>
+                    <input type="text" id="candworkauth" placeholder="Work Authorization" style="width: 100%;" />
+                </div>
+                <div>
+                    <div class="pull-left">
+                        <input type="text" id="candexperiance" placeholder="Experiance" style="width: 100%;" />
+                    </div>
+                    <div class="pull-right">
+                        <select id="jobcandreloaction">
+                            <option>YES</option>
+                            <option>NO</option>
+                            <option>Yes To Specific</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="padding: 5px 0px 10px 0px;" class="pull-left">
+                    <span class="btn btn-info" id="browseapplicantresume">Browse Resume</span>
+                    <input type="file" id="candresume" class="hide" name="candresume"/>
+                    <script type="text/javascript">
+                        $('#browseapplicantresume').click(function (e) {
+                            $('#candresume').click();
+                        });
+                    </script>
+                </div>
+                <div class="pull-left" style="padding: 10px 0px 10px 0px; margin-left: 10px;">
+                    <span>No Resume attached</span>
+                </div>
+                <div>
+                    <input type="text" id="suppliercontactemail" placeholder="Contact Email ID" style="width: 100%;" />
+                    <input type="text" id="suppliercontactnumber" placeholder="Contact Number" style="width: 100%;" />
+                </div>
+            </div>
+            <div style="padding-bottom: 15px; text-align: center;">
+                  <p><span class="btn btn-info addapplicant" style="width: 100%;">Apply For this Job</span></p>
+                <p><button type="submit" class="btn btn-info hide" style="width: 100%;display:none;">Apply For this Job</button></p>
+                <div class="recroption hide">
+                    <p><span>or</span></p>
+                    <p><span class="btn btn-info" style="width: 100%;color:white !important;">@Html.ActionLink("Apply Multiple Resumes","multiadd","jobs",new {jobid=Request.QueryString["jobid"].ToString()},new {id="showmulitadd"}) </span></p>
+                </div>
+            </div>
+            <div class="ruleholder">
+                 
+                @Html.HiddenFor(m=>m.creatorid,new {id="applicationcreatorid",value=Session["companyid"].ToString()})
+                @Html.HiddenFor(m=>m.jobid,new {id="jobid",value=Request.QueryString["jobid"].ToString()})
+                @Html.HiddenFor(m=>m.data,new {id="applicationdata",value=Request.QueryString["jobid"].ToString()})
+               
+                <input type="hidden" id="suppliercompname" value="Supplier Company"/>
+                <input type="hidden" id="suppliername" value="Supplier Name"/>
+                
+
+            </div>
+
+        }

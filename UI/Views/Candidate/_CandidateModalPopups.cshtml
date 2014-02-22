@@ -1,0 +1,12 @@
+﻿@{
+    UI.Models.JObApplicationdata applicantdata = new UI.Models.JObApplicationdata();
+    applicantdata.jobid = "";
+    try
+    {
+        applicantdata.creatorid = Session["userid"].ToString();
+    }
+    catch { }
+}
+<div id="addcandidatemodal" class="modal fade" style="min-width: 600px !important;">
+    @Html.Partial("~/Views/common/_addJobApplicantInternal.cshtml", applicantdata)
+</div>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/MoneyTrackerServices" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/MoneyTrackerServices" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.1.252:8500/AppService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://192.168.1.252:8500/AppService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/System" />
+  <xs:complexType name="AppService.JobportalResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="action" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="exceptiondate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="isfailed" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="time" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AppService.JobportalResponse" nillable="true" type="tns:AppService.JobportalResponse" />
+  <xs:complexType name="ArrayOfObjectDefinitions.ruleline">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ObjectDefinitions.ruleline" nillable="true" type="tns:ObjectDefinitions.ruleline" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfObjectDefinitions.ruleline" nillable="true" type="tns:ArrayOfObjectDefinitions.ruleline" />
+  <xs:complexType name="ObjectDefinitions.ruleline">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="actionname" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="allowedroles" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="allowedto" nillable="true" type="tns:ArrayOfObjectDefinitions.rulelinemember" />
+      <xs:element minOccurs="0" name="restrictedfrom" nillable="true" type="tns:ArrayOfObjectDefinitions.rulelinemember" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="restrictedroles" nillable="true" type="q2:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ObjectDefinitions.ruleline" nillable="true" type="tns:ObjectDefinitions.ruleline" />
+  <xs:complexType name="ArrayOfObjectDefinitions.rulelinemember">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ObjectDefinitions.rulelinemember" nillable="true" type="tns:ObjectDefinitions.rulelinemember" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfObjectDefinitions.rulelinemember" nillable="true" type="tns:ArrayOfObjectDefinitions.rulelinemember" />
+  <xs:complexType name="ObjectDefinitions.rulelinemember">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="data" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="memberid" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="membername" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="membertype" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="properties" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ObjectDefinitions.rulelinemember" nillable="true" type="tns:ObjectDefinitions.rulelinemember" />
+  <xs:complexType name="ArrayOfObjectDefinitions.accessrule">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ObjectDefinitions.accessrule" nillable="true" type="tns:ObjectDefinitions.accessrule" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfObjectDefinitions.accessrule" nillable="true" type="tns:ArrayOfObjectDefinitions.accessrule" />
+  <xs:complexType name="ObjectDefinitions.accessrule">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="accessruleid" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="accessrulename" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="createdby" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="createdon" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="isruleexpires" type="xs:boolean" />
+      <xs:element minOccurs="0" name="modifiedby" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="modifiedon" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="objectname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="rulecollection" nillable="true" type="tns:ArrayOfObjectDefinitions.ruleline" />
+      <xs:element minOccurs="0" name="ruleexpireson" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="rulestatus" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ObjectDefinitions.accessrule" nillable="true" type="tns:ObjectDefinitions.accessrule" />
+  <xs:complexType name="AppRestResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContentEncoding" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContentLength" type="xs:long" />
+      <xs:element minOccurs="0" name="ContentType" nillable="true" type="xs:string" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="ErrorException" nillable="true" type="q3:Exception" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RawBytes" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="ResponseStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ResponseUri" nillable="true" type="xs:anyURI" />
+      <xs:element minOccurs="0" name="Server" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatusCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AppRestResponse" nillable="true" type="tns:AppRestResponse" />
+  <xs:complexType name="ArrayOfmailattachment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="mailattachment" nillable="true" type="tns:mailattachment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfmailattachment" nillable="true" type="tns:ArrayOfmailattachment" />
+  <xs:complexType name="mailattachment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="path" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="mailattachment" nillable="true" type="tns:mailattachment" />
+</xs:schema>

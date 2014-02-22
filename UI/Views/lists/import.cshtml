@@ -1,0 +1,82 @@
+﻿@model UI.Models.Mailinglist
+@{
+    ViewBag.Title = "import";
+    ViewBag.highlight = "mailinglists";
+    Layout = "~/Views/Shared/_JobPortalMasterView.cshtml";
+}
+
+<div style="clear: both;">
+    <div class="pull-left">
+        <span class="pageheader">Import Mailing Addresses</span>
+    </div>
+    <div class="pull-right">
+        <a href="/lists" class="btn-grey btn-flat">Back To Mailing Lists</a>
+    </div>
+</div>
+<div style="padding-top: 50px;margin-bottom: 20px;border-bottom: 1px solid #e5e5e5;"></div>
+
+<div class="row">
+     @using (Html.BeginForm("import", "lists", FormMethod.Post, new { style = "clear:both;", enctype = "multipart/form-data" }))
+        {
+    <div class="span8">
+        <span id="mailimport-activator" class="btn btn-info btn-grey btn-flat" style="display:none;">Import Mail Addresses</span>
+    </div>
+         <div class="importinfo">
+            <span><span>Click to view document structure</span><a href="#ImportDocumentNotifier" role="button" class="btn btn-info" data-toggle="modal"><i class="glyphicon glyphicon-info-sign glyphicon-white"></i></a></span>
+         </div>
+    <div id="mailimport-box" class="" style="clear:both;margin-left:30px;">
+        <span ><span id="mailaddressimporterproxy" class="btn-grey btn-flat">Browse</span><span id="addedfilename" style="margin-left:20px;">No File Added</span></span>
+        <input type="file" id="mailaddressimporter" class="hide" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" name="mailaddressimporter"/>
+        @*<input type="file" id="mailaddressimporter" class="hide" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,text/comma-separated-values, text/csv, application/csv"/>*@
+        <script>
+            $(document).ready(function () {
+
+                $('#mailimport-activator').click(function () {
+
+                    $('#mailimport-box').show();
+                    $(this).hide();
+                });
+
+
+                $('#mailaddressimporterproxy').click(function () {
+                    $('#mailaddressimporter').click();
+                });
+
+                $("#mailaddressimporter").change(function () {
+                    var fileName = $('input[type=file]').val().replace(/.*(\/|\\)/, '');
+                    var clean = fileName.split('\\').pop(); // clean from C:\fakepath OR C:\fake_path 
+                    $('#addedfilename').text(clean);
+                    $('#btmailimportsubmit').removeAttr('disabled');
+                });
+            });
+        </script>
+        <div style="padding:15px 0px;">
+              <input id="btmailimportsubmit" type="submit" class="btn-green btn-flat" value="Import List" disabled="disabled"/>
+         </div>
+    </div>
+         
+     }
+    
+
+  <div id="ImportDocumentNotifier" class="modal fade" style="width: 60% !Important;left:auto;margin:auto;">
+       <div class="modal-dialog">
+        <div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Import Document Structure</h3>
+    </div>
+    <div class="modal-body" style="height:600px;">
+        <form>
+            <div>
+               <img src="~/Content/images/emailformat.jpg" />
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        @*<a class="btn-flat btn-grey close " data-dismiss="modal" aria-hidden="true" style="margin-left: 10px; opacity: 1;">Cancel</a>*@
+       <button type="button" class="btn btn-info" data-dismiss="modal" aria-hidden="true">Got It</button>
+    </div>
+            </div>
+           </div>
+</div>
+</div>

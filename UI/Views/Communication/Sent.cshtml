@@ -1,0 +1,47 @@
+﻿@model List<UI.Models.mailmessage>
+@{
+    ViewBag.Title = "Sent";
+    ViewBag.submenuhighlight = "sent";
+    Layout = "~/Views/communication/_CommunicationMasterView.cshtml";
+}
+
+@section communicationsubtitle{
+    <h2>Sent Mail</h2>
+    }
+<div class="" style="clear: both; display: inline-block; width: 100%;">
+    @*Page content*@
+     
+    <table class="table table-hover" style="border: 1px solid #ddd;" id="allmails">
+        <tbody>
+             @foreach (UI.Models.mailmessage mail in Model)
+       {
+            <tr>
+                <td>
+                   <div>
+                       <input type="checkbox" data-mailid="@mail.mailitemid"/>
+                   </div>
+                </td>
+                <td>
+                    <div>
+                        <span class="mailto">@mail.receipients</span>
+                    </div>
+                </td>
+                <td>
+                    <div data-mailid="@mail.mailitemid">
+                        <span data-mailid="@mail.mailitemid" class="mailbrief">@mail.mailbrief</span>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <span data-mailid="@mail.mailitemid" class="mailtime"> @mail.mailtime</span>
+                    </div>
+                </td>
+            </tr>
+             }
+        </tbody>
+    </table>
+    <div>
+        <span class="hide">NO Mails .....</span>
+    </div>
+      
+</div>

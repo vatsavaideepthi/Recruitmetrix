@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "_PaymentTrackerMasterView";
+    Layout = "~/Views/Shared/_loggedin.cshtml";
+}
+
+@section customstyles{
+    <style type="text/css">
+        html
+        {
+            font-family: Noto Sans Regular !important;
+        }
+         body
+        {
+            font-family: 'Noto Sans Regular' !important;
+        }
+
+        h2
+        {
+            font-family: 'Noto Sans Regular' !important;
+        }
+    </style>
+    <link href="~/css/webfonts.css" rel="stylesheet" />
+    @RenderSection("customstylesnew", required: false)
+}
+@section actionset
+    {
+    @RenderSection("actionset", required: false)
+}
+
+@section topbarmenu
+    {
+    @Html.Partial("~/Views/common/_TopBarMenuPaymentTracker.cshtml", null)
+}
+<div style="margin-bottom:50px;" class="data-container">
+    @RenderBody()
+</div>
+
+@section scripts
+    {
+    @RenderSection("Scripts", required: false)
+}
+
+@section FooterBlock{
+    <span style="padding: 10px 0px;display: inline-block;">&copy; @DateTime.Now.Year - <sup>&reg;</sup><sup>&trade;</sup>Payment Tracker :: Simplifying Expences</span>
+    }

@@ -1,0 +1,230 @@
+﻿@model UI.Models.userdashboardtimesheet
+@{
+    ViewBag.Title = "dashboard";
+    ViewBag.highlight = "timesheets";
+    Layout = "~/Views/timesheet/_timeSheetMasterView.cshtml";
+            // UI.testmodel.Item timesheetdayitem= new UI.testmodel.Item();
+}
+
+<div class="page-header-row">
+    <div class="col-md-8">
+        <span class="pageheader jobheader">Time Sheet for @Model.timesheetmonth</span>
+        <input id="currentmonthname" type="hidden" value="@Model.timesheetmonth"/>
+    </div>
+    <div class="col-md-4">
+        @using (Html.BeginForm("dashboard", "timesheet", FormMethod.Post, new { id = "timesheetdashboard" }))
+        {
+            if (Model != null)
+            {
+            <input type="text" name="selectedyear" value="@DateTime.Now.Year"/>
+            <div class="input-group">
+
+                <select id="monthslist" name="selectedmonth" class="form-control">
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+                <span class="input-group-addon">
+                    <input id="showmonthdashboard" type="submit" value="GO" /></span>
+            </div>
+            <script>
+                $(document).ready(function () {
+                    $('#monthslist').children().each(function () {
+                        if (this.text.toLowerCase() === $('#currentmonthname').val().toLowerCase())
+                        {
+                            $(this).attr('selected', 'selected');
+                        }
+                    });
+                });
+
+            </script>
+            }
+
+        }
+    </div>
+</div>
+<div class="" style="background-color: #ffffff; border: 1px solid #e5e5e5; border-radius: 4px; padding: 5px;">
+    <div class="row page-block-row timesheet-row" style="height: 40px !important;min-height: 40px; padding: 0px;margin-bottom: 5px;">
+        <div class="week-info" style="height: 40px !important;min-height: 40px;">
+            <div class="" style="position: relative;">
+                <div style="text-align: center; position: relative; top: 40%;">
+                    <span data-timesheetstart="" data-timesheetends="" style="text-transform: inherit; font-weight: bold;"></span><br />
+                </div>
+            </div>
+        </div>
+        <div class="sheet" style="height: 40px !important;min-height: 40px;">
+            @for (int i = 0; i < 7; i++)
+            {
+                string dayitemstyle = "";
+                string weekname = "";
+                switch (i)
+                {
+                    case 0:
+                        dayitemstyle = "position:absolute;margin:1px  0.143% 1px  0.143%;left:" + ((0 * 14) + (0 * 0.286)).ToString() + "%";
+                        weekname = "Monday";
+                        break;
+                    case 1:
+                        dayitemstyle = "position:absolute;margin:1px  0.143% 1px  0.143%;left:" + ((1 * 14) + (1 * 0.286)).ToString() + "%";
+                        weekname = "Tuesday";
+                        break;
+                    case 2:
+                        dayitemstyle = "position:absolute;margin:1px  0.143% 1px  0.143%;left:" + ((2 * 14) + (2 * 0.286)).ToString() + "%";
+                        weekname = "Wednesday";
+                        break;
+                    case 3:
+                        dayitemstyle = "position:absolute;margin:1px  0.143% 1px  0.143%;left:" + ((3 * 14) + (3 * 0.286)).ToString() + "%";
+                        weekname = "Thursday";
+                        break;
+                    case 4:
+                        dayitemstyle = "position:absolute;margin:1px  0.143% 1px  0.143%;left:" + ((4 * 14) + (4 * 0.286)).ToString() + "%";
+                        weekname = "Friday";
+                        break;
+                    case 5:
+                        dayitemstyle = "position:absolute;margin:1px  0.143% 1px  0.143%;left:" + ((5 * 14) + (5 * 0.286)).ToString() + "%";
+                        weekname = "Saturday";
+                        break;
+                    case 6:
+                        dayitemstyle = "position:absolute;margin:1px  0.143% 1px  0.143%;left:" + ((6 * 14) + (6 * 0.286)).ToString() + "%";
+                        weekname = "Sunday";
+                        break;
+                }
+                    
+                <div class="col-md-1" style="margin:1px 0.143% 1px 0.143%;width:14%;">
+                    <div class="sheet-data">
+                        <span class="data-item" style="font-weight:bold;">@weekname</span><br />
+                    </div>
+                </div>
+                    
+            }
+        </div>
+        <div class="" style="position: relative;height: 40px !important;min-height: 40px;">
+        </div>
+    </div>
+    @foreach (UI.Models.AppWeekTimeSheet weektimesheet in Model.weektimesheets)
+    {
+        
+        <div class="row page-block-row timesheet-row" style="min-height: 100px; padding: 0px;">
+            <div class="week-info">
+                <div class="week-meta-data" style="position: relative;">
+                    <div style="text-align: center; position: relative; top: 40%;">
+                        <span data-timesheetstart="" data-timesheetends="" style="text-transform: inherit; font-weight: bold;">Week @(weektimesheet.timesheetweek.weeknumber + 1)</span><br />
+                        <span data-timesheetstart="" data-timesheetends="" style="text-transform: inherit;">@weektimesheet.timesheetweek.startdate.Day TO @weektimesheet.timesheetweek.enddate.Day</span>
+                    </div>
+                    <span style="position: absolute; top: 4px; right: 4px;">
+                        @if (weektimesheet.weektimesheetdata != null)
+                        {
+                            <a href="/timesheet/edit?year=@weektimesheet.timesheetweek.year&month=@weektimesheet.timesheetweek.month&week=@(weektimesheet.timesheetweek.weeknumber + 1)"><i class="glyphicon glyphicon-pencil"></i></a>
+                        }
+                        else
+                        {
+                            <a href="/timesheet/add?year=@weektimesheet.timesheetweek.year&month=@weektimesheet.timesheetweek.month&week=@(weektimesheet.timesheetweek.weeknumber + 1)"><i class="glyphicon glyphicon-plus"></i></a>
+                        }
+                    </span>
+                </div>
+            </div>
+            <div class="sheet">
+                @foreach (System.DateTime weekday in weektimesheet.timesheetweek.dayscollection)
+                {
+                    string dayitemstyle = "";
+                    switch (weekday.DayOfWeek.ToString().ToLower())
+                    {
+                        case "monday":
+                            dayitemstyle = "position:absolute;margin:1px  0.143% 1px  0.143%;left:" + ((0 * 14) + (0 * 0.286)).ToString() + "%"; ;
+                            break;
+                        case "tuesday":
+                            dayitemstyle = "position:absolute;margin:1px  0.143% 1px  0.143%;left:" + ((1 * 14) + (1 * 0.286)).ToString() + "%";
+                            break;
+                        case "wednesday":
+                            dayitemstyle = "position:absolute;margin:1px  0.143% 1px  0.143%;left:" + ((2 * 14) + (2 * 0.286)).ToString() + "%";
+                            break;
+                        case "thursday":
+                            dayitemstyle = "position:absolute;margin:1px  0.143% 1px  0.143%;left:" + ((3 * 14) + (3 * 0.286)).ToString() + "%";
+                            break;
+                        case "friday":
+                            dayitemstyle = "position:absolute;margin:1px  0.143% 1px  0.143%;left:" + ((4 * 14) + (4 * 0.286)).ToString() + "%";
+                            break;
+                        case "saturday":
+                            dayitemstyle = "position:absolute;margin:1px  0.143% 1px  0.143%;left:" + ((5 * 14) + (5 * 0.286)).ToString() + "%";
+                            break;
+                        case "sunday":
+                            dayitemstyle = "position:absolute;margin:1px  0.143% 1px  0.143%;left:" + ((6 * 14) + (6 * 0.286)).ToString() + "%";
+                            break;
+                    }
+                    if (weektimesheet.weektimesheetdata != null)
+                    {
+                        try
+                        {
+                            UI.testmodel.Item timesheetdayitem = weektimesheet.weektimesheetdata.Items.Item.Where(m => m.Date == weekday.Date.ToString()).First();
+
+                            if (timesheetdayitem != null)
+                            {
+                    <div class="col-md-1 daysheet timesheet-filled" style="@dayitemstyle">
+                        <div class="sheet-meta-info" data-sheetdate="" data-sheetid=""><span class="sheet-date badge pull-right" title="@weekday.ToString("D")">@weekday.Date.Day</span></div>
+                        <div class="sheet-data">
+                            <span class="data-item">Work Hours:@timesheetdayitem.Workhours</span><br />
+                            <span class="data-item">Overtime : @timesheetdayitem.Overtime</span>
+                        </div>
+                        <div class="add-info">
+                            <span class="info-item"></span>
+                        </div>
+                    </div>
+                            }
+                            else
+                            {
+                    <div class="col-md-1 daysheet timesheet-empty" style="@dayitemstyle">
+                        <div class="sheet-meta-info" data-sheetdate="" data-sheetid=""><span class="sheet-date badge pull-right" title="@weekday.ToString("D")">@weekday.Date.Day</span></div>
+                        <div class="timesheet-empty">
+                            <div class="sheet-data"><span>No Time Sheet</span></div>
+                        </div>
+                    </div>
+                            }
+                        }
+                        catch
+                        {       
+                    <div class="col-md-1 daysheet timesheet-empty" style="@dayitemstyle">
+                        <div class="sheet-meta-info" data-sheetdate="" data-sheetid=""><span class="sheet-date badge pull-right" title="@weekday.ToString("D")">@weekday.Date.Day</span></div>
+                        <div class="timesheet-empty">
+                            <div class="sheet-data"><span>No Time Sheet</span></div>
+                        </div>
+                    </div>
+                        }
+                    }
+                    else
+                    { <div class="col-md-1 daysheet timesheet-empty" style="@dayitemstyle">
+                        <div class="sheet-meta-info" data-sheetdate="" data-sheetid=""><span class="sheet-date badge pull-right" title="@weekday.ToString("D")">@weekday.Date.Day</span></div>
+                        <div class="timesheet-empty">
+                            <div class="sheet-data"><span>No Time Sheet</span></div>
+                        </div>
+                    </div>
+                           
+                    }
+                }
+            </div>
+            <div class="meta-info" style="position: relative;">
+                @if (weektimesheet.weektimesheetdata != null)
+                {
+                    <div>
+                        <div>@weektimesheet.weektimesheetdata.Metadata.Totalhours / @weektimesheet.weektimesheetdata.Metadata.Overtimehours / @(Convert.ToInt32(weektimesheet.weektimesheetdata.Metadata.Totalhours) + Convert.ToInt32(weektimesheet.weektimesheetdata.Metadata.Overtimehours)) </div>
+                        @*<div style="bottom: 0;position: absolute;float: right;right: 0;"><span class="btn btn-default btn-sm submit-timesheet" data-submitstatus="">submit</span></div>*@
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        <div><span></span></div>
+                        @*<div style="bottom: 0;position: absolute;float: right;right: 0;"><span class="btn btn-default btn-sm submit-timesheet" data-submitstatus="">submit</span></div>*@
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>

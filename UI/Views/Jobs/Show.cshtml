@@ -1,0 +1,796 @@
+﻿@model UI.Models.JobPosting
+@{
+    ViewBag.Title = Model.postedjob.JobName + " ::Details";
+    ViewBag.highlight = "jobs";
+    Layout = "~/Views/Shared/_JobPortalMasterView.cshtml";
+
+    UI.Models.Job job = Model.postedjob;
+    List<UI.Models.JobApplication> applications = Model.applications;
+    UI.Models.JObApplicationdata objJobappdata = new UI.Models.JObApplicationdata();
+    objJobappdata.creatorid = Session["companyid"].ToString();
+    objJobappdata.jobid = Request.QueryString["jobid"].ToString();
+    
+    
+    
+}
+@helper getstatus(string code)
+{
+           
+    switch (code)
+    {
+        case "1":
+    <text>UnScreened</text>
+            break;
+        case "2":
+    <text>Screened</text>
+            break;
+        case "3":
+    <text>TelePhonic</text>
+            break;
+        case "4":
+    <text>Face To Face</text>
+            break;
+        case "5":
+    <text>Offered & Accepted</text>
+            break;
+        case "6":
+    <text>Offered & Rejected</text>
+            break;
+        case "7":
+    <text>On Hold </text>
+            break;
+        case "8":
+    <text>Rejected</text>
+            break;
+        default:
+    <text>UnScreened</text>
+            break;
+
+    }
+    
+}
+
+<div>
+    <span class="pageheader jobheader">@job.JobName</span>
+
+    @Html.ActionLink("Back To Jobs List", "index", "jobs", null, new { @class = "btn-wide pull-right btn-flat btn-grey", style = "margin-bottom:19px;" })
+</div>
+<div class="jobbox" style="border: 1px solid #e5e5e5; border-radius: 4px; padding: 10px;">
+    <div class="col-md-7" style="padding-left: 0px;">
+        <div>
+            <p>
+                <span style="clear: both; margin-top: 5px;" class="pull-left"><span style="font-size: 15px;">@job.Exp</span> Years Experience in <span class="gridLabelValues location" style="font-size: 15px;">@job.State</span></span>
+            </p>
+        </div>
+        <div style="clear: both;">
+            <div style="padding: 5px 0px 0px 0px;">
+
+                <span class="job-subheader" style="width: 250px; text-align: justify;">Skillset</span> : <span class="" style="word-break: break-all;">@job.PrefSkills</span>
+
+            </div>
+            <div style="padding: 5px 0px 4px 0px;">
+                <div id="jobinforow" class="">
+                    <span class="pull-left job-subheader">Job Description : <span style="font-weight: normal; display: inline-block;">
+
+                        <span class=" job-desc-holder job-desc-truncator pull-left" style="text-align: justify; word-break: break-all; white-space: normal">@job.JobDesc</span>
+
+                        <script>
+                            $(document).ready(function () {
+                                $('.showmore').click(function () {
+                                    $('.job-desc-holder').append($('.viewlessproxy').clone().removeClass('hide').removeClass('viewlessproxy').addClass('viewless'));
+                                    $('.job-desc-holder').removeClass('job-desc-truncator');
+                                    $(this).hide();
+                                });
+
+                                $('#jobinforow').on('click', '.viewless', function () {
+
+                                    $('.job-desc-holder').addClass('job-desc-truncator');
+                                    $(this).remove();
+                                    $('.showmore').show();
+                                });
+                            });
+
+                        </script>
+
+
+                    </span>
+                        @if (job.JobDesc.Length > 40)
+                        {
+                                       
+                            <span style="color: #26b89a; cursor: pointer;" class="showmore">View More </span>
+                                       
+                        }
+                        <a style="color: #26b89a; cursor: pointer;" class="viewlessproxy hide">View Less </a>
+
+                    </span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1 pull-right" style="padding-right: 0px; width: 25px;">
+        <div style="display: inline-block; float: right;">
+            <a style="cursor: pointer;" class="getnotes" data-jobid="@job.JobId"><i class="glyphicon  glyphicon-th-list" title="Notes"></i></a>
+        </div>
+    </div>
+    <div class="job-description-meta-holder col-md-4 pull-right">
+        <table class="table normal-table jobtable" style="padding: 10px !important; display: inline-block; margin-bottom: 0px; font-weight: bold; font-size: 13px;">
+            <tr>
+                <td>Expires On</td>
+                <td>&nbsp;<span> : </span>&nbsp; </td>
+                <td>@job.ExpiryDate.ToShortDateString()</td>
+            </tr>
+            <tr>
+                <td>Pay Rate</td>
+                <td>&nbsp;<span> : </span>&nbsp;</td>
+                @{ string jobpayrate = "";
+                    if (job.payratemode != null && job.payratemode != "")
+                    {
+                        jobpayrate = job.PayRate + " / " + job.payratemode.ToUpper();
+                    }
+                }
+                <td>@jobpayrate </td>
+            </tr>
+            <tr>
+                <td>Job Type</td>
+                <td>&nbsp;<span> : </span>&nbsp;</td>
+                <td style="white-space:normal;">@job.postype</td>
+            </tr>
+            <tr>
+                <td>Job Length</td>
+                <td>&nbsp;<span> : </span>&nbsp;</td>
+                <td>@job.additionaldetails</td>
+            </tr>
+            <tr>
+                <td>Travel</td>
+                <td>&nbsp;<span> : </span>&nbsp;</td>
+                <td>@job.Travel</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+
+<div style="display: inline-block; width: 100%; padding-top: 20px;">
+    <div class="pull-left">
+        <h4 style="line-height: 20px; margin: 2px 0;">Applications For this Job</h4>
+    </div>
+
+    <div style="padding-bottom: 15px;" class="pull-right">
+
+
+
+        @* <button class="btn-green btn-flat btn-wide">Actions</button>*@
+        <a href="#addcandidatemodal" class="btn-green btn-flat" role="button" data-toggle="modal">Add Candidate</a>
+
+        <div class="btn-group">
+            @*  <a class=" btn-green btn-flat btn-wide"  role="button" data-toggle="modal">Actions</a>*@
+            <button class="btn-green btn-flat btn-shrink dropdown-toggle" data-toggle="dropdown">
+                Actions&nbsp;&nbsp;<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li class=" disabled action-item"><a tabindex="-1" href="#" class="detachcandidateinapp">Detach Candidates</a></li>
+                <li class="disabled action-item"><a tabindex="-1" href="#" class="forwardto">Forward to Client</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div id="jobapplicantcollection" class="jobapplicantcollection">
+
+    <input type="hidden" id="currentjobid" />
+    @if (applications.Count > 0)
+    {
+        <ul>
+            @foreach (UI.Models.JobApplication application in applications)
+            {
+
+                var decodeddata = Json.Decode(application.candidate.data);
+
+                string candname = @decodeddata["firstname"];
+               
+                
+                
+                <li class="listRow jobrow" style="" data-applicationid="@application.applicationid" data-applicantresume="@application.candidate.resumeurl" data-candidateid="@application.candidate.id" data-applicantdata="@application.candidate.data" data-resumeid="@application." data-contactis="" data-status="">
+                    <div class="jobbox" style="padding: 5px 2px;">
+                        <input type="hidden" id="" class="hiddenapplicantdata" />
+                        <div class="col-md-1">
+                            <div style="padding: 0px 10px;" class="pull-left">
+                                <input type="checkbox" class="chkcand" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="pull-left">
+                                <div>
+                                    <p>
+                                        <span style="font-size: 15px;">
+                                            <span class="jobtitle" data-jobid="@job.JobId"data-applicantresume="@application.candidate.resumeurl" data-applicantid="@application.applicationid">
+                                                <span class="applicantname">@candname</span>
+                                                @if (@decodeddata.supplier.person["contact"] != null)
+                                                {
+                                                    <span class="contactno" style="font-size: 12px; font-weight: bold; color: #777;">(@decodeddata.supplier.person["contact"])</span>
+                                                }
+                                            </span></span><i class="glyphicon glyphicon-edit hide" title="Edit Job"></i>
+                                    </p>
+                                </div>
+                                <div>
+                                    @{
+                                                var experience = @decodeddata.job["experience"] == "" ? "N / A" : @decodeddata.job["experience"] + " Years";
+                                    }
+                                    <span class="job-subheader">Exp</span> : <span class="gridLabelValuesexp">@experience</span>
+
+                                </div>
+                                <div style="margin-top: 3px;">
+                                    <span class="job-subheader">Skill</span> : <span class="gridLabelValuesskills" style="max-width: 150px; display: inline; white-space: normal; word-break: break-all; text-transform: capitalize">@decodeddata.job.skills["primary"]</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="pull-left">
+                                <span class="job-subheader">Questionnaire <i class="glyphicon glyphicon-edit updapplicantquestionaire" title="Edit Status"></i></span>
+                                <table class="table normal-table jobtable" style="margin-top: 2px; margin-bottom: 0px; display: inline-block; white-space: normal;">
+                                    @{var relocation = decodeddata.detailedinfo["relocation"] == "" ? "N / A" : decodeddata.detailedinfo["relocation"];
+                                      var locations = "";
+                                      try { locations = decodeddata.detailedinfo["value"] == "" ? "N / A" : decodeddata.detailedinfo["value"]; }
+                                      catch { locations = ""; }
+                                    }
+                                    <tr>
+                                        <td>Relocation </td>
+                                        <td>&nbsp;&nbsp;:</td>
+                                        @{
+                                            <td class="crrelocation"data-relocation="@decodeddata.detailedinfo["relocation"]">
+                                                <span class="viewloactions">&nbsp;&nbsp;@relocation</span>
+                                            </td>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            <div class="relocation-locations" style="display: none;">
+                                                <span class="relocation-locations-value">@locations</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Location </td>
+                                        <td>&nbsp;&nbsp;:</td>
+                                        @{
+                                      var location = @decodeddata.detailedinfo["location"] == "" ? "N / A" : @decodeddata.detailedinfo["location"];
+                                            <td class="crlocation"data-location="@decodeddata.detailedinfo["location"]"style="text-transform:capitalize">&nbsp;&nbsp; @location</td>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td>Work Authorization </td>
+                                        <td>&nbsp;&nbsp;:</td>
+                                        @{
+                                      var visa = @decodeddata.detailedinfo["visa"] == "" ? "N / A" : @decodeddata.detailedinfo["visa"];
+                                            <td class="crvisa" data-visa="@visa">&nbsp;&nbsp; @visa</td>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td>Pay Rate </td>
+                                        <td>&nbsp;&nbsp;:</td>
+                                        @{
+                                      var payrate = @decodeddata.detailedinfo["payrate"] == "" ? "N / A" : @decodeddata.detailedinfo["payrate"] + " $ / Hr";
+                                            <td class="crpayrate" data-payrate="@decodeddata.detailedinfo["payrate"]">&nbsp;&nbsp; @payrate</td>
+                                        }
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div>
+                                <span class="job-subheader">Current Status <i class="glyphicon glyphicon-edit updapplicantstatus" title="Edit Status"></i></span>
+                                <table class="normal-table jobtable" style="margin-top: 2px;">
+                                    <tr>
+                                        <td>In Progress</td>
+                                        <td>&nbsp;<span> : </span>&nbsp;</td>
+                                        <td>@getstatus(application.applicationstatus)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Last Updated By</td>
+                                        <td>&nbsp;<span> : </span>&nbsp;</td>
+                                        <td>Assigned to No One</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Profile Type</td>
+                                        <td>&nbsp;<span> : </span>&nbsp;</td>
+                                        <td>@decodeddata.detailedinfo["appliedby"]</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div style="padding: 0px 15px;" class="pull-right">
+                                <table class="normal-table jobtable">
+                                    <tr>
+                                        <td><a style="cursor:pointer;"class="candmailpop"data-applicationid="@application.applicationid"data-contactemail="@decodeddata.supplier.person["email"]"><i class="glyphicon-envelope glyphicon" title="Send Email To Candidate"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a style="cursor: pointer;" class="getappnotes" data-applicationid="@application.applicationid"><i class="glyphicon  glyphicon-th-list" title="Notes"></i></a>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+
+                                        @if (application.candidate.resumeurl == "")
+                                        {
+                                            <td colspan="3" style="padding: 5px 0px;"><span class="">Resume Not Added</span></td>
+                                        }
+                                        else
+                                        { 
+                                            <td colspan="3" style="padding: 5px 0px;" class="resume"><a href="@application.candidate.resumeurl" data-applicantresume="@application.candidate.resumeurl"><i class="glyphicon glyphicon-download-alt" title="View / Download Resume"></i></a></td>
+                                        }
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <i class="delete-applicant glyphicon glyphicon-trash" title="Delete Applicant" data-applicantid="@application.applicationid" data-name="@candname"  style="cursor:pointer;"></i>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <div class="clear well">
+            <span>No Candidates attached to this job</span>
+        </div>
+    }
+</div>
+
+<div id="addcandidatemodal" class="modal fade" style="min-width: 600px !important;">
+    @Html.Partial("~/Views/common/_addJobApplicantInternal.cshtml", objJobappdata)
+</div>
+
+@Html.Partial("~/Views/Jobs/_JobModalPopups.cshtml", null)
+
+<div id="UpdateApplicantStatus" class="modal fade" style="min-width: 650px !important;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Update Application Status</h3>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="chosenapplicationid" />
+                    <input type="hidden" id="chosencandidateid" />
+                    <input type="reset" id="resetupdapplicationstatusform" style="display: none;" />
+                    <div>
+                        <table class="table jobtable questionairetable">
+                            <tbody>
+                                <tr>
+                                    <td><span class="" style="display: inline-block; color: #777; float: left; margin-top: 12px; margin-left: 35px;">Application Status</span></td>
+                                    <td><span style="margin-top: 10px; float: right; margin-top: 12px;">:</span></td>
+                                    <td>
+                                        <select id="applicationstatus" style="width: 250px !important; float: right; margin-right: 50px;">
+                                            <option>Unscreened</option>
+                                            <option>Screened</option>
+                                            <option>Telephonic</option>
+                                            <option>Face to Face</option>
+                                            <option>Offered & Accepted</option>
+                                            <option>Offered & Rejected</option>
+                                            <option>On Hold</option>
+                                            <option>Rejected</option>
+                                        </select></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                @*<a class="btn-flat btn-grey close " data-dismiss="modal" aria-hidden="true" style="margin-left: 10px; opacity: 1;">Cancel</a>*@
+                <a id="updateApplicant" class="btn-flat btn-green pull-right">Update</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="UpdateApplicantQuestionaire" class="modal fade" style="min-width: 650px !important;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Update Questionnaire</h3>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="chosenqapplicationid" />
+                    <input type="hidden" id="chosenqcandidateid" />
+                    <input type="hidden" id="chosenapplicationdata" />
+                    <input type="reset" id="resetupdquestionaireform" style="display: none;" />
+                    <div>
+                        @* <span class="jobtitle">Questionaire</span>*@
+                    </div>
+                    <div style="margin: auto;">
+                        <table class="table jobtable questionairetable">
+                            <tbody>
+                                <tr>
+                                    <td><span style="float: right; margin-top: 10px;">Relocation</span></td>
+                                    <td><span style="margin-top: 10px; float: right;">:</span></td>
+                                    <td>
+                                        <div>
+                                            <div class="col-md-6 nopad">
+                                                <select id="modal-upd-relocation" style="width: 281px !important; height: 40px;" class="form-control">
+                                                    <option value="1">NO</option>
+                                                    <option value="2">YES</option>
+                                                    <option value="3">YES TO SPECIFIC</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="chosenlocations" style="display: none;">
+                                    <td><span style="float: right; margin-top: 10px;">Chosen Locations</span></td>
+                                    <td><span style="margin-top: 10px; float: right;">:</span></td>
+                                    <td>
+                                        <div>
+                                            <div class="col-md-6 nopad">
+                                                <input class="modal-upd-relocation-locations" type="text" value="" placeholder="Location" style="width: 281px;" />
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span style="float: right; margin-top: 10px;">Location</span></td>
+                                    <td><span style="margin-top: 10px; float: right;">:</span></td>
+                                    <td>
+                                        <div class="col-md-6 nopad">
+                                            <div class="input-group">
+                                                <input class="modal-upd-location" type="text" value="" placeholder="Locations" style="width: 281px;" />
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span style="float: right; margin-top: 10px;">Work Authorization</span></td>
+                                    <td><span style="margin-top: 10px; float: right;">:</span></td>
+                                    <td>
+                                        <div class="col-md-6 nopad">
+                                            <div>
+                                                @* <input class="modal-upd-wrkauth input-wide input-well" type="text" value="" placeholder="Work Authorization" style="width: 262px;" />*@
+                                                <select id="modal-upd-wrkauth" class="modal-upd-wrkauth" style="width: 281px !important; height: 40px;">
+                                                    <option>H1</option>
+                                                    <option>GC</option>
+                                                    <option>Citizen</option>
+                                                    <option>EAD</option>
+                                                    <option>Need H1B</option>
+                                                    <option>OPT</option>
+                                                    <option>CPT</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span style="float: right; margin-top: 10px">Pay Rate</span></td>
+                                    <td><span style="margin-top: 10px; float: right;">:</span></td>
+                                    <td>
+                                        <div class="col-md-6 nopad">
+                                            <div class="input-group">
+                                                <span class="input-group-addon" style="padding: 9px;">$</span>
+                                                <input class="modal-upd-payrate  input-wide input-well" type="text" value="" placeholder="Pay Rate" style="width: 218px;" />
+                                                <span class="input-group-addon" style="padding: 9px;">/Hr</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" style="">
+                <a id="updateApplicantquestionaire" class="btn-green btn-flat pull-right" style="margin-left: 10px;">Update</a>
+                @*<a class="btn-flat btn-grey close " data-dismiss="modal" aria-hidden="true" style="margin-left: 10px; opacity: 1;">Cancel</a>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="applicantnotescontainer" class="modal fade" style="min-width: 650px !important;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div id="notesactionscontainer" style="display: inline-block; float: right;">
+                    <div class="top-action-set">
+                        <span style="cursor: pointer; margin-top: 10px;" id="btnaddnewnotes" class="btn-flat btn-green pull-right">Add New</span>
+                    </div>
+                </div>
+
+                <h3 id="notesmodelheader">Notes</h3>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="currentapplicationid" />
+                    <input type="hidden" id="notesdata">
+                    <input type="hidden" id="notesapplicationid">
+                    <input type="reset" id="resetnotesform" style="display: none;" />
+                    <input type="hidden" id="currentmodifyingnotesid" />
+                    <input type="hidden" id="currentownerid" />
+                    <div>
+
+                        <div id="noteslistholder" class="hide">
+                            <ul class="applicantnotes">
+                            </ul>
+                        </div>
+                        <div id="emptynotesholder" class="hide">
+                            <span>No Notes Available for this Applicant</span>
+                        </div>
+
+                        <div id="newnotesholder" class="hide">
+                            <div>
+                                <textarea id="newnotescontent" style="width: 98%; resize-horizontal: none; max-width: 98%;" placeholder="Add something to notes"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div id="notesactioncontainer" class="hide">
+                    <a id="cancelnotes" class="btn-flat btn-grey -right" style="margin-left: 10px;">Cancel </a>
+                    <a id="savenewnotes" class="btn-flat btn-green pull-right" style="margin-left: 10px;">Save</a>
+                </div>
+                <div id="updapplicantnotes" class="hide">
+                    <a id="cancelnotesupdate" class="btn-flat btn-grey pull-right" style="margin-left: 10px;">Cancel </a>
+                    <a id="updatebuttonnotes" class="btn-green btn-flat pull-right" data-noteid="" style="margin-left: 10px;">Update</a>
+                </div>
+                <div id="back">
+                    <span class="btn-wide pull-right btn-flat btn-grey" data-dismiss="modal" aria-hidden="true">Done</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="deleteapplicant" class="modal fade" style="min-width: 650px !important;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Delete Applicant</h3>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="chosenapplicantid" />
+                    <div>
+                        @* <span class="jobtitle">Questionaire</span>*@
+                    </div>
+                    <div style="margin: auto;">
+                        <table class="table jobtable questionairetable">
+                            <tbody>
+
+                                <tr>
+                                    <td><span style="float: left;">Are you sure to delete this <span id="applicantname"></span>applicant?</span></td>
+
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" style="">
+                <a id="deleteapplicantno" class="btn-grey btn-flat pull-right" style="margin-left: 10px;">No</a>
+                <a id="deleteapplicantyes" class="btn-green btn-flat pull-right" style="margin-left: 10px;">Yes</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="forwardtoclient" class="modal fade" style="min-width: 650px !important;">
+
+
+    <div class="modal-dialog" style="width: 80%;">
+        <div class="modal-content">
+            @Html.Partial("~/Views/Messaging/forwardtoclient.cshtml", new UI.Models.MessagingObjectModel.forward())
+        </div>
+    </div>
+
+</div>
+
+
+<div id="jobnotescontainershow" class="modal fade" style="min-width: 650px !important;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div id="notesactionscontainershow" style="display: inline-block; float: right;">
+                    <div class="top-action-set">
+                        <span style="cursor: pointer; margin-top: 10px;" id="btnaddnewnotesjobshow" class="btn-flat btn-green pull-right">Add New</span>
+                    </div>
+                </div>
+
+                <h3 id="jobnotesmodelheadershow">Notes</h3>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="currentqjobid" />
+                    <input type="hidden" id="notesdata1">
+                    <input type="hidden" id="notesapplicationid1">
+                    <input type="reset" id="resetnotesjobform" style="display: none;" />
+                    <input type="hidden" id="currentmodifyingnotesid1" />
+                    <input type="hidden" id="currentownerid1" />
+                    <div>
+                        <div id="jobnoteslistholdershow" class="hide">
+                            <ul class="jobnotes">
+                            </ul>
+                        </div>
+                        <div id="emptyjobnotesholdershow" class="hide">
+                            <span>No Notes Available for this Entry</span>
+                        </div>
+
+                        <div id="jobnewnotesholdershow" class="hide">
+                            <div>
+                                <textarea id="jobnewnotescontentshow" style="width: 98%; resize-horizontal: none; max-width: 98%;" placeholder="Add something to notes"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div id="jobnotesactioncontainershow" class="hide">
+                    <a id="jobcancelnotesshow" class="btn-flat btn-grey -right" style="margin-left: 10px;">Cancel </a>
+                    <a id="jobsavenewnotesshow" class="btn-flat btn-green pull-right" style="margin-left: 10px;">Save</a>
+                </div>
+                <div id="updjobnotesshow" class="hide">
+                    <a id="cancelnotesupdateshow" class="btn-flat btn-grey pull-right" style="margin-left: 10px;">Cancel </a>
+                    <a id="updatebuttonjobnotesshow" class="btn-green btn-flat pull-right" data-noteid="" style="margin-left: 10px;">Update</a>
+                </div>
+                <div id="back1">
+                    <span class="btn-wide pull-right btn-flat btn-grey" data-dismiss="modal" aria-hidden="true">Done</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="detachcandidatepop" class="modal fade" style="min-width: 650px !important;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Delete Applicant</h3>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="chosenqapplicantid" />
+                    <div>
+                        @* <span class="jobtitle">Questionaire</span>*@
+                    </div>
+                    <div style="margin: auto;">
+                        <table class="table jobtable questionairetable">
+                            <tbody>
+
+                                <tr>
+                                    <td><span style="float: left;">Are you sure to delete this <span id="applicantname"></span>applicant?</span></td>
+
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" style="">
+                <a id="detachcandidateno" class="btn-green btn-flat pull-right" style="margin-left: 10px;">No</a>
+                <a id="detachcandidateyes" class="btn-green btn-flat pull-right" style="margin-left: 10px;">Yes</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/jobportal/portalcandidates.js"></script>
+
+    <script src="~/Plugins/JqueryTE/jquery-te-1.4.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.candmailpop').click(function () {
+                $('#chosenapplicantid').val($(this).attr('data-applicationid'));
+                $('#relayrecipientid').text($(this).attr('data-contactemail'));
+                $('#emailtocandidate').modal('show')
+            });
+            //Jquery Text Editor Intiating
+            $(".jqeditor").jqte({
+                "css": "example",
+                "source": false,
+                "titletext": false
+            });
+
+            $('#modal-upd-relocation').change(function () {
+                if ($(this).val() === "3") {
+                    $('.chosenlocations').show();
+                }
+                else {
+                    $('.chosenlocations').hide();
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.forwardto').click(function () {
+                $('#chosenaapplicantid').val($(this).attr('data-applicationid'));
+                $('#forwardtoclient').modal('show')
+            });
+            $(".editor").jqte({
+                "css": "example",
+                "source": false,
+                "titletext": false
+            });
+        });
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
+
+
+            //Data Pre Insertion
+            $('#sendmailtoclient').on('hidden', function () {
+                // Use this code block to append text area with any signature (In case user allowed it...)
+
+                $(".jqeditor").jqteVal(); //this code code pre inserts data into the editor area ;)
+            })
+            $('#forwardtoclient').on('hide', function () {
+                $('#resetupdquestionaireform').click();
+            }
+
+    );
+            //Send Email Initaiaor
+            $('#sendmailtoclient').click(function () {
+
+                emaildeliverysystem($('#recipientid').val(), $('#forwardsubject').val(), $('#mailmessagebody').val())
+
+            });
+
+            function emaildeliverysystem(recipients,subject,messagebody) {
+                $.ajax({
+                    url: "/messaging/relaymailmessage",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        mailrecipients: recipients,
+                        subject:subject,
+                        messagebody: messagebody
+                    },
+                    async: false,
+                    success: function (data) {
+                        $('#forwardtoclient').modal('hide');
+                        if (data = "OK") {
+                            var returndata = data;
+                            alert("sucessful")
+                        }
+                        else {
+                            alert("Failed to sent Mail")
+                        }
+                    },
+                    error: function (data) {
+                    }
+
+                });
+                $('#forwardtoclient').modal('hide');
+            }
+        });
+
+
+        $('.viewloactions').click(function () {
+            $(this).closest('table').find('.relocation-locations').toggle();
+        });
+
+    </script>
+
+
+}
+

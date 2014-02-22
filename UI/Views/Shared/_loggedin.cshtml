@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title </title>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+    <script src="~/Scripts/jquery-2.0.3.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.10.3.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/tracker/PaymentTrackerData.js"></script>
+    <script src="~/Scripts/tracker/interactions.js"></script>
+    <script src="~/Scripts/tracker/data.js"></script>
+    <script src="~/Scripts/tracker/utilities.js"></script>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="~/Content/themes/smoothness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" />
+
+
+    <link href="~/Content/tracker/tracker.css" rel="stylesheet" />
+    <link href="~/Content/tracker/jobportal.css" rel="stylesheet" />
+
+    <link href="~/Plugins/Chosen/chosen.css" rel="stylesheet" />
+    <script src="~/Plugins/Chosen/chosen.jquery.min.js"></script>
+    <link href="~/Plugins/Chosen/chosen.min.css" rel="stylesheet" />
+    <link href="~/css/webfonts.css" rel="stylesheet" />
+    <link href="~/Plugins/MultiselectDropdown/bootstrap-multiselect.css" rel="stylesheet" />
+
+
+    @RenderSection("customstyles", required: false)
+</head>
+<body class="jobportal">
+    <header>
+        <div class="navbar ">
+            <div class="navbar-inner portal-navbar-inner">
+                <a href="/jobs" class="brand" style="padding: 0px 20px;"><img src="~/Content/images/companylogo.png" style="width: 250px;"/></a>
+                <ul class="nav pull-right" style="padding: 0px 20px;">
+                    <li style="width:100%;">
+                        <div><span style="float:right;">Welcome,  <span class="login-title">@Session["title"].ToString()</span></span></div>
+                    </li>
+                    <li style="clear:both;width:100%;" class="portal-custom-h-menu">
+                       <div style="display:inline-block;float:right;">
+                           <ul style="display:inline-block;">
+                               <li class=""><a tabindex="-1" href="/logout">Sign Out</a></li>
+                               <li><a tabindex="-1" href="/settings" data-toggle="dropdown" class="dropdown-toggle"><i class="glyphicon-cog glyphicon-black"></i>Settings</a>
+                                    <ul class="dropdown-menu">
+                                       <li><a href="#">Change Password</a></li>
+                                  </ul>
+                                </li>
+                            </ul>
+                       </div>
+                    </li>          
+                </ul>
+                @RenderSection("actionset", required: false)
+            </div>
+        </div>
+    </header>
+    <div class="topbarmenu" style="padding: 0px 0px 25px 0px;">
+        @RenderSection("topbarmenu", required: false)
+    </div>
+    <div class="pagealerts container" style="padding: 5px 0px 25px 0px;">
+        @RenderSection("pagealerts", required: false)
+    </div>
+    <div id="body" class="container">
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>
+    <footer class="container clear-top">
+        <div class="appfooter navbar-fixed-bottom">
+            <div class="" style="text-align: center;">
+                @RenderSection("FooterBlock",required:false)
+            </div>
+        </div>
+    </footer>
+    <div class="application-modals">
+        @RenderSection("modalpopups", required: false);
+    </div>
+    <div class="application-alerts">
+        @RenderSection("alerts", required: false);
+    </div>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

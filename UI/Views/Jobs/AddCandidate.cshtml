@@ -1,0 +1,192 @@
+﻿@model UI.Models.JObApplicationdata
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Add Candidate</h3>
+        </div>
+
+        <div class="modal-body">
+            @using (Html.BeginForm("AddCandidate", "jobs", FormMethod.Post, new { enctype = "multipart/form-data", id = "addcandidateform", style = "" }))
+            {
+                <div style="">
+                    <div style="display: inline-block; width: 100%; margin-bottom: 19px;">
+                        <div class="pull-left" style="text-align: center; font-weight: bold;">
+                            <div class="pull-left" style="clear: both;">
+                                <span style="font-size: 15px;">Profile Type</span>
+                            </div>
+                            <div class="pull-left" style="margin-left: 15px;">
+                                <label class="radio-inline pull-left">
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="Candidate" checked="checked">
+                                    Candidate
+                                </label>
+                                <label class="radio-inline pull-left" style="margin-left: 15px;">
+                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="Recruiter">
+                                    Recruiter
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div>
+                        <input type="text" id="candname" placeholder="Name" class="form-control" />
+                    </div>
+                    <div>
+                        <input type="text" id="candskills" placeholder="Skills" class="form-control" />
+                    </div>
+                    <div>
+                        <input type="text" id="candlocation" placeholder="Location" class="form-control" />
+                    </div>
+                    <div>
+                        @* <input type="text" id="candworkauth" placeholder="Work Authorization" style="width: 100%;" />*@
+                        <div class="row page-block-row" style="border-bottom: none">
+                            <div class="col-md-4 nopad">
+                                <div style="display: inline-block; float: left; margin: 0px 10px 10px 0px;">
+                                    <select id="candwrkauthlist" class="form-control" style="height: 40px;">
+                                        <option>Work Authorization</option>
+                                        <option>H1</option>
+                                        <option>GC</option>
+                                        <option>Citizen</option>
+                                        <option>EAD</option>
+                                        <option>Need H1B</option>
+                                        <option>OPT</option>
+                                        <option>CPT</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="pull-left input-group">
+                                    <input type="text" id="candexperiance" class="form-control" placeholder="Experience" />
+                                    <span class="input-group-addon">Years</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 nopad">
+                                <div class="pull-right input-group">
+                                    <span class="input-group-addon">$</span>
+                                    <input type="text" id="candpayrate" class="form-control" placeholder="Pay Rate" />
+                                    <span class="input-group-addon">/Hr</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-left" style="clear: both; width: 130px; display: inline-block;">
+                            <select id="jobcandreloaction" onchange="ChangeSel(this.value);">
+                                @*<option selected="selected">Relocation</option>*@
+                                <option value="1">No</option>
+                                <option value="2">Yes</option>
+                                <option value="3">Yes To Specific</option>
+
+                            </select>
+
+                            <input type="text" id="txtYes" style="display: none;" value="" />
+
+                            <script type="text/javascript">
+                                function ChangeSel(val) {
+                                    var tYes = document.getElementById("txtYes");
+                                    if (val === "3")
+                                    {
+                                        $('#txtYes').val('');
+                                        tYes.style.display = "inline";
+                                    }
+                                    else
+                                    {
+                                        tYes.style.display = "none";
+                                        $('#txtYes').val('');
+                                    }
+                                }
+                            </script>
+
+
+                        </div>
+                        <div style="padding: 0px 0px 16px 11px;" class="pull-left">
+                            <span class="btn-grey btn-flat" id="browseapplicantresume" style="padding: 10px 15px !important;">Browse Resume</span>
+                            <input type="file" id="candresume" class="hide" name="candresume" />
+
+                            <script type="text/javascript">
+                                $('#browseapplicantresume').click(function (e) {
+                                    $('#candresume').click();
+                                });
+
+                                $('#candresume').on('change', function () {
+                                    if ($('#candresume').prop("files")[0] != undefined) {
+                                        $('#uploadedresumename').text($('#candresume').prop("files")[0].name == "" ? "No Resume Attached" : $('#candresume').prop("files")[0].name);
+                                    }
+                                    else {
+                                        $('#uploadedresumename').text('No Resume Attached');
+                                    }
+                                });
+                            </script>
+                        </div>
+
+                        <div class="pull-left" style="padding: 10px 0px 10px 0px; margin-left: 10px;">
+                            <span id="uploadedresumename">No Resume attached</span>
+                        </div>
+
+                        <div style="display: inline-block; width: 100%; margin-top: 5px;">
+                            <input type="text" id="suppliercontactemail" placeholder="Contact Email ID" style="width: 45%; float: left;" />
+                            <input type="text" id="suppliercontactnumber" placeholder="Contact Number" class="onumeric" style="width: 45%; margin-left: 3%; float: left;" />
+                        </div>
+
+                    </div>
+                    <div style="text-align: center;">
+                        <div class="recroption hide">
+                            <p><span>or</span></p>
+                            <p><span class="btn btn-info" style="width: 100%; color: white !important;">@Html.ActionLink("Apply Multiple Resumes", "multiadd", "jobs", new { jobid = Model.jobid }, new { id = "showmulitadd" }) </span></p>
+                        </div>
+                    </div>
+                    <div class="ruleholder">
+
+                        @Html.HiddenFor(m => m.creatorid, new { id = "applicationcreatorid", value = Model.creatorid })
+                        @Html.HiddenFor(m => m.jobid, new { id = "jobid", value = Model.jobid })
+                        @Html.HiddenFor(m => m.data, new { id = "applicationdata", value = Model.jobid })
+                        <input type="hidden" id="suppliercompname" value="Supplier Company" />
+                        <input type="hidden" id="suppliername" value="Supplier Name" />
+                    </div>
+
+
+                </div>
+            }
+        </div>
+        <div class="modal-footer">
+            <div id="attachcandalert" class="alert alert-error" style="display: none;">
+                <span>All Fields are Required</span>
+                <a class="alertclose">&times;</a>
+            </div>
+
+            <a id="addapplicantcancel" class="btn-grey btn-flat" data-dismiss="modal" aria-hidden="true">Cancel</a>
+
+            <script>
+                $('#addapplicantcancel').click(function () {
+                    $('#addcandidateform').trigger("reset");
+                    $('#addcandidateform .alertred').removeClass('alertred');
+                    $('#addcandidateform #candskills').css("cssText", "width: 490px; padding: 4px 0px 7px 10px !important;");
+                    $('#addcandidateform #candname').css("cssText", "width: 490px; padding: 4px 0px 7px 10px !important;");
+                    $('#attachcandalert').hide();
+                });
+
+                $('.alertclose').click(function () {
+                    $('#attachcandalert').hide();
+                });
+
+                $('#addcandidatemodal').on('hidden', function () {
+                    $('#addcandidateform').trigger("reset");
+                    $('#addcandidateform .alertred').removeClass('alertred');
+                    $('#addcandidateform #candskills').css("cssText", "width: 490px; padding: 4px 0px 7px 10px !important;");
+                    $('#addcandidateform #candname').css("cssText", "width: 490px; padding: 4px 0px 7px 10px !important;");
+                    $('#attachcandalert').hide();
+                });
+
+                $(document).ready(function () {
+                    $(".chosen-select-wrkauth").chosen({ disable_search: true });
+                });
+            </script>
+
+            <span class="btn-green btn-flat addapplicant" style="margin-left: 10px;">Add Candidate</span>
+
+            <span id="addapplicantdummy" class="hide btn-green btn-flat " style="margin-left: 10px; display: none;">Applying ...</span>
+
+            <button type="submit" class="btn btn-info hide">Apply For this Job</button>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,113 @@
+﻿@model UI.testmodel.timesheet
+@{
+    ViewBag.Title = "dashboard";
+    ViewBag.highlight = "timesheets";
+    Layout = "~/Views/timesheet/_timeSheetMasterView.cshtml";
+}
+
+<div class="page-header-row">
+    <div class="col-md-8">
+        <span class="pageheader jobheader">Time Sheet for @Model.startdate</span>
+    </div>
+    @* <div class="col-md-4">
+        @using (Html.BeginForm("dashboard", "timesheet", FormMethod.Post, new { id = "timesheetdashboard" }))
+        {
+            <div class="input-group">
+                <select name="selectedmonth" class="form-control">
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+                <span class="input-group-addon">
+                    <input id="showmonthdashboard" type="submit" value="GO" /></span>
+            </div>
+             
+        }
+    </div>*@
+</div>
+<div class="row page-block-row" style="min-height: 80px;">
+    <span><span style="color: #abb1b8;" class="" data-timesheetid="">@Model.Metadata.Totalhours</span></span>
+    <span><span style="color: #abb1b8;" class="" data-timesheetid="">@Model.Metadata.Overtimehours</span></span>
+</div>
+<div id="requirementjobcollection" class="divjob" style="display: block;">
+    @if (Model != null)
+    {
+        
+        <table class="table table-hover" style="border: 1px solid #ddd" id="delete">
+            <thead>
+                <tr>
+                    <td><span class="">Date</span></td>
+                    <td><span class="">Total Hours</span></td>
+                    <td><span class="">Overtime Hours</span></td>
+                    <td>Tasks</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (UI.testmodel.Item item in Model.Items.Item)
+                {
+                    <tr>
+                        <td>
+                            <div class="pull-left" style="padding: 2px 5px">
+                                <span><span style="color: #abb1b8;" class="" data-timesheetid="">@item.Date</span></span>
+                            </div>
+
+                        </td>
+
+                        <td>
+                            <div class="pull-left" style="padding: 2px 5px">
+                                <span><span style="color: #abb1b8;" class="" data-timesheetid="">@item.Workhours</span></span>
+                            </div>
+
+                        </td>
+                        <td>
+                            <div class="pull-left" style="padding: 2px 5px">
+                                <span><span style="color: #abb1b8;" class="" data-timesheetid="">@item.Overtime</span></span>
+                            </div>
+
+                        </td>
+
+                        <td>
+                            <div class="pull-left" style="padding: 2px 5px">
+                                @if (@item.Tasks.Task.Length > 0)
+                                {
+                                    <span><span style="color: #abb1b8;" class="" data-timesheetid="">@item.Tasks.Task[0].Description</span></span>
+                                    <span><span style="color: #abb1b8;" class="" data-timesheetid="">@item.Tasks.Task[0].Project</span></span>
+                                    <span><span style="color: #abb1b8;" class="" data-timesheetid="">@item.Tasks.Task[0].Hours</span></span>
+                                }
+                            </div>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+ 
+    }
+
+    else
+    {<ul style="padding-top: 40px;">
+        <li style="list-style: none;">
+            <div class="well">
+                <div class="pull-left" style="margin: 5px 0px 10px 0px; font-size: 25px; font-weight: bold;">
+                    <span>No TimeSheets... @Html.ActionLink("Add Time Sheet", "add","timesheer",null, new {@class="btn btn-default" })</span>
+                </div>
+            </div>
+        </li>
+    </ul>
+    }
+
+</div>
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addTimeSheetBlock">
+  Launch add Time Sheet modal
+</button>
+
+@Html.Partial("~/Views/timesheet/_timeSheetModalPopups.cshtml", null)

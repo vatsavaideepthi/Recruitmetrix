@@ -1,0 +1,97 @@
+﻿@model UI.Models.UserViewModel
+@{
+    ViewBag.Title = "Index";
+    ViewBag.highlight= "users";
+    Layout = "~/Views/Shared/_JobPortalMasterView.cshtml";
+}
+
+
+<div style="clear: both;">
+    <div class="pull-left">
+        <span class="pageheader">Users</span>
+    </div>
+    @foreach(Business.menuitem item in Model.actions)
+    {
+    <div class="pull-right" style="margin-left:10px;">
+        <a href="@item.linkpath" role="button" class="btn-green btn-flat" data-toggle="modal">@item.linkname</a>
+    </div>
+    
+    }
+    @*<div class="pull-right" style="margin-left:10px;">
+        <a href="/users/recruiter" role="button" class="btn-green btn-flat" data-toggle="modal">Add Recruiter</a>
+    </div>
+     <div class="pull-right" style="margin-left:10px;">
+        <a href="/users/recruiter" role="button" class="btn-green btn-flat" data-toggle="modal">Add Consultants</a>
+    </div>*@
+</div>
+<div style="padding-top: 50px;margin-bottom: 20px;border-bottom: 1px solid #e5e5e5;"></div>
+
+<div>
+    <table class="table table-hover" style="border: 1px solid #ddd;">
+        <tbody>
+            @if (Model.UsersCollection.Count > 0)
+            {
+                foreach (Business.ApplicationService.appuser member in Model.UsersCollection.OrderByDescending(m=>m.ModifiedTime))
+                {
+                <tr>
+                    <td>
+                        <div class="pull-left"></div>
+                        <div style="padding: 5px 20px 0px 20px">
+                            <div style="width: 100%; display: inline-block;">
+                                <div class="pull-left" style="">
+                                    <div style="color: #000; font-size: 15px; font-weight: bold;">
+                                        <span>@member.Title </span>
+
+                                    </div>
+                                    <div>
+                                        @if (member.ObjectType == "comadmin")
+                                        {
+                                            <span>Admin</span>
+                                        }
+                                        else if (member.ObjectType == "comrecruit")
+                                        {
+                                            <span>Recruiter</span>   
+                                        }
+                                        else if ((member.ObjectType == "consultant"))
+                                        {
+                                             <span>Consultant</span>   
+                                        }
+                                        else if ((member.ObjectType == "tsadmin"))
+                                        {
+                                             <span>Time Sheet Admin</span>   
+                                        }
+                                        else 
+                                        {
+                                             <span>Employee</span>   
+                                        }
+                                    </div>
+                                    <div style="color: #aaa; font-size: 13px;">
+                                        <span>@member.Email</span>
+                                    </div>
+                                </div>
+                                <div class="pull-right">
+                                    <span class="btn-green btn-flat hide" style="display: none;">Remove</span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        <div class="">
+                            <div class="pull-left" style="margin: 5px 0px 10px 0px; font-size: 25px; font-weight: bold;">
+                                <span>No memebers found </span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+

@@ -1,0 +1,291 @@
+﻿@model UI.Models.JobPosting
+@{
+    ViewBag.Title = Model.postedjob.JobName + " ::Details";
+    ViewBag.highlight = "jobs";
+    Layout = "~/Views/Shared/_JobPortalMasterView.cshtml";
+
+    UI.Models.Job job = Model.postedjob;
+    List<UI.Models.JobApplication> applications = Model.applications;
+
+    UI.Models.JObApplicationdata objJobappdata = new UI.Models.JObApplicationdata();
+    objJobappdata.creatorid = Session["companyid"].ToString();
+    objJobappdata.jobid = Request.QueryString["jobid"].ToString();
+            
+}
+<div class="page-header-row" style="margin-bottom: 0px;">
+    <div class="col-md-7" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
+        <span class="pageheader" title="job name displayed as title">You're applying for "Java Architect Java ArchitectJava ArchitectJava ArchitectJava ArchitectJava ArchitectJava ArchitectJava Architect" </span>
+    </div>
+    <div class="col-md-5">
+        <a class="querypopup btn-wide pull-right btn-flat btn-grey">Send a Query on this Requirement</a>
+    </div>
+</div>
+<div class="row page-block-row" style="padding: 0px; border-bottom: 0px;">
+    <div style="" class="pull-left">
+        <button type="button" class="btn btn-default btn-lg" style="border-color: transparent;">
+            <span class="glyphicon glyphicon-paperclip" id="browseapplicantresume"></span>
+        </button>
+        <input type="file" id="candresume" class="hide" name="candresume" />
+        <script type="text/javascript">
+            $('#browseapplicantresume').click(function (e) {
+                $('#candresume').click();
+            });
+
+            $('#candresume').on('change', function () {
+                if ($('#candresume').prop("files")[0] != undefined) {
+                    $('#uploadedresumename').text($('#candresume').prop("files")[0].name == "" ? "No Resume Attached" : $('#candresume').prop("files")[0].name);
+                }
+                else {
+                    $('#uploadedresumename').text('No Resume Attached');
+                }
+            });
+        </script>
+    </div>
+    <div class="pull-left" style="padding: 10px 0px 10px 0px; margin-left: 10px;">
+        <span id="uploadedresumename">No Resume attached</span>
+    </div>
+</div>
+<div class="row page-block-row" style="border-bottom: none">
+    <div class="col-md-7">
+        <div style="display: inline-block; width: 100%; margin-bottom: 19px;">
+            <div class="pull-left" style="text-align: center; font-weight: bold;">
+                <div class="pull-left" style="clear: both;">
+                    <span style="font-size: 15px;">Profile Type</span>
+                </div>
+                <div class="pull-left" style="margin-left: 15px;">
+                    <label class="radio-inline pull-left">
+                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="Candidate" checked="checked">
+                        Candidate
+                    </label>
+                    <label class="radio-inline pull-left" style="margin-left: 10px;">
+                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="Recruiter">
+                        Agency
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="col-md-6" style="padding-left: 0px;">
+                <input type="text" id="candname" placeholder="Name" class="form-control" style="padding: 4px 0px 7px 10px !important;" />
+            </div>
+            <div class="col-md-6" style="padding-right: 0px;">
+                <input type="text" id="candlocation" placeholder="Location" class="form-control" style="padding: 4px 0px 7px 10px !important;" />
+            </div>
+        </div>
+        <div>
+            <input type="text" id="candskills" placeholder="Skills" class="form-control" style="padding: 4px 0px 7px 10px !important;" />
+        </div>
+        <div class="row page-block-row" style="border-bottom: none">
+            <div class="col-md-4" style="padding-left: 0px;">
+                <div style="display: inline-block; float: left; margin: 0px 10px 10px 0px;">
+                    <select id="candwrkauthlist" style="width: 166px !important;" class="form-control">
+                        <option>Work Authorization</option>
+                        <option>H1</option>
+                        <option>GC</option>
+                        <option>Citizen</option>
+                        <option>EAD</option>
+                        <option>Need H1B</option>
+                        <option>OPT</option>
+                        <option>CPT</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pull-left input-group">
+                    <input type="text" id="candexperiance" class="form-control" placeholder="Experience" style="width: 100%;" />
+                    <span class="input-group-addon">Years</span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pull-right input-group">
+                    <span class="input-group-addon">$</span>
+                    <input type="text" id="candpayrate" class="form-control" placeholder="Pay Rate" style="width: 100%;" />
+                    <span class="input-group-addon">/Hr</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pull-right job-description-meta-holder col-md-4">
+        <div style="padding: 10px !important; display: inline-block; margin-bottom: 0px; font-weight: bold; font-size: 13px;">
+            <span>Contact Details</span>
+
+
+            <input type="text" id="suppliercontactemail" class="form-control" placeholder="Email" />
+
+            <input type="text" id="suppliercontactnumber" class="form-control" placeholder="Contact" />
+
+        </div>
+    </div>
+
+</div>
+<div class="row page-block-row" style="border-bottom: none">
+    <span class="btn-green btn-flat addapplicant" style="margin-left: 10px;">Apply For this Job</span>
+
+    <span id="addapplicantdummy" class="hide btn-green btn-flat " style="margin-left: 10px; display: none;">Applying ...</span>
+
+    <button type="submit" class="btn btn-info hide">Apply For this Job</button>
+
+    <input type="checkbox"><span>Send me a copy of this mail</span>
+</div>
+
+<div class="jobbox well">
+    <div class="pull-left col-md-5" style="margin-left: 0px;">
+        <div>
+            <p>
+                <span style="clear: both; margin-top: 5px;" class="pull-left"><span style="font-size: 15px;">@job.Exp</span> Exp, <span class="gridLabelValues location" style="font-size: 15px;">@job.State</span></span>
+            </p>
+        </div>
+
+        <div style="clear: both;">
+            <div style="padding: 5px 0px 0px 0px;">
+                <span class=" job-subheader">Skill set: <span style="font-weight: normal; display: inline-block;">
+
+                    <span class="  pull-left" style="width: 510px; text-align: justify; word-break: break-all; white-space: normal;">@job.PrefSkills</span>
+                </span>
+                </span>
+
+            </div>
+            <div style="padding: 5px 0px 4px 0px;">
+                <div id="jobinforow" class="">
+                    <span class="pull-left job-subheader">Job Description : <span style="font-weight: normal; display: inline-block;">
+
+                        <span class=" job-desc-holder job-desc-truncator pull-left" style="width: 600px; text-align: justify; word-break: break-all; white-space: normal;">@job.JobDesc</span>
+
+
+
+
+                    </span>
+                        @if (job.JobDesc.Length > 40)
+                        {
+                                       
+                            <span style="color: #26b89a; cursor: pointer;" class="showmore">View More </span>
+                                       
+                        }
+                        <a style="color: #26b89a; cursor: pointer;" class="viewlessproxy hide">View Less </a>
+
+                    </span>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div>
+            <span class=" job-subheader">Contact Details : </span></br>
+
+                        <span class="  pull-left" style="width: 600px; text-align: justify;">@job.Email,@job.Phone</span>
+
+        </div>
+
+
+
+
+    </div>
+
+    <div class="pull-right job-description-meta-holder col-md-5">
+        <table class="table normal-table jobtable" style="padding: 10px !important; display: inline-block; margin-bottom: 0px; font-weight: bold; font-size: 13px;">
+            <tr>
+                <td>Expires On</td>
+                <td>&nbsp;<span> : </span>&nbsp; </td>
+                <td>@job.ExpiryDate.ToShortDateString()</td>
+            </tr>
+            <tr>
+                <td>Pay Rate</td>
+                <td>&nbsp;<span> : </span>&nbsp;</td>
+                <td>@job.PayRate</td>
+            </tr>
+            <tr>
+                <td>Job Type</td>
+                <td>&nbsp;<span> : </span>&nbsp;</td>
+                <td>@job.postype</td>
+            </tr>
+            <tr>
+                <td>Job Length</td>
+                <td>&nbsp;<span> : </span>&nbsp;</td>
+                <td>@job.JobLength</td>
+            </tr>
+            <tr>
+                <td>Travel</td>
+                <td>&nbsp;<span> : </span>&nbsp;</td>
+                <td>@job.Travel</td>
+            </tr>
+
+
+        </table>
+    </div>
+</div>
+
+
+<div id="sendaquery" class="modal fade" style="min-width: 650px !important;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <div id="" style="display: inline-block; float: right;">
+                    <div class="top-action-set">
+                    </div>
+                </div>
+
+                <h3 id="">Send a Query </h3>
+            </div>
+            <div class="modal-body">
+
+                <div>
+
+                    <div class="pull-left" style="clear: both;">
+                        <span style="font-size: 15px; font-weight: bold;">Request On</span>
+                    </div>
+                    <div class="pull-left" style="margin-left: 15px;">
+
+
+                        <label class="radio-inline pull-left">
+                            <input type="radio" name="optionsRadios" id="optionsradio1" value="" checked="checked">
+                            Requirement Type
+                        </label>
+                        <label class="radio-inline pull-left" style="margin-left: 10px;">
+                            <input type="radio" name="optionsRadios" id="optionsradio2" value="">
+                            Client Info
+                        </label>
+                        <label class="radio-inline pull-left" style="margin-left: 10px;">
+                            <input type="radio" name="optionsRadios" id="optionsradio3" value="">
+                            Payrate
+                        </label>
+                        <label class="radio-inline pull-left" style="margin-left: 10px;">
+                            <input type="radio" name="optionsRadios" id="optionsradio4" value="">
+                            Status
+                        </label>
+                    </div>
+                </div>
+
+                <div id="" class="">
+                    <div>
+                        <textarea id="" style="width: 98%; resize-horizontal: none; height: 150px; max-width: 98%; margin-top: 15px;" placeholder="" disabled="disabled">Enter your Personalized message here</textarea>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal-footer">
+                <div id="" class="">
+
+                    <a id="" class="btn-flat btn-green pull-right" style="margin-left: 10px;">Send a Query</a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.querypopup').click(function () {
+
+        $('#sendaquery').modal('show');
+    });
+
+
+</script>
+@section Scripts{
+    <script src="~/Scripts/jobportal/portalcandidates.js"></script>
+}

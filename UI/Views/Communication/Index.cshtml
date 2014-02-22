@@ -1,0 +1,94 @@
+﻿@model List<UI.Models.mailmessage>
+
+@{
+    ViewBag.Title = "My Communication";
+    ViewBag.submenuhighlight = "allmails";
+    Layout = "~/Views/communication/_CommunicationMasterView.cshtml";
+    
+}
+
+@section communicationsubtitle{
+   
+    <script src="~/Scripts/tracker/communication.js"></script>
+  
+    <h2>All Mails</h2>
+}
+<div class="" style="clear: both; display: inline-block; width: 100%;">
+
+    <table class="table table-hover" style="border: 1px solid #ddd;" id="allmails">
+        <tbody>
+            @foreach (UI.Models.mailmessage mail in Model)
+            {
+                string classstring = "";
+                if (mail.properties != null)
+                {
+                    if (mail.properties.read == "true")
+                    {
+                        classstring = "mailread";
+
+                    }
+                    else
+                    {
+                        classstring = "mailunread";
+
+                    }
+                    if (mail.properties.attachments == "true")
+                    {
+                        classstring = classstring + " "+"hasattachments";
+                    }
+                    else
+                    {
+                        classstring = classstring + " " + "noattachments";
+                    }
+                    if (mail.properties.important == "true")
+                    {
+                        classstring = classstring + " " + "mailimportant";
+                    }
+                    else
+                    {
+                        classstring = classstring + " " + "notimportant";
+                    }
+                }
+                   
+                <tr class="mailrow @classstring">
+                    <td>
+                        <div>
+                            <input type="checkbox" data-mailid="@mail.mailitemid"/>
+                        </div>
+                    </td>
+                     <td>
+                        <span><i class="glyphicon glyphicon-envelope "></i></span>
+                    </td>
+                     <td>
+                        <span><i class ="star glyphicon glyphicon-star "></i></span>
+                    </td>
+                    <td>
+                        <div>
+                            <span class="mailfrom">@mail.sender</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div data-mailid="@mail.mailitemid">
+                            <span data-mailid="@mail.mailitemid" class="mailbrief">@mail.mailbrief</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <span data-mailid="@mail.mailitemid" class="mailtime">@mail.mailtime</span>
+                        </div>
+                    </td>
+                    <td>
+                        <span><i class="glyphicon glyphicon-attach"></i></span>
+                    </td>
+                </tr>
+                
+            }
+        </tbody>
+    </table>
+
+    <div>
+        <span class="hide">NO Mails .....</span>
+    </div>
+
+</div>
+

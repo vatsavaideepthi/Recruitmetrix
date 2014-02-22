@@ -1,0 +1,49 @@
+﻿@model List<UI.Models.PortalContact>
+@{
+    ViewBag.Title = "Mailing List Name";
+    ViewBag.highlight = "contacts";
+    Layout = "~/Views/Shared/_loggedin.cshtml";
+}
+
+<h2>Global Mailing List</h2>
+<div style="padding-bottom: 15px;" class="pull-right">
+
+    <a href="/jobs/add" target="_self" class="btn btn-info">Add Contact</a>
+    <div class="btn-group">
+         <a id="popbulkemail" class="btn btn-info disabled " href="#SendJobBulkMail" role="button" class="btn" data-toggle="modal">Bulk Email</a>
+        <button class="btn btn-info">Actions</button>
+       
+        <button class="btn  btn-info dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a tabindex="-1" href="#">Deactiavate Job</a></li>
+            <li><a tabindex="-1" href="#">Assign to Employee</a></li>
+            <li><a tabindex="-1" href="#">Share</a></li>
+            <li><a tabindex="-1" href="#">Bulk Email</a></li>
+        </ul>
+    </div>
+</div>
+
+<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display: block; position: relative; width: 100%;">
+    @foreach (UI.Models.PortalContact contact in Model)
+    {
+        <li>
+            <a style="padding: 10px 20px;">
+                <div style="width: 100%; display: inline-block;">
+                    <div class="pull-left" style="padding: 0px 10px; margin-top: -3px;">
+                        <input type="checkbox" class="chkcontact" />
+                    </div>
+                    <div class="pull-left">
+                        <span>Email : @contact.EmailAddress</span>
+                    </div>
+                    <div class="pull-right">
+                        <span class="btn btn-info"><i class="icon glyphicon-white glyphicon-envelope"></i></span>
+                        <span class="btn btn-info">View Contact</span>
+                    </div>
+                </div>
+            </a>
+        </li>  
+        <li class="divider clear" style="margin: 0px 0px;"></li>  
+    }
+</ul>

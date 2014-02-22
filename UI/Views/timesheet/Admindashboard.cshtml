@@ -1,0 +1,105 @@
+﻿@model UI.Models.admintimesheet
+@{
+    ViewBag.Title = "Admindashboard";
+    ViewBag.highlight = "timesheets";
+    Layout = "~/Views/timesheet/_timeSheetMasterView.cshtml";
+}
+
+<div class="page-header-row">
+    <div class="col-md-8">
+        <span class="pageheader jobheader">Consultants Timesheets For @Model.monthname</span>
+        <input id="currentmonthname" type="hidden" value="@Model.monthname" />
+    </div>
+    <div class="col-md-4">
+        @using (Html.BeginForm("admindashboard", "timesheet", FormMethod.Post, new { id = "timesheetdashboard" }))
+        {
+            <input type="text" name="selectedyear" value="@Model.year"/>
+            <div class="input-group">
+                <select id="monthslist" name="selectedmonth" class="form-control">
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+                <span class="input-group-addon">
+                    <input id="showmonthdashboard" type="submit" value="GO" /></span>
+            </div>
+            <script>
+                $(document).ready(function () {
+                    $('#monthslist').children().each(function () {
+                        if (this.text.toLowerCase() === $('#currentmonthname').val().toLowerCase()) {
+                            $(this).attr('selected', 'selected');
+                        }
+                    });
+                });
+
+            </script>
+             
+        }
+    </div>
+</div>
+<div class="" style="background-color: #ffffff; border: 1px solid #e5e5e5; border-radius: 4px; padding: 5px;">
+    <div class="row page-block-row timesheet-row" style="height: 50px; min-height: 50px; padding: 0px;">
+        <div class="employee-info" style="height: 50px; min-height: 50px; display: table;">
+            <div style="vertical-align: middle; display: table-cell; text-align: center; height: 50px; min-height: 50px;"><i class="glyphicon glyphicon-user"></i></div>
+        </div>
+        <div class="sheet employee-sheet" style="height: 50px; min-height: 50px;">
+            @for (int i = 1; i <= Model.numberofweeks; i++)
+            {
+                <div class="col-md-1 weeksheet daysheet" style="display: table; height: 50px; min-height: 50px;">
+                    <div style="display: table-cell; vertical-align: middle; text-align: center;">
+                        <span>Week @i</span>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    @foreach (UI.Models.userdashboardtimesheet employeetimesheet in Model.usertimesheets)
+    {
+                
+        <div class="row page-block-row timesheet-row" style="min-height: 100px; padding: 0px;">
+            <div class="employee-info" style="padding: 10px; height: 100px;">
+                <div style="vertical-align: middle;">@employeetimesheet.User.Email</div>
+            </div>
+            <div class="sheet employee-sheet">
+                @foreach (UI.Models.AppWeekTimeSheet weeksheet in employeetimesheet.weektimesheets)
+                {
+                    if (weeksheet.hasTimeSheet)
+                    {
+                    <div class="col-md-1 weeksheet daysheet timesheet-filled">
+                        @if (weeksheet.weektimesheetdata != null)
+                        {
+                            <div style="padding: 4px;">
+                                <span>Regular : @weeksheet.weektimesheetdata.Metadata.Totalhours</span>
+                                <span>Overtime : @weeksheet.weektimesheetdata.Metadata.Overtimehours</span>
+                                <span>Work Days :@weeksheet.timesheetweek.days</span>
+
+                            </div>
+                        }
+                    </div>
+                    }
+                    else
+                    {
+                    <div class="col-md-1 weeksheet daysheet timesheet-empty">
+                        <div>
+                            <span>Sheet Not Filled</span>
+                        </div>
+                    </div>
+                    }
+                }
+            </div>
+            <div class="employee-sheet-meta-info" style="position: relative;">
+                @* <div>Approved</div>*@
+            </div>
+        </div>
+    }
+</div>
+

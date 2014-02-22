@@ -1,0 +1,52 @@
+﻿@model  List<UI.Models.PortalContact>
+@{
+    ViewBag.Title = "requests";
+    ViewBag.highlight = "contacts";
+    Layout = "~/Views/Shared/_JobPortalMasterView.cshtml";
+}
+
+<div style="clear: both;">
+    <div class="pull-left">
+        <span class="pageheader">Contact Requests</span>
+    </div>
+    <div class="pull-right">
+        <a href="/contacts" class="btn btn-info btn-grey btn-flat">View Contacts</a>
+    </div>
+</div>
+<<div style="padding-top: 50px;margin-bottom: 20px;border-bottom: 1px solid #e5e5e5;"></div>
+<div class="row">
+
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (UI.Models.PortalContact contact in Model)
+        {
+        <li>
+            <a style="padding: 10px 20px;">
+                <div style="width: 100%; display: inline-block;">
+                    <div class="pull-left">
+                        <span>Email : @contact.EmailAddress</span>
+                    </div>
+                    <div class="pull-right">
+                        <i class="icon glyphicon-remove"></i>
+                    </div>
+                </div>
+            </a>
+        </li>  
+        <li class="divider clear" style="margin: 0px 0px;"></li>  
+        }
+    }
+
+    else
+    {
+        <div class="well">
+            <div class="pull-left" style="margin: 5px 0px 10px 0px; font-size: 25px; font-weight: bold;">
+                <span>You Have No Contact Requests</span>
+            </div>
+            <div class="pull-right" style="margin: 0px 0px 10px 0px;">
+                <span><a href="/contacts/add" class="btn btn-green btn-flat btn-info">Add Contacts</a> </span>
+                <span><a href="/contacts/import" class="btn btn-green btn-flat btn-info">Import Contacts</a> </span>
+            </div>
+        </div> 
+    }
+
+</div>

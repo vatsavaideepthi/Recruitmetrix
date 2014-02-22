@@ -1,0 +1,128 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@*@{
+    ViewBag.Title = "Error";
+}
+
+<hgroup class="title">
+    <h1 class="error">Error.</h1>
+    <h2 class="error">An error occurred while processing your request.</h2>
+</hgroup>*@
+
+
+@{
+    ViewBag.Title = "Ooops...";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Ooops...</title>@* @Styles.Render("~/css/css")*@
+    <!-- Description -->
+    <meta name="description" content="Track Your Expenses.">
+    <meta name="keywords" content="#" />
+    <!-- IE FIX -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Views -->
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <!--Jquery Scripts -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/tracker/PaymentTrackerData.js"></script>
+    <!--Custom Scripts -->
+
+    <script src="/Scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/tracker/utilities.js"></script>
+    <script src="~/Scripts/tracker/login.js"></script>
+    <!--Jquery Styles -->
+
+    <link href="/Content/themes/base/jquery.ui.theme.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/themes/smoothness/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css" media="all" />
+
+    <!-- Bootstrap Styles-->
+    <link href="~/css/tracker/jobportal.css" rel="stylesheet" />
+    <link href="~/css/tracker/tracker.css" rel="stylesheet" />
+    <link href="/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet" media="screen">
+
+    <style type="text/css">
+        html
+        {
+            font-family: Noto Sans Regular !important;
+        }
+
+        body
+        {
+            font-family: 'Noto Sans Regular' !important;
+        }
+
+        h2
+        {
+            font-family: 'Noto Sans Regular' !important;
+        }
+    </style>
+    <link href="~/css/webfonts.css" rel="stylesheet" />
+</head>
+<body class="jobportal">
+    <header>
+        <div class="navbar ">
+            <div class="navbar-inner portal-navbar-inner">
+                <a href="/invoice" class="brand" style="padding: 0px 20px;">
+                    <img src="/Content/images/companylogo.png" style="width: 250px;"></a>
+            </div>
+        </div>
+    </header>
+    <div>
+        <div class="topbarmenu" style="padding: 0px 0px 25px 0px;">
+            <div class="topbarmenu well" style="padding: 5px 0px 1px 0px; margin: 0px auto; background-color: #95a5a6;">
+                <div class="container">
+                    <ul class="nav nav-pills levelone" style="margin: auto; display: inline-block;">
+
+                        <li class="active" data-childmenuset="jobs">
+                            <a href="/jobs">Jobs</a>
+                        </li>
+                        <li class="" data-childmenuset="contacts">
+                            <a href="/contacts">Contacts</a>
+                        </li>
+                        <li class="" data-childmenuset="mailinglist">
+                            <a href="/lists">Mailing Lists</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="bgholder">
+            <div class="container" id="login-page">
+                <div class="row">
+                    <div class="well" style="text-align: center; border:1px solid #E4E9E7; min-height: 300px;height:500px;">
+                        <div style="padding:50px 5px;">
+                            <h1>Sorry..!</h1>
+                            <h2>The page you are looking for does not Exist.</h2>
+                        </div>
+                        <div>
+                            <span>You can Navigate to other pages by clicking on the links above</span>
+                            <br />
+                            or
+                            <br />
+                            <a class="btn btn-info" href="/login">Click here to Login</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="push"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="marketing-footer">
+        <footer class="container">
+        </footer>
+    </div>
+</body>
+</html>
+

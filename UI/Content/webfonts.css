@@ -1,0 +1,45 @@
+/* @license
+ * MyFonts Webfont Build ID 2550102, 2013-05-07T14:39:45-0400
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: Univers 55 Roman by Linotype
+ * URL: http://www.myfonts.com/fonts/linotype/univers/55-roman/
+ * Copyright: Copyright &#x00A9; 1987, 1991, 1993, 1994, 1998, 2002 Adobe Systems Incorporated.  All Rights Reserved. &#x00A9; 1981, 1998, 2002 Heidelberger Druckmaschinen AG. All rights reserved.
+ * 
+ * Webfont: Univers 65 Bold by Linotype
+ * URL: http://www.myfonts.com/fonts/linotype/univers/65-bold/
+ * Copyright: Part of the digitally encoded machine readable outline data for producing the Typefaces provided is copyrighted (c) 1987, 1991, 1998, 2003 Linotype Library GmbH, www.linotype.com. All rights reserved. This software is the property of Linotype Library GmbH
+ * 
+ * 
+ * License: http://www.myfonts.com/viewlicense?type=web&buildid=2550102
+ * 
+ * © 2013 MyFonts Inc
+*/
+
+
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("//hello.myfonts.net/count/26e956");
+
+  
+@font-face {font-family: 'UniversLTStd';src: url('/webfonts/26E956_0_0.eot');src: url('/webfonts/26E956_0_0.eot?#iefix') format('embedded-opentype'),url('/webfonts/26E956_0_0.woff') format('woff'),url('/webfonts/26E956_0_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'UniversLT-Bold';src: url('/webfonts/26E956_1_0.eot');src: url('/webfonts/26E956_1_0.eot?#iefix') format('embedded-opentype'),url('/webfonts/26E956_1_0.woff') format('woff'),url('/webfonts/26E956_1_0.ttf') format('truetype');}
+ 
+
+@font-face {
+    font-family: 'Noto Sans Regular';
+    src: url('../webfonts/NotoSans-Regular-webfont.eot');
+    src: url('../webfonts/NotoSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../webfonts/NotoSans-Regular-webfont.woff') format('woff'),
+         url('../webfonts/NotoSans-Regular-webfont.ttf') format('truetype'),
+         url('../webfonts/NotoSans-Regular-webfont.svg#noto_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

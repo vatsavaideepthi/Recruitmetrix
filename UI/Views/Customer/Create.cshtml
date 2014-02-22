@@ -1,0 +1,114 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap-responsive.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.0.2.min.js"></script>
+    <script src="~/Scripts/tracker/data.js"></script>
+    <script src="~/Scripts/tracker/PaymentTrackerData.js"></script>
+    <script src="~/Scripts/tracker/generateinvoice.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.10.3.min.js"></script>
+    <link href="~/css/tracker/tracker.css" rel="stylesheet" />
+    <script src="~/Scripts/tracker/customer.js"></script>
+    <link href="~/Content/themes/smoothness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" />
+
+
+
+</head>
+<body>
+    <div id="geninvmodal" class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="modaltitle">Choose Customer</h3>
+        </div>
+        <div class="modal-body">
+            <div id="chscutomer">
+                <div>
+                    <input type="text" placeholder="Select Customer" id="tags" />
+                    <input type="hidden" id="selcustomer" />
+                </div>
+                <div id="mancrcustblock" style="display:none;">
+                    <span>No Customers Available...</span>
+                    <input type="button" value="Create Customer" id="mancrsutomer" class="btn btn-info"/>
+                </div>
+            </div>
+            <div id="chstemplate" class="hide">
+                <h5>Choose template</h5>
+                <div>
+                    <ul class="nav nav-pills">
+                        <li>
+                            <div>
+                                <input type="radio" name="templatechoice" value="Default Template" checked="true" />
+                                Default Template
+                            </div>
+                        </li>
+                        <li style="padding: 0px 10px;">
+                            <div>
+                                <span>OR</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <input type="button" value="Select other Template" />
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="crncustomer" class="hide">
+                <div>
+                    <div>
+                        <input type="text" value="" id="newcustname" placeholder="Enter Customer Name" />
+                        <input type="text" value="" id="newcustemail" placeholder="Enter customer Email" />
+                    </div>
+                    <div>
+                        <input id="next1" type="button" value="Create New Customer" class="btn btn-info"/>
+                    </div>
+                </div>
+            </div>
+            <div id="crncustomeraddress" class="hide">
+                <div>
+                    <input type="hidden" id="customerid" />
+                    <input type="hidden" id="customeremail" />
+                    <div>
+                        <input type="text" value="" id="addline1" placeholder="Address Line 1" />
+                        <input type="text" value=""  id="addline2" placeholder="Address Line 2" />
+                        <input type="text" value=""  id="addzipcode" placeholder="Pincode" />
+                    </div>
+                    <div>
+                        <input id="next2" type="button" value="Add Address" class="btn btn-info"/>
+                    </div>
+                </div>
+            </div>
+            <div id="crncustomercontact" class="hide">
+                <div>
+                    <div>
+                        <input type="text" value="" id="addemail" placeholder="Email" />
+                        <input type="text" value="" id="addmob" placeholder="Mobile Number" />
+                    </div>
+                    <div>
+                        <input id="next3" type="button" value="Add Contact" class="btn btn-info"/>
+                    </div>
+                </div>
+            </div>
+            <div id="crncustomerfinish" class="hide">
+                <div>
+                    <div style="color: #00ff90">
+                        <p>You Successfully Created your customer</p>
+                    </div>
+                    <div>
+                        <input id="next4" type="button" value="Done" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

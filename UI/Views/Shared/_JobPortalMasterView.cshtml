@@ -1,0 +1,58 @@
+﻿@{
+    Layout = "~/Views/Shared/_loggedin.cshtml";
+}
+
+@section customstyles{
+    <style type="text/css">
+        html {
+            font-family: Noto Sans Regular !important;
+        }
+
+        body {
+            font-family: 'Noto Sans Regular' !important;
+        }
+
+        h2 {
+            font-family: 'Noto Sans Regular' !important;
+        }
+    </style>
+    <link href="~/css/webfonts.css" rel="stylesheet" />
+    <link href="~/Plugins/JqueryTE/jquery-te-1.4.0.css" rel="stylesheet" />
+    @RenderSection("customstylesnew", required: false)
+}
+@section actionset
+    {
+    @RenderSection("actionset", required: false)
+}
+
+@section topbarmenu
+    {
+    @Html.Partial("~/Views/common/TopBarMenuJobPortal.cshtml", null)
+}
+@section pagealerts{
+    @RenderSection("pagealerts", required: false)
+}
+
+
+<div style="margin-bottom: 100px;" class="data-container">
+    @RenderBody()
+</div>
+
+@section scripts
+    {
+    @RenderSection("Scripts", required: false)
+}
+
+@section FooterBlock{
+    <span style="padding: 10px 0px; display: inline-block;">&copy; @DateTime.Now.Year - <sup>&reg;</sup><sup>&trade;</sup>Recruitmetrix :: Simplify Recruiting</span>
+}
+
+@section modalpopups
+{
+    @RenderSection("modalpopups", required: false)
+}
+
+@section alerts
+{
+    @RenderSection("alerts", required: false)
+}

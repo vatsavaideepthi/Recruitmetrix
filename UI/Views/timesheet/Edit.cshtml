@@ -1,0 +1,325 @@
+﻿@model UI.Models.userdashboardtimesheet
+@{
+    ViewBag.Title = "Edit";
+    ViewBag.highlight = "timesheets";
+    Layout = "~/Views/timesheet/_timeSheetMasterView.cshtml";
+
+    List<UI.Utilities.customweek> periods = UI.Utilities.DateTimeUtility.GetWeeks(1, 2014);
+    UI.Utilities.customweek currentweek = periods.Where(x => x.isCurrentweek == true).First();
+}
+
+
+<div class="page-header-row">
+    <div class="col-md-8">
+        <span style="color: #e5e5e5;" class="pageheader jobheader">Edit Timesheet Of </span><span class="pageheader jobheader">@Model.timesheetmonth</span>
+        <div>
+            <span style="line-height: 30px; float: left;">@Model.weektimesheets[0].timesheetweek.startdate.ToShortDateString() - @Model.weektimesheets[0].timesheetweek.enddate.ToShortDateString()</span>
+            <input type="hidden" id="timesheetstartdate" value="@Model.weektimesheets[0].timesheetweek.startdate.ToString("yyyy-MM-dd hh:mm:ss")"/>
+            <input type="hidden" id="timesheetenddate" value="@Model.weektimesheets[0].timesheetweek.enddate.ToString("yyyy-MM-dd hh:mm:ss")"/>
+        </div>
+    </div>
+    <div class="col-md-4">
+        @Html.ActionLink("Back To Dashboard", "dashboard", "timesheet", null, new { @class = "btn-wide pull-right btn-flat btn-grey ", style = "" })
+    </div>
+</div>
+@using (Html.BeginForm("add", "timesheet", FormMethod.Post, new { id = "addtimesheetform" }))
+{
+    <div>
+        <div>
+            <table class="table table-bordered timesheetmap">
+                <thead>
+                    <tr style="text-align: center;">
+                        <th style="text-align: left; padding-left: 15px;">Date</th>
+                        <th style="text-align: center;">Working Hours</th>
+                        <th style="text-align: center;">Over time</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+    UI.Models.AppWeekTimeSheet weektimesheet = Model.weektimesheets[0];
+    if (weektimesheet.weektimesheetdata != null && weektimesheet.weektimesheetdata.Items.Item.Length > 0)
+    {
+        foreach (UI.testmodel.Item daysheet in weektimesheet.weektimesheetdata.Items.Item)
+        {
+            int j = 1000;
+                        <tr class="sheetrow">
+                            <td style="text-align: left; padding-left: 15px;">
+                                <div>
+                                    <input id="editingtimesheetid" type="hidden" value="@weektimesheet.timesheetid"/>
+                                    <div style="text-align:center;">
+                                          <label class="lbldate" data-date="@daysheet.Date">@(Convert.ToDateTime(daysheet.Date).ToString("dddd"))</label><br />
+                                        <label class="lbldate" data-date="@daysheet.Date"> @(Convert.ToDateTime(daysheet.Date).ToString("MMMM,dd yyyy"))</label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="text-align: center;">
+                                <input type="text" class="wrkinghours" value="@daysheet.Workhours" tabindex="@j"/></td>
+                            <td style="text-align: center;">
+                                <input type="text" class="othoours" value="@daysheet.Overtime" tabindex="@(j+7)"/></td>
+                            <td style="text-align: center;"><span class="btn btn-info taskaddinitiate">Add Tasks</span>
+                                <div>
+                                    <span class="taskcount">@daysheet.Tasks.Task.Length Tasks</span>
+                                </div>
+                            </td>
+                            @for (int i = 0; i < daysheet.Tasks.Task.Length; i++)
+                            {
+                                <input type="hidden" class="taskitem" data-description="@daysheet.Tasks.Task[i].Description" data-project="@daysheet.Tasks.Task[i].Project" data-taskhours="@daysheet.Tasks.Task[i].Hours">
+                            }
+                        </tr>
+            j++;
+        }
+    }
+    else
+    {
+                        <tr>
+                            <td colspan="3"><span>No Time Sheets Available for editing <a href="/timesheet/add?year=&month=&week">Click here to Add Time Sheet</a></span></td>
+                        </tr>
+    }
+                    }
+                    <tr>
+                        <td colspan="3" style="text-align: right;">Regular</td>
+                        <td style="text-align: center;" class="twhours">@weektimesheet.weektimesheetdata.Metadata.Totalhours</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align: right;">Over Time</td>
+                        <td style="text-align: center;" class="totothours">@weektimesheet.weektimesheetdata.Metadata.Overtimehours</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align: right;">Total</td>
+                        <td style="text-align: center;" class="swhours">0</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="padding: 10px 0px 0px 0px;">
+                <span class="btn btn-primary pull-right updatetimesheet">Update Time Sheet</span>
+            </div>
+        </div>
+    </div>
+
+}
+<div class="ruleholder">
+    <input type="hidden" id="companyid" value="@Session["companyid"].ToString()" />
+    <input type="hidden" id="currentclientid" />
+    <input type="hidden" id="currentemployeeid" />
+</div>
+
+<div id="chooseclientmodal" class="modal hide fade">
+    <div class="modal-header">
+        <h3 id="modaltitle">Choose Customer</h3>
+    </div>
+    <div class="modal-body">
+        <div id="chscutomer">
+            <div>
+                <input type="text" placeholder="Select Customer" id="tags" />
+                <button id="chscustomerselected" type="button" class="btn btn-info pull-right hide" value="Done">Done</button>
+            </div>
+            <div id="mancrcustblock" style="display: none;">
+                <span>No Clients Available...</span>
+                <input type="button" value="Create Customer" id="mancrsutomer" class="btn btn-info" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="chooseemployeemodal" class="modal hide fade">
+    <div class="modal-header">
+        <h3 id="modaltitle1">Choose Employee</h3>
+    </div>
+    <div class="modal-body">
+        <div id="chsemployee">
+            <div>
+                <input type="text" placeholder="Select Customer" id="emptags" />
+                <button id="chsemplaoyeeselected" type="button" class="btn btn-info pull-right hide" value="Done">Done</button>
+            </div>
+            <div id="mancrempblock" style="display: none;">
+                <span>No Employee Available...</span>
+                <input type="button" value="Create Customer" id="mancremplaoyee" class="btn btn-info" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="addtaskmodal" class="modal fade" style="">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modaltitle3">Add Taks</h3>
+                Total Hours : <span class="tasktotalhrs">24</span>
+            </div>
+
+            <div class="modal-body">
+                <div id="taskhoursexeed" class="alert alert-danger hide">
+                    <span>Total Work Hours per a Single day Cannot Exceed 24 Hours</span>
+                </div>
+                <div>
+                    <table id="tasklisttable" class="shadowless table table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Description</th>
+                                <th>Project</th>
+                                <th>Work Hours</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="clonelineitem" class="hide">
+                                <td><i class="glyphicon glyphicon-remove deletetaskitem" title="Delete Task"></i></td>
+                                <td>
+                                    <input type="text" placeholder="Add Task Description" class="taskdescription" /></td>
+                                <td>
+                                    <input type="text" placeholder="Add Project Name" class="taskproject" /></td>
+                                <td>
+                                    <input type="text" placeholder="Hours" class="taskhours" style="width: 50px;" value="0" /></td>
+                            </tr>
+                            <tr class="lineitem">
+                                <td style="width: 33px;"></td>
+                                <td>
+                                    <input type="text" placeholder="Add Task Description" class="taskdescription" /></td>
+                                <td>
+                                    <input type="text" placeholder="Add Project Name" class="taskproject" /></td>
+                                <td>
+                                    <input type="text" placeholder="Hours" class="taskhours" style="width: 50px;" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="border-top: 1px solid #eee; width: 100%;">
+                    <div class="pull-left" style="padding: 10px; cursor: pointer;">
+                        <span id="addlineitem"><i class="glyphicon glyphicon-plus"></i>New Line</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="AddTaskSettoDay">Add Tasks</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal-metadata">
+    <input type="hidden" id="taskchosendate" />
+    <input type="hidden" id="taskholderbearer" />
+</div>
+
+
+@section Scripts {
+    <script src="~/Scripts/tracker/timesheet.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.wrkinghours,.othoours,.twhours,.swhours,.totothours').numeric();
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#tags").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/AjaxData/GetJsonCustomerlist",
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            tag: ''
+                        },
+                        success: function (data) {
+                            if (data.length > 0) {
+                                var result = $.parseJSON((JSON.stringify(data)));
+                                response($.map(result, function (k, v) {
+                                    return {
+                                        label: k.name,
+                                        value: k.id
+                                    }
+                                }))
+                            }
+                            else {
+                                $('#tags').hide();
+                                $('#mancrcustblock').show();
+                            }
+                        },
+                        error: function (data) {
+                        }
+                    })
+                },
+                select: function (event, ui) {
+                    try {
+                        $('#currentclientid').val(ui.item.value);
+                        $('#tags').val(ui.item.label);
+                        $('#chscustomerselected').removeClass('hide');
+
+                    }
+                    catch (e) { }
+                    return false;
+                },
+                open: function () {
+                    $('.ui-autocomplete li').last().after('<li id="crncust" class="ui-menu-item" role="presentation"><a  class="ui-corner-all" tabindex="-1">Create New Customer</a></li>');
+                    return {
+                        label: 'dummy',
+                        value: '00000000000000000000000000000000'
+                    }
+                },
+                focus: function () {
+
+                }
+
+            });
+
+
+
+        });
+        $(function () {
+            $("#emptags").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/AjaxData/GetJsonEmployeelist",
+                        type: "POST",
+                        dataType: "JSON",
+                        success: function (data) {
+                            if (data.length > 0) {
+                                var result = $.parseJSON((JSON.stringify(data)));
+                                response($.map(result, function (k, v) {
+                                    return {
+                                        label: k.Title,
+                                        value: k.id
+                                    }
+                                }))
+                            }
+                            else {
+                                $('#tags').hide();
+                                $('#mancrcustblock').show();
+                            }
+                        },
+                        error: function (data) {
+                        }
+                    })
+                },
+                select: function (event, ui) {
+                    try {
+                        $('#currentemployeeid').val(ui.item.value);
+                        $('#emptags').val(ui.item.label);
+                        $('#chsemplaoyeeselected').removeClass('hide');
+
+                    }
+                    catch (e) { }
+                    return false;
+                },
+                open: function () {
+                    $('.ui-autocomplete li').last().after('<li id="crncust" class="ui-menu-item" role="presentation"><a  class="ui-corner-all" tabindex="-1">Create New Customer</a></li>');
+                    return {
+                        label: 'dummy',
+                        value: '00000000000000000000000000000000'
+                    }
+                },
+                focus: function () {
+
+                }
+
+            });
+
+
+
+        });
+    </script>
+}

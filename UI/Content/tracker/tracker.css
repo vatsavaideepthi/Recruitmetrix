@@ -1,0 +1,624 @@
+﻿body
+{
+    width: 100%;
+    background: #F5F5F5 !important;
+    margin: 0;
+    font-family: 'helvetica neue', helvetica, arial, sans-serif;
+}
+
+ul
+{
+    padding: 0px;
+    margin: 0 !important;
+}
+
+.jscollapse,.jsExpand {border:none !important;background:#ffffff;}
+.ptheader
+{
+    clear: both;
+    width: 100%;
+    background: #1f201f;
+    color: #fff;
+    line-height: 40px;
+    font-weight: 100;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+}
+
+
+span[contenteditable=true]
+{
+    border:1px dashed black;
+}
+
+p[contenteditable="true"]
+{
+    border:1px dashed black;
+}
+
+
+
+.ptcontent
+{
+    width: 100%;
+    display: inline-block;
+    /*border-width:0 1px 1px 1px;
+    border-style:solid;
+    border-color:#ddd;*/
+}
+
+    .ptcontent label
+    {
+        text-align: left !important;
+        padding-left: 25px !important;
+    }
+
+.ptsidebar
+{
+    width: 15%;
+    min-width: 15%;
+    max-width: 15%;
+    float: left;
+}
+
+    .ptsidebar .contentcontainer
+    {
+        height: 700px;
+    }
+
+.ptcontentholder
+{
+    width: 100%;
+    min-width: 50%;
+    /*float: left;*/
+}
+
+.pttimeline
+{
+    width: 100%;
+    line-height: 40px;
+    display: inline-block;
+    border-bottom: 1px solid #ddd;
+    font-family: 'UniversLT-Bold', 'UniversLTStd', helvetica, arial, sans-serif;
+}
+
+    .pttimeline ul
+    {
+        width: 100%;
+        clear: both;
+        height: 40px;
+        overflow: hidden;
+    }
+
+    .pttimeline li
+    {
+        float: left;
+        list-style: none;
+        text-align: center;
+        line-height: 40px;
+        cursor: pointer;
+    }
+
+    .pttimeline .monthslider li
+    {
+        width: 19%;
+        padding: 0% 0.5%;
+        text-align: center;
+        font-size: 15px;
+    }
+
+.monthslider li:hover div > span
+{
+    font-size: 16px;
+    border-radius: 100px;
+    background: #9ecc47;
+    color: white;
+    padding: 10px 3px;
+}
+
+.monthslider .current div > span
+{
+    font-size: 16px;
+    border-radius: 100px;
+    background: #2cb9c3;
+    color: white;
+    padding: 10px 3px;
+}
+
+.ptpaymentdata
+{
+    clear: both;
+    margin-top: 50px;
+}
+
+.container
+{
+    max-width: 1000px;
+    margin: 0px auto;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.phblock
+{
+    padding: 0;
+}
+
+.paymentheader
+{
+    line-height: 20px;
+    font-size: 1.0em;
+    font-weight: bold;
+}
+
+.paymentbody .header table
+{
+    width: 100%;
+    background: #fff;
+}
+
+.paymentecord table
+{
+    width: 100%;
+}
+
+.paymentblock
+{
+    border: 1px solid #ddd;
+}
+
+.paymode
+{
+   
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+   
+}
+
+    .paymode ul
+    {
+        padding: 5px;
+    }
+
+    .paymode li
+    {
+        list-style: none;
+        cursor: pointer;
+    }
+
+        .paymode li:hover
+        {
+            color: #2cb9c3;
+        }
+
+.recordheader td
+{
+    background-color: #f9f9f9 !important;
+}
+
+.record-description
+{
+    margin-left: 20px;
+}
+
+    .record-description .main
+    {
+        font-size: 1.1em;
+    }
+
+    .record-description .subtitle
+    {
+        color: #ccc;
+    }
+/*Override styles*/
+.table-bordered, .table, .table-bordered thead:first-child tr:first-child > th:first-child, .table-bordered tbody:first-child tr:first-child > td:first-child, .table-bordered thead:last-child tr:last-child > th:first-child, .table-bordered tbody:last-child tr:last-child > td:first-child, .table-bordered tfoot:last-child tr:last-child > td:first-child
+{
+    border-radius: 0;
+}
+
+.table-bordered
+{
+    /*border-left: 0px !important;
+    border-right: 0px !important;
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important;*/
+}
+
+select
+{
+    width: 100% !important;
+}
+
+.table-bordered th, .table-bordered td
+{
+    border-left: 0px solid #ddd !important;
+}
+
+.accactive
+{
+    background-color: rgba(88, 190, 137, 0.8) !important;
+    height: 34px;
+    position: absolute;
+}
+
+.icon-chevron-down
+{
+    cursor: pointer;
+}
+
+.table-striped tbody > tr:nth-child(odd) > td, .table-striped tbody > tr:nth-child(odd) > th
+{
+    background-color: #FFF !important;
+}
+
+.expand-table
+{
+    font-weight: 900;
+    font-size: 24px;
+    width: 15px;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+    .expand-table div > span
+    {
+        font-size: 16px;
+        border-radius: 100px;
+        background: #ddd;
+        color: #000;
+        padding: 6px 10px;
+    }
+
+.paydue
+{
+    color: #f80808;
+}
+
+.paid
+{
+    color: #9ecc47;
+}
+
+.payhold
+{
+    color: #620505;
+}
+
+.payabort
+{
+    color: #f74207;
+}
+
+.recordheader > tr
+{
+    background-color: #ddd !important;
+}
+
+
+.normal-table input[type="text"]
+{
+    border: 1px solid transparent;
+    background-color:transparent !important;
+}
+
+.normal-table input[type="text"], .normal-table select
+{
+    padding: 0px !important;
+    margin-bottom: 0px !important;
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important;
+    -webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,0.075) !important;
+    -moz-box-shadow: inset 0 0px 0px rgba(0,0,0,0.075) !important;
+    box-shadow: inset 0 0px 0px rgba(0,0,0,0.075) !important;
+    -webkit-transition: border linear .0s,box-shadow linear .0s !important;
+    -moz-transition: border linear .0s,box-shadow linear .0s !important;
+    -o-transition: border linear .0s,box-shadow linear .0s !important;
+    transition: border linear .0s,box-shadow linear .0s !important;
+    /*width: 118px !important;*/
+    padding-left: 3px !important;
+    height: 30px;
+}
+
+.normal-table select
+{
+    height: 32px !important;
+}
+
+.normal-table .recordheader
+{
+}
+
+table.normal-table tr.recordheader td
+{
+    padding: 8px;
+    background-color: #FFF !important;
+    border-top: 1px solid #CCC !important;
+    border-left: 0px;
+}
+
+table.normal-table
+{
+    max-width: 100% !important;
+    background-color: transparent !important;
+    border-collapse: collapse !important;
+    border-spacing: 0px !important;
+    border-color: #ddd !important;
+}
+
+
+    table.normal-table td, table.normal-table th
+    {
+        padding: 0px;
+        /*background-color: #FFF;*/
+    }
+
+    table.normal-table th
+    {
+        padding: 10px 10px 9px;
+        background-color: #fff;
+        text-align: center;
+    }
+
+
+
+    table.normal-table tbody tr
+    {
+        height: 30px;
+    }
+
+.smcell, .smcell input
+{
+    width: 59px;
+}
+
+.lacell, .lacell input
+{
+    width: 218px;
+}
+
+.bordered-table th + th, .bordered-table td + td, .bordered-table th + td
+{border-left: 1px solid #ddd;
+}
+
+table td {
+vertical-align: top;
+border-top: 1px solid #ddd;
+}
+
+td {
+border: none;
+}
+
+.bordered-table {
+border: 1px solid #ddd;
+border-collapse: separate;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+
+}
+
+/*table {
+width: 100%;
+margin-bottom: 0px !important;
+padding: 0;
+font-size: 13px;
+border-collapse: collapse;
+-webkit-box-shadow: 0 0 5px 0 #999999;
+-moz-box-shadow: 0 0 5px 0 #999999;
+box-shadow: 0 0 5px 0 #999999;
+-webkit-box-shadow: 0 0 5px 0 #999999;
+-moz-box-shadow: 0 0 5px 0 #999999;
+box-shadow: 0 0 5px 0 #999999;
+-o-border-radius: 0 0 5px 0 #999999;
+}*/
+
+body .modal .widemodal {
+  width: 80%; /* desired relative width */
+  left: 5%; /* (100%-width)/2 */
+  /* place center */
+  margin-left:auto;
+  margin-right:auto; 
+}
+body .modal.fade.in {
+   /* fade in to correct spot */
+}
+
+.ui-autocomplete
+{
+    z-index:9999 !important;
+}
+
+.invoice p
+{
+    margin: 0 0 2px !important;
+}
+
+.rowquantity,.rowunitprice
+{
+    width:75px;
+}
+
+.footer {
+  position: relative;
+  margin-top: -150px; /* negative value of footer height */
+  height: 150px;
+  clear:both;
+  padding-top:20px;
+}
+
+.invoice
+{
+    min-height: 850px;
+}
+
+.invoice  .invoice-box
+{
+    border:3px solid #000;
+    /*width:1010px !important;*/
+}
+
+.invoicelist td,.invoicelist th
+{
+    vertical-align:middle;
+    text-align:center;
+}
+
+.customer td,.customer th
+{
+    vertical-align:middle;
+    text-align:center;
+}      
+ .invoice .invoice-box thead td
+    {
+        text-align:center;
+        font-weight:bold;
+        border-bottom:1px solid #000;
+        border-right:1px solid #000;
+    }
+.invoice .invoice-box
+{
+    width:920px !important;
+}
+    .invoice .invoice-box tbody td
+    {
+        border-bottom:1px solid #000;
+        border-right:1px solid #000;
+    }
+
+    .invoice .invoice-box .lineitem td
+    {
+        text-align:center;
+    }
+    .invoice .invoice-box td .rowdescription
+    {
+        width:400px;
+        float:right;
+    }
+    .invoice .invoice-box td .rowquantity
+    {
+        width:50px;
+    }
+    .invoice .invoice-box td .rowunitprice
+    {
+        width:50px;
+    }
+    .invoice .invoice-box td .rowtax
+    {
+        width:50px;
+    }
+.detailnote
+{
+    margin-left:25px;
+}
+.emailsenderlist,.emailsubject,.mailtextarea,forwardsubject
+{
+    border-radius: 0 !important;
+    box-shadow: inset 0 0 0 !important;
+    border: 0px !important;
+    margin-bottom:0px !important;
+    padding:5px 0px;
+}
+
+#invemailbody table
+{
+    webkit-box-shadow: 0 0 0px 0 #999999 !important;
+-moz-box-shadow: 0 0 0px 0 #999999 !important;
+box-shadow: 0 0 0px 0 #999999 !important;
+-webkit-box-shadow: 0 0 0px 0 #999999 !important;
+-moz-box-shadow: 0 0 0px 0 #999999 !important;
+box-shadow: 0 0 0px 0 #999999 !important;
+-o-border-radius: 0 0 0px 0 #999999 !important;
+}
+#invemailbody td
+{
+    border:none;
+}
+.mailform
+{
+    margin-bottom:0px !important;
+}
+
+.mailtextarea,.emailsenderlist{margin-left:8px !important;}
+
+    #emailto:focus .emailtotd
+    {
+        display:block;
+    }
+
+
+    #generateinvoiceform table
+{
+    webkit-box-shadow: 0 0 0px 0 #999999 !important;
+-moz-box-shadow: 0 0 0px 0 #999999 !important;
+box-shadow: 0 0 0px 0 #999999 !important;
+-webkit-box-shadow: 0 0 0px 0 #999999 !important;
+-moz-box-shadow: 0 0 0px 0 #999999 !important;
+box-shadow: 0 0 0px 0 #999999 !important;
+-o-border-radius: 0 0 0px 0 #999999 !important;
+}
+
+    #generateinvoiceform .imeta td
+{
+    border:none;
+}
+
+.forceleft
+{
+    text-align:left !important;
+    padding-left:15px !important;
+}
+
+.deleterow{
+    display:block !important;
+    margin-right:5px !important;
+    padding:3px 5px !important;
+}
+
+.deleterowforcehide{display:none !important;}
+
+.rowtotal,.discount,.shipping,.totalamount
+{
+    width:150px !important;
+}
+
+.invoice .client .info
+{
+    width:100% !important;
+}
+
+.invoice .imeta
+{
+    line-height:25px !important
+}
+
+.leveltwo li:hover a
+{color: #fff;
+background-color: #08c;
+}
+
+.shadowless
+{
+     webkit-box-shadow: 0 0 0px 0 #999999 !important;
+-moz-box-shadow: 0 0 0px 0 #999999 !important;
+box-shadow: 0 0 0px 0 #999999 !important;
+-webkit-box-shadow: 0 0 0px 0 #999999 !important;
+-moz-box-shadow: 0 0 0px 0 #999999 !important;
+box-shadow: 0 0 0px 0 #999999 !important;
+-o-border-radius: 0 0 0px 0 #999999 !important;
+}
+
+#monthaccsetuptable .accountrecord:hover .optionset
+{
+    display:block;
+}
+
+.jobtable td
+{
+    border:0px solid #ccc !important;
+    padding:2px !important;
+}
+

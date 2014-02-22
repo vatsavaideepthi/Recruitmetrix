@@ -1,0 +1,45 @@
+﻿@model UI.Models.ExternalInvoice
+
+@using (Html.BeginForm("add", "invoice", FormMethod.Post, new {enctype = "multipart/form-data",id="addinboundinvoiceform" }))
+{
+    <div>
+        <table class="table tabele-bordered invoice-box ">
+            <tr>
+                <td>
+                    <label>Vendorname</label></td>
+                <td>
+                    @Html.TextBoxFor(m => m.receiverid, new { id = "vendorname" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Amount</label></td>
+                <td>
+                @Html.TextBoxFor(m => m.invoiceamount, new { id = "invoiceamount" })
+            </tr>
+            <tr>
+                <td>
+                    <label>Date</label></td>
+                <td>
+                @Html.TextBoxFor(m => m.invoicedate, new { id = "invoicedate" })
+            </tr>
+            <tr>
+                <td>
+                    <label>Attach Invoice</label>
+                    <label id="attachedinvoicename" class="hide">Attach Invoice</label>
+                </td>
+                <td>
+                    
+                    <input type="file" id="FileUpload1"   name="FileUpload1" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                     @Html.TextBoxFor(m => m.invoiceid, new { id = "genextinvoice",@class="hide" })
+                    <span class="btn btn-default" id="btinvoicedone" >Add</span>
+                    <input type="submit" id="btinvoicedoneactual" class="pull-right btn btn-default hide" value="Done" /></td>
+            </tr>
+        </table>
+
+    </div>
+}

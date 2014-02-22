@@ -1,0 +1,249 @@
+﻿@model UI.Models.AccountCollection
+@{
+    ViewBag.Title = "Set Up Your Expenses";
+    Layout = "~/Views/Shared/_loggedin.cshtml";
+}
+
+
+@section Scripts{
+    <script type="text/javascript">
+        $(".prname").autocomplete({
+            minLength: 0,
+            source: function (request, response) {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    url: '/AjaxData/GetAllProviders',
+                    dataType: "json",
+                    data: "{'unid':'AD32D0F629894ACE861E62CC330DB38C'}",
+                    success: function (data) {
+                        var result = data;
+                        response($.map(result, function (k, v) {
+                            return {
+                                label: k.name,
+                                value: k.id,
+                                unid: k.unid
+                            }
+                        }))
+                    },
+                    open: function () {
+                        $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+                    },
+                    close: function () {
+                        $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+                    }
+                });
+            },
+            select: function (event, ui) {
+                $(this).val(ui.item.label);
+                $(this).attr('data-prid', ui.item.value);
+                return false;
+            }
+        })
+
+    </script>
+    <script src="~/Scripts/tracker/expenses.js"></script>
+}
+@section actionset{
+    @*<div class="container">
+        <ul class="nav pull-right">
+            <li class="save-inv"><a href="#">Save</a></li>
+            <li class="edit-inv"><a id="actionsetchangecustomer" href="#">Change Customer</a></li>
+        </ul>
+    </div>*@
+}
+
+<div class="container" aria-hidden="true" style="display: none;">
+    <div style="width: 880px; margin: 0px auto;">
+        <div class="ptcontent" style="margin-top: 20px;">
+            <table class="bordered-table normal-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Payee</th>
+                        <th>Budget</th>
+                        <th>Dueon</th>
+                        <th>Recurrence</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="clonerow" data-userid="" data-catname="" data-catid="" data-subcatid="" class="hide">
+                        <td>
+                            <div>
+                                <input type="text" class="accname" style="float: right; padding-left: 10px !important;" value="" data-accountid="" />
+                            </div>
+                        </td>
+                        <td class="lacell">
+                            <div>
+                                <input type="text" class="prname" style="float: right;" value="" data-accountid="" />
+                            </div>
+                        </td>
+                        <td class="smcell">
+                            <div>
+                                <input type="text" class="budget" style="float: right; text-align: right;" value="" placeholder="0.00" />
+                            </div>
+                        </td>
+                        <td class="smcell">
+                            <div>
+                                <input id="" class="duemonth" type="text" style="float: left; width: 23px !important; text-align: center" value="" placeholder="Month" />
+                                <input type="button" value="|" style="width: 2px !important; float: left; width: 16px !important; float: left; font-size: 25px; height: 33px; background-color: white; border: 0px; border-radius: 0px; cursor: default; box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.0) !important;" disabled="disabled" />
+                                <input id="" class="duedate" type="text" style="float: right; width: 25px !important; text-align: center" value="" placeholder="Date" />
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <select style="float: right;" class="recurrence">
+                                    <option value="week">Weekly</option>
+                                    <option value="biweek">Biweekly</option>
+                                    <option value="month">Monthly</option>
+                                    <option value="quarter">Quartlery</option>
+                                    <option value="year">Yearly</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <input type="text" class="desc" style="float: right;" value="" />
+                            </div>
+                        </td>
+                        <div style="position: absolute; display: none;">
+                            <button class="btn addaccount" style="float: right;"><i class="glyphicon-plus glyphicon-black"></i></button>
+                            <button class="btn warning jsCancel" style="float: right;"><i class="glyphicon-plus glyphicon-black"></i></button>
+                        </div>
+                    </tr>
+                    @foreach (UI.Models.AccountgroupCollection accountgroup in Model.accountcollection)
+                    {
+                            
+                               
+                        <tr class="recordheader" style="width: 100%;" data-accname="@accountgroup.categoryname" data-catid="@accountgroup.categoryid">
+                            <td colspan="4" style="width: 100%;">
+                                <div style="float: left;">
+                                    <button class="jscollapse"><i class="glyphicon-chevron-down glyphicon-black" style="background-color: #FFF; border: 0px; height: 16px; margin-top: 0px; padding-right: 5px;"></i></button>
+                                </div>
+                                <div class="paymentheader">
+                                    <div>@accountgroup.categoryname</div>
+                                </div>
+                            </td>
+                            <td class="expand-table">
+                                <div style="float: right;">
+                                    <span class="additem" data-catid="@accountgroup.categoryid"  data-catname="@accountgroup.categoryname" data-userid="@accountgroup.userid">+</span>
+                                </div>
+                            </td>
+                        </tr>
+                                
+                               
+                                
+                        foreach (UI.Models.PTAccount account in accountgroup.accounts.OrderBy(ac => ac.initial))
+                        {
+                                    
+                        <tr  data-accountid="@Html.Raw(account.accountId)" data-accounttype="@Html.Raw(account.accounttype)" data-userid="@Html.Raw(account.userid)"  data-catname="@Html.Raw(account.categoryname)" data-catid="@Html.Raw(account.categoryid)" data-subcatid="@Html.Raw(account.subcatid)">
+                            <td>
+                                <div>
+                                    <div class="@(account.initial ? "" : "accactive")" style="width:5px;" title="Active Account"></div>
+                                    <label data-accountid="@Html.Raw(account.accountId)" class="accname pull-right" style="margin-right:25px;">@Html.Raw(account.accountName)</label>
+                                </div>
+                            </td>
+                            <td class="lacell">
+                                <div>
+                                    <input type="text" class="prname"  style="float: right;" value="@Html.Raw(account.providername)" data-accountid="@Html.Raw(account.providerid)" data-unid="@Html.Raw(account.uniqueid)"/>
+                                </div>
+                            </td>
+                            <td class="smcell">
+                                <div>
+                                    <input type="text" class="budget" style="float: right;text-align:right;" value="@Html.Raw(account.amount == 0 ? string.Empty : account.amount.ToString())" placeholder="0.00"/>
+                                </div>
+                            </td>
+                            <td class="">
+                                <div style="width: 100px;">
+                                    <input id="" class="duemonth" type="text" style="float: left; width: 40% !important; text-align: center; padding-left: 0px !important;" value="" placeholder="mm" />
+                                    <input type="button" value="|" style="float: left; width: 3% !important; float: left; font-size: 25px; height: 33px; background-color: white; border: 0px; border-radius: 0px; cursor: default; box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.0) !important;" disabled="disabled" />
+                                    <input id="" class="duedate" type="text" style="float: right;width: 40% !important;text-align: center;padding-left: 0px !important;" value="@Html.Raw(account.duedate == 0 ? string.Empty : account.duedate.ToString())" placeholder="dd"/>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <select style="float: right;" class="recurrence">
+                                        <option value="week">Weekly</option>
+                                        <option value="biweek">Biweekly</option>
+                                        <option value="month" selected="selected">Monthly</option>
+                                        <option value="quarter">Quartlery</option>
+                                        <option value="year">Yearly</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td style="position: absolute; display: none;" class="optionset">
+                                <button class="btn  jsRemove" style="float: right;" title="Remove @Html.Raw(account.accountName)"><i class="glyphicon-minus glyphicon-black"></i></button>
+                                @if (account.initial)
+                                {
+                                    <button class="btn btn-info jsUpdate" style="float: right; width: 100%;"><i class="glyphicon-ok glyphicon-white"></i></button>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-info jsEdit" style="float: right; width: 100%;"><i class="glyphicon-edit glyphicon-white"></i></button>
+                                }
+
+                            </td>
+                        </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    @if (Model.accountcollection.Count > 0)
+    {
+        <div style="width: 700px; margin: 0px auto;">
+            @* <input type="button"  id="accsetupdone"  class="btn btn-large success btn-block" style="float: right;" value="Done" onclick="location.href='@Url.Action("ChangeSetupStatusTotrue", "Welcome")    '"/>*@
+        </div>
+    }
+</div>
+<div class="tabbable">
+    <!-- Only required for left/right tabs -->
+    <ul class="nav nav-tabs nav-pills">
+        @*<li class=""><a href="#tabweek" data-toggle="tab">Weekly</a></li>
+        <li class=""><a href="#tabbiweek" data-toggle="tab">Bi-Weekly</a></li>*@
+        <li class="active"><a href="#tabmonth" data-toggle="tab">Monthly</a></li>
+        @*<li class=""><a href="#tabquarter" data-toggle="tab">Quarterly</a></li>*@
+        @*<li class=""><a href="#tabhalf" data-toggle="tab">Half-Yearly</a></li>
+        <li class=""><a href="#tabyear" data-toggle="tab">Yearly</a></li>*@
+    </ul>
+    <div class="tab-content ">
+        @*<div class="tab-pane " id="tabweek">
+             @Html.Partial("~/Views/common/_accountSetupWeekly.cshtml", Model)
+        </div>
+        <div class="tab-pane" id="tabbiweek">
+            @Html.Partial("~/Views/common/_accountSetupBiWeekly.cshtml", Model)
+        </div>*@
+         <div class="tab-pane active" id="tabmonth">
+             @Html.Partial("~/Views/common/_accountSetupMonthly.cshtml", Model)
+        </div>
+        @*<div class="tab-pane" id="tabquarter">
+             @Html.Partial("~/Views/common/_accountSetupQuarterly.cshtml", Model)
+        </div>
+         <div class="tab-pane " id="tabhalf">
+             @Html.Partial("~/Views/common/_accountSetupHalfYearly.cshtml", Model)
+        </div>
+        <div class="tab-pane" id="tabyear">
+              @Html.Partial("~/Views/common/_accountSetupYearly.cshtml", Model)
+        </div>*@
+    </div>
+</div>
+
+<div class="container hide">
+    @Html.Partial("~/Views/common/_accountSetupMonthly.cshtml", Model)
+</div>
+
+<div id="accountupdatemodal" class="modal fade" style="width: 895px;">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">&times;</a>
+        <h3>Add Accounts</h3>
+    </div>
+    <div class="modal-body">
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+        <a href="#" class="btn btn-primary">Save Payment</a>
+    </div>
+</div>

@@ -1,0 +1,109 @@
+﻿@model UI.Models.MailInvoice
+@{
+    Layout = "~/Views/Shared/_loggedin.cshtml";
+    ViewBag.Title = "Invoice:View";
+
+}
+
+@section customstyles{
+    <style type="text/css">
+        .mailtextarea
+        {
+            width: 100%;
+            margin: 0px auto;
+            height: 344px;
+            max-height: 344px;
+            resize: none;
+        }
+    </style>
+}
+@section Scripts{
+    <script src="~/Scripts/tracker/invoice.js"></script>
+}
+
+@section actionset{
+    <div class="container">
+        <ul class="nav pull-right">
+            <li class="edit-inv"><a href="#">Edit Invoice</a></li>
+            <li class="update-inv hide"><a href="#">Update</a></li>
+            <li class="cancel-edit hide"><a href="#">Cancel</a></li>
+            <li class="sendinv"><a href="#" class="prepinvemail">Send</a></li>
+            <li class="downinv"><a href="/invoice/download?tid=@Request.QueryString["invid"].ToString()">Download</a></li>
+        </ul>
+    </div>
+}
+
+@*Body Content*@
+<input type="hidden" value="1" id="isinvoiceview" />
+<input type="hidden" id="invoiceid" />
+<input type="hidden" id="templateid" />
+
+
+
+<div class="container">
+    @using (Html.BeginForm("updateinvoice", "Invoice", FormMethod.Post, new { id = "updateinvoiceform" }))
+    {
+        <div id="invdispholder">
+        </div>
+    }
+</div>
+<div id="ruleholder">
+    <input id="viewid" type="hidden" value="invoice-create" />
+    <input id="currenttemplate" type="hidden" value="" />
+    <input id="currentcustomer" type="hidden" value="" />
+    <input id="currentcompanyid" type="hidden" value="" />
+</div>
+<div id="invemailmodal" class="modal hide fade" style="border-radius: 0px;">
+    <div class="modal-header" style="background-color: #404040; color: #FFFFFF;">
+        <h3 id="modaltitle">Invoice</h3>
+    </div>
+    @using (Html.BeginForm("send", "Invoice", FormMethod.Post, new { id = "sendemail", @class = "mailform" }))
+    {
+        <div class="modal-body" style="max-height: 500px; padding: 0px;">
+            <div id="invemailbody">
+                <div id="emailto" style="padding: 10px 15px 10px 15px;">
+                    <table>
+                        <tr>
+                            <td style="vertical-align: middle;">
+                                <div class="emailtotd" style="margin-left: 8px; width: 15px;">To</div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.TextBoxFor(m => m.recipients, new { id = "emailsenderslist", placeholder = "Enter Recipient's Email", @class = "emailsenderlist" })
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div id="subjetto" style="padding: 5px 15px; border-top: 1px solid; border-color: #cfcfcf;">
+                    <table>
+                        <tr>
+                            <td>
+                                <div>
+                                    @Html.TextBoxFor(m => m.subject, new { id = "emailsubject", placeholder = "Subject", @class = "emailsubject" })
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div id="emailmessagebody" style="min-height: 150px; max-height: 500px; padding: 0px 15px 15px 15px; border-top: 1px solid; border-color: #cfcfcf;">
+                    @Html.TextAreaFor(m => m.message, new { id = "emailcontent", placeholder = "Add Content To Mail", @class = "mailtextarea" })
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%; display: inline-block; background-color: #f5f5f5; border-top: 1px solid #cfcfcf;">
+            <div class="span2 pull-left" style="padding: 10px;">
+                <span><i class="icon glyphicon-download-alt"></i>invoice.pdf</span>
+            </div>
+
+            <div class="span2 pull-right" style="padding: 10px;">
+                <button id="" type="button" class="btn btn-info pull-left " data-dismiss="modal" value="Cancel">Cancel</button>
+                <button id="" type="submit" class="btn btn-success pull-right " value="Send">Send</button>
+            </div>
+        </div>
+    }
+</div>
+
+

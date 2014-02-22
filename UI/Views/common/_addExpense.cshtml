@@ -1,0 +1,217 @@
+﻿@model UI.Models.expense
+
+<div>
+    <div class="alert alert-success hide">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <span>Expense Added Successfully</span>
+    </div>
+    <div class="alert alert-error hide">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <span>Adding Expense Failed</span>
+    </div>
+    <div class="alert alert-warning hide">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <span>Expense cannot be added !!</span>
+    </div>
+</div>
+
+@using (Html.BeginForm("add", "expense", FormMethod.Post, new { id = "addexpenseform" }))
+{
+    <div>
+
+        @Html.HiddenFor(m => m.categoryname, new { id = "categoryname" })
+        @Html.HiddenFor(m => m.categoryid, new { id = "categoryid" })
+        @Html.HiddenFor(m => m.subcategoryname, new { id = "subcategoryname" })
+        @Html.HiddenFor(m => m.subcategoryid, new { id = "subcategoryid" })
+        <table class="table tabele-bordered invoice-box ">
+            <thead>
+                <tr>
+                    <th>Account</th>
+                    <th>Amount</th>
+                    <th>Payee</th>
+                    <th>Paymode</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>
+                    <input type="text" id="chooseexpenseaccount"></td>
+
+                <td>
+                    <div class="input-prepend">
+                        <span class="add-on">$</span>
+                          @Html.TextBoxFor(m => m.amount, new { id = "expenseamount",@class="span2",@style="width:100px;" })
+                    </div>
+                  </td>
+                <td>@Html.TextBoxFor(m => m.spenton, new { id = "expenseprovider" })</td>
+                <td>
+                    <div>
+                        <select class="selectpicker">
+                            <option>Cash</option>
+                            <option>Credit Card</option>
+                            <option>Debit Card</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <input type="text"  id="pickpaydate"  data-date="@DateTime.Now.Date" data-month="@DateTime.Now.Month" data-year="@DateTime.Now.Year" value="Today" style="width:150px;"/>
+                </td>
+                @*<td>
+                    <div>
+                        <input type="checkbox" />Recurred
+                    </div>
+                    <div>
+                        <div class="btn-group">
+                            <button class="btn btn-primary">Recurrence</button>
+                            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Monthly</a></li>
+                                <li><a href="#">Weekly</a></li>
+                                <li><a href="#">Yearly</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>*@
+            </tr>
+            <tr>
+                <td colspan="6">@Html.TextAreaFor(m => m.description, new { id = "expensedescription", @Style = "width:98%;" })</td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <span class="btn btn-default pull-right btn-primary" id="btexpenseadd" style="margin-left: 5px;">Add</span>
+                    <span class="btn btn-default pull-right" id="btexpenseaddcancel">Cancel</span>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+}
+<input type="hidden" value="@Session["usertoken"].ToString()" id="sessiontoken" />
+<input type="hidden" value="@Session["companyid"].ToString()" id="expenseuserid" />
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".chosen-select").chosen();
+    });
+
+
+</script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        
+        $("#pickpaydate").datepicker({
+            dateFormat: "dd MM yy", showOn: "button",
+            buttonImage: "images/calendar.gif",
+            buttonImageOnly: true,
+            onSelect: function (dateText,inst) {
+                $(this).attr('data-date', inst.selectedDay);
+                $(this).attr('data-month', inst.selectedMonth+1);
+                $(this).attr('data-year', inst.selectedYear);
+            }
+        });
+        var token = $('#sessiontoken').val();
+        $("#chooseexpenseaccount").autocomplete({
+            minLength: 0,
+            source: function (request, response) {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    url: '/AjaxData/GetAllAccounts',
+                    dataType: "json",
+                    data: '{usertoken:' + JSON.stringify(token) + '}',
+                    success: function (data) {
+                        var result = data;
+                        response($.map(result, function (k, v) {
+                            return {
+                                label: k.accountname,
+                                value: k.accountid,
+                                catid: k.categoryid,
+                                subcatid: k.subcategoryid
+                            }
+                        }))
+                    },
+                    open: function () {
+                        $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+                    },
+                    close: function () {
+                        $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+                    }
+                });
+            },
+            select: function (event, ui) {
+                $(this).val(ui.item.label);
+                $(this).attr('data-accid', ui.item.value);
+                $(this).attr('data-catid', ui.item.catid);
+                $(this).attr('data-subcatid', ui.item.subcatid);
+                return false;
+            }
+        })
+
+        $("#expenseprovider").autocomplete({
+            minLength: 0,
+            source: function (request, response) {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    url: '/AjaxData/GetAllProviders',
+                    dataType: "json",
+                    data: "{'unid':'AD32D0F629894ACE861E62CC330DB38C'}",
+                    success: function (data) {
+                        var result = data;
+                        if (result.length>0) {
+                            response($.map(result, function (k, v) {
+                                return {
+                                    label: k.name,
+                                    value: k.id,
+                                    unid: k.unid
+                                }
+                            }))
+                        }
+                        else
+                        {
+                            alert('No Providers Available at this moment');
+                        }
+                    },
+                    open: function () {
+                        $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+                    },
+                    close: function () {
+                        $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+                    }
+                });
+            },
+            select: function (event, ui) {
+                $(this).val(ui.item.label);
+                $(this).attr('data-prid', ui.item.value);
+                return false;
+            }
+        })
+
+        $('#btexpenseadd').click(function () {
+            $.ajax({
+                url: "/AjaxData/AddQuickPayment",
+                type: "POST",
+                dataType: "text",
+                data: {
+                    accountid: $('#chooseexpenseaccount').attr('data-accid'),
+                    userid:$('#expenseuserid').val(),
+                    subcategoryid: $('#chooseexpenseaccount').attr('data-subcatid'),
+                    categoryid: $('#chooseexpenseaccount').attr('data-catid'),
+                    description: $('#expensedescription').val(),
+                    amount: $('#expenseamount').val(),
+                    paiddate: $('#pickpaydate').attr('data-date'),
+                    paidmonth: $('#pickpaydate').attr('data-month'),
+                    paidyear: $('#pickpaydate').attr('data-year'),
+                    paymode: "cash"
+
+                },
+                async: true,
+                success: function (data) { },
+                error: function (data) {
+                }
+            });
+        });
+
+
+    });
+</script>

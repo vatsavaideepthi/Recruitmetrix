@@ -1,0 +1,98 @@
+﻿@{
+    string highlighter = Convert.ToString(ViewBag.highlight);
+    int value = 0;
+    switch (highlighter)
+    {
+        case "jobs":
+            value = 1;
+            break;
+        case "contacts":
+            value = 2;
+            break;
+        case "mailinglists":
+            value = 3;
+            break;
+        case "communication":
+            value = 4;
+            break;
+        case "timesheets":
+            value = 5;
+            break;
+        case "candidates":
+            value =6;
+            break;
+        case "users":
+            value = 7;
+            break;
+    }
+
+    List<Business.menuitem> topmenu = new Business.ApplicationUtility().GetTopmenu(Session["usertoken"].ToString());
+}
+<div class="topbarmenu well" style="padding: 5px 0px 1px 0px; margin: 0px auto;background-color:#95a5a6;">
+    <div class="container">
+        <ul class="nav nav-pills levelone" style="margin: auto; display: inline-block;">
+            
+            @*<li class="@(value==1 ? "active" : "")" data-childmenuset="jobs">
+                <a href="/jobs">Jobs</a>
+            </li>
+            <li class="@(value==2 ? "active" : "")" data-childmenuset="contacts">
+                <a href="/contacts">Contacts</a>
+            </li>
+            <li class="@(value==3 ? "active" : "")" data-childmenuset="mailinglist">
+                <a href="/lists">Mailing Lists</a>
+            </li>
+            <li class="@(value==4 ? "active" : "")" data-childmenuset="communication">
+                <a href="/communication">Communication</a>
+            </li>
+             <li class="@(value==5 ? "active" : "")" data-childmenuset="timesheets">
+                <a href="/timesheet/dashboard">Timesheets</a>
+            </li>
+             <li class="@(value==6 ? "active" : "")" data-childmenuset="candidates">
+                <a href="/candidate">Candidates</a>
+            </li>
+             <li class="@(value==7 ? "active" : "")" data-childmenuset="users">
+                <a href="/users">Users</a>
+            </li>*@
+            @foreach (Business.menuitem item in topmenu)
+            {
+                  <li class="@(value==item.enableactivecode ? "active" : "")" data-childmenuset="@item.childumenusettag">
+                <a href="@item.linkpath">@item.linkname</a>
+            </li>
+            }
+
+        </ul>
+    </div>
+    @*<div class="">
+        <ul class="nav nav-pills leveltwo hide" data-menuset="jobs">
+            <li class="">
+                <a href="/jobs">All Jobs</a>
+            </li>
+            <li class="">
+                <a href="/jobs/requirements">Requirements</a>
+            </li>
+            <li class="">
+                <a href="/jobs/promotions">Promotions</a>
+            </li>
+        </ul>
+    </div>
+    <div class="">
+        <ul class="nav nav-pills leveltwo hide" data-menuset="contacts">
+            <li class="">
+                <a href="/contacts">My Contacts</a>
+            </li>
+            <li class="">
+                <a href="/contacts/shared">Shared Contacts</a>
+            </li>
+            <li class="">
+                <a href="/contacts/Requests">Contact Requests</a>
+            </li>
+        </ul>
+    </div>*@
+    @*<div class="">
+        <ul class="nav nav-pills leveltwo hide" data-menuset="mailinglist">
+            <li class="">
+                <a href="/Customer"></a>
+            </li>
+        </ul>
+    </div>*@
+</div>

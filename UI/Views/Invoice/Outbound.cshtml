@@ -1,0 +1,115 @@
+﻿@model List<UI.Models.PaymentInvoice>
+@{
+    Layout = "~/Views/Shared/_loggedin.cshtml";
+    ViewBag.Title = "Invoices:Outbound";
+}
+@section topbarmenu{
+    <div class="">
+        <ul class="nav nav-pills levelone">
+            <li class="" data-childmenuset="expense">
+                <a>Expenses</a>
+            </li>
+            <li class="active" data-childmenuset="invoice">
+                <a>Invoices</a>
+            </li>
+            <li class="" data-childmenuset="customer">
+                <a>Customers</a>
+            </li>
+        </ul>
+    </div>
+}
+
+<div class="navbar navbar-inverse" style="margin: 25px 0px;">
+    <div class="navbar-inner">
+        <div>
+            <ul class="nav">
+                <li style="color: white;">
+                    <h4>Outgoing Invoices</h4>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr class="invoicelist">
+            <th class="forceleft">Customer</th>
+            <th>Invoice #</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Created On</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (UI.Models.PaymentInvoice inv in Model.OrderByDescending(m => m.createddate))
+        {
+
+            try
+            {
+                System.Xml.Linq.XDocument doc = new System.Xml.Linq.XDocument();
+                doc = System.Xml.Linq.XDocument.Parse(inv.invoicedata);
+                System.DateTime dt = DateTime.Parse(inv.createddate);
+
+                string compname = doc.Descendants("compname").First().ToString();
+                string id = doc.Descendants("metadata").First().Descendants("id").First().ToString();
+                string totalamount = Convert.ToInt32(doc.Descendants("totalamount").First().Value.ToString()).ToString();
+        <tr class="invoicelist">
+
+            <td class="forceleft">@Html.Raw(compname)</td>
+            <td>@Html.Raw(id)</td>
+            <td>@Html.Raw(totalamount) </td>
+            @switch (inv.invstatus)
+            {
+                case "0":
+                <td class="warning">Draft</td>
+                    break;
+                case "1":
+                <td></td>
+                    break;
+                case "2":
+                <td></td>
+                    break;
+                case "3":
+                <td></td>
+                    break;
+                case "4":
+                <td></td>
+                    break;
+                case "5":
+                <td class="success">Submitted</td>
+                    break;
+            }
+            <td>
+                <div>
+                    <div class="invfulltime" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="@dt.ToString("MMMM dd, yyyy H:mm:ss tt")">@dt.ToString("MM-dd-yyyy")</div>
+                </div>
+            </td>
+            <td>@Html.ActionLink("View Invoice", "view", "invoice", new { invid = inv.invoiceid, tid = doc.Descendants("templateid").First().Value.ToString() }, new { id = "" })</td>
+        </tr>
+            }
+            catch (Exception e)
+            {
+                string exceptionmessage = e.Message;
+            }
+
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="6">
+                <div>
+                    <h1>You Have No Outgoing Invoices... </h1>
+                    <h4><a href="/invoice/create">Create Invoice</a></h4>
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+
+@section Scripts{
+    <script src="~/Scripts/tracker/invoice.js"></script>
+}

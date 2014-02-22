@@ -1,0 +1,87 @@
+﻿@model List<UI.Models.Applicantdetails>
+@{
+    ViewBag.Title = "Candidates";
+    Layout = "~/Views/Candidate/_CandidateMasterView.cshtml";
+    UI.Models.JObApplicationdata objJobappdata = new UI.Models.JObApplicationdata();
+}
+
+<div class="page-header-row">
+    <div class="col-md-8">
+        <span class="pageheader jobheader">Candidates</span>
+    </div>
+    <div class="col-md-4">
+        @*@Html.ActionLink("Add Candidate", "index", "jobs", null, new Dictionary<string, object> {{ "data-target", "#addcandidatemodal" },{ "data-toggle=", "modal" },{"class","btn-wide pull-right btn-flat btn-grey"}})*@
+        @*<span class="btn-wide pull-right btn-flat btn-grey" data-toggle="modal" data-target="#addcandidatemodal">Add Candidate</span>*@
+           <a href="#addcandidatemodal" class="btn-green btn-flat" role="button" data-toggle="modal" style="margin-left:150px;">Add Candidate</a>
+
+    </div>
+    <div id="addcandidatemodal" class="modal fade" style="min-width: 600px !important;">
+    @Html.Partial("~/Views/Jobs/AddCandidate.cshtml", objJobappdata)
+</div>
+</div>
+<div>
+    <table class="table table-hover table-striped" style="border: 1px solid #ddd" id="delete">
+        <thead>
+            <tr>
+                <td><span class="contact-title">Name</span></td>
+                <td><span class="contact-title">Contact</span></td>
+                <td><span class="contact-title">Skills</span></td>
+                <td><span class="contact-title">Location</span></td>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Count > 0)
+            {
+                foreach (UI.Models.Applicantdetails applicant in Model)
+                {
+                    if (applicant.person.email != "" && applicant.person.email != null)
+                    {
+                <tr>
+                    <td>
+                        <div class="pull-left" style="clear: both; padding: 2px 5px">
+                            <span class="contact-title" data-contactid="" data-cfname="" data-clname="">@applicant.firstname
+                                @applicant.lastname</span>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="pull-left" style="clear: both; padding: 2px 5px">
+                            <span class="contact-" data-contactid="" data-cfname="" data-clname="">@applicant.person.email</span>
+                        </div>
+                        <div class="pull-left" style="clear: both; padding: 2px 5px">
+                            <span class="contact-" data-contactid="" data-cfname="" data-clname="">@applicant.person.contact</span>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="pull-left" style="clear: both; padding: 2px 5px">
+                            <span class="contact-" data-contactid="" data-cfname="" data-clname="">@applicant.job.experience Years</span>
+                        </div>
+                        <div class="pull-left" style="clear: both; padding: 2px 5px">
+                            <span class="contact-" data-contactid="" data-cfname="" data-clname="">@applicant.job.skills.primary</span>
+                        </div>
+                    </td>
+                    <td>
+                         <div class="pull-left" style="clear: both; padding: 2px 5px">
+                            <span class="contact-" data-contactid="" data-cfname="" data-clname="">@applicant.detailedinfo.location</span>
+                        </div>
+                    </td>
+                </tr>
+                    }
+
+
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4"><span>No Candidates Found Here !...</span></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+@section Scripts{
+    <script src="~/Scripts/jobportal/portalcandidates.js"></script>
+}

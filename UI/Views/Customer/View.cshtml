@@ -1,0 +1,162 @@
+﻿@model UI.Models.CustomerModel.CustomerData
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap-responsive.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.0.2.min.js"></script>
+    <link href="~/css/tracker/tracker.css" rel="stylesheet" />
+    <script src="~/Scripts/tracker/data.js"></script>
+    <script src="~/Scripts/tracker/customer.js"></script>
+</head>
+<body>
+    <div>
+        <div class="navbar ">
+            <div class="navbar-inner">
+                <a href="#" class="navbar-brand">@Session["title"].ToString()</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="">
+            <div class="">
+                <ul class="nav nav-pills">
+                    <li class="">
+                        <a href="/invoice">All Invoices</a>
+                    </li>
+                    <li class="">
+                        <a href="/invoice/outbound">Outgoing Invoices</a>
+                    </li>
+                    <li class="">
+                        <a href="/invoice/inbound">Incoming Invoices</a>
+                    </li>
+                    <li class="">
+                        <a href="/invoice/create">Create Invoice</a>
+                    </li>
+                    <li class="active">
+                        <a href="/Customer">Customers</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="navbar navbar-inverse dataeditor" style="margin: 25px 0px;">
+            <div class="navbar-inner">
+                <div>
+                    <ul class="nav">
+                        <li style="color: white;">
+                            <h4><i class="icon glyphicon-user glyphicon-white"></i>@Model.customer.name</h4>
+                        </li>
+                    </ul>
+                    <ul class="nav pull-right">
+                        <li>
+                            <h4 class="btn "><a href="/customer"><i class="icon glyphicon-unshare"></i>View Customers</a></h4>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row dataeditor">
+            <div class="span5">
+                <div class="navbar navbar-inverse" style="margin: 25px 0px;">
+                    <div class="navbar-inner">
+                        <div>
+                            <ul class="nav">
+                                <li style="color: white;">
+                                    <h5 data-addressid="@Model.address.id">Address</h5>
+                                </li>
+                            </ul>
+                            <ul class="nav pull-right">
+                                <li style="color: white;">
+                                    <h5 class="custvieweditaddress btn" data-addressid="@Model.address.id">Edit</h5>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <table class="address table table-bordered table-striped" data-addressid="@Model.address.id" data-companyid="@Model.address.companyid" data-customerid="@Model.address.objectid">
+                    <tr>
+                        <td>Line1 :</td>
+                        <td>
+                            <span class="line1" contenteditable="false">
+                                @Model.address.line1
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Line2 :</td>
+                        <td><span class="line2" contenteditable="false">@Model.address.line2</span></td>
+                    </tr>
+                    <tr>
+                        <td>City :</td>
+                        <td><span class="city" contenteditable="false">@Model.address.city</span></td>
+                    </tr>
+                    <tr>
+                        <td>State :</td>
+                        <td><span class="state" contenteditable="false">@Model.address.state</span></td>
+                    </tr>
+                    <tr>
+                        <td>Zipcode :</td>
+                        <td><span class="zip" contenteditable="false">@Model.address.zipcode</span></td>
+                    </tr>
+                    <tr>
+                        <td>Country :</td>
+                        <td><span class="country" contenteditable="false">@Model.address.country</span></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="span5">
+                <div class="navbar navbar-inverse" style="margin: 25px 0px;">
+                    <div class="navbar-inner">
+                        <div>
+                            <ul class="nav">
+                                <li style="color: white;">
+                                    <h5 data-contactid="@Model.contact.id">Contact</h5>
+                                </li>
+                            </ul>
+                             <ul class="nav pull-right">
+                                <li style="color: white;">
+                                    <h5 class="custvieweditcontact btn" data-contactid="@Model.address.id">Edit</h5>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="contact table table-bordered table-striped" data-contactid="@Model.contact.id"  data-companyid="@Model.address.companyid" data-customerid="@Model.address.objectid">
+                    <tr>
+                        <td>Title :</td>
+                        <td><span class="title" contenteditable="false">@Model.contact.Title</span></td>
+                    </tr>
+                    <tr>
+                        <td>First Name :</td>
+                        <td><span class="fname" contenteditable="false">@Model.contact.FirstName</span></td>
+                    </tr>
+                    <tr>
+                        <td>Last Name :</td>
+                        <td><span class="lname" contenteditable="false">@Model.contact.LastName</span></td>
+                    </tr>
+                    <tr>
+                        <td>Email :</td>
+                        <td><span class="email" contenteditable="false">@Model.contact.email</span></td>
+                    </tr>
+                    <tr>
+                        <td>Phone :</td>
+                        <td><span class="mobile" contenteditable="false">@Model.contact.mobile</span></td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>

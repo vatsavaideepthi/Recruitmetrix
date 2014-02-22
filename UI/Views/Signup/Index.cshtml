@@ -1,0 +1,210 @@
+﻿@model UI.Models.RegistrationModel.Signup
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Sign up | Cardley</title>
+    <!-- Description -->
+    <meta name="description" content="Simplify Your Wallet.">
+    <meta name="keywords" content="#" />
+    <!-- IE FIX -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Views -->
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- Favicon -->
+    <link rel="icon" href="/img/favicon.png" sizes="96x96">
+    <!--[if IE]><link rel="shortcut icon" href="favicon.ico" sizes="32x32"><![endif]-->
+    <link rel="apple-touch-icon" href="/img/touchglyphicon-72.png" sizes="72x72">
+    <link rel="apple-touch-icon" href="/img/touchglyphicon-144.png" sizes="144x144">
+    <link rel="apple-touch-startup-image" href="img/ios_startup.png">
+    <link rel="apple-touch-startup-image" href="img/ios_startup@2x.png" sizes="640x920">
+    <link rel="apple-touch-startup-image" href="img/ios_startup-large@2x.png" sizes="640x1096">
+    <!--Jquery Scripts -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <!--Jquery Styles -->
+    <link href="/Content/themes/base/jquery.ui.theme.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/themes/smoothness/jquery-ui-1.10.3.custom.css" rel="stylesheet"
+        type="text/css" media="all" />
+    <!-- Bootstrap styles-->
+    <link href="/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet" media="screen">
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/tracker/utilities.js"></script>
+    <script src="~/Scripts/tracker/signup.js"></script>
+    @*<link href="/css/custom.css" rel="stylesheet" media="screen">*@
+
+    <style type="text/css">
+        .ui-autocomplete-loading
+        {
+            background: url('/img/indicator.gif') no-repeat right center;
+        }
+    </style>
+</head>
+<body>
+    <article id="merch-signup" class="marketing-wrapper">
+
+        <header class="navbar" id="static-header">
+            <div class="navbar-inner">
+                <div class="container">
+                    <div class="row" id="sub-header">
+                        <div class="container" style="float: left;">
+                            <h3>Sign Up</h3>
+                        </div>
+                        <div style="float: right;">
+                            <h1 class="navbar-brand cardley-logo"><a href="/">
+                                <img src="" alt="" /></a></h1>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+
+        <div class="container" style="max-width: 1110px; margin: 0px auto;">
+
+            <div class="row pad">
+                <div class="span4">
+
+                    <div class="marketing-card">
+                        <h4>Get Started - it's free.</h4>
+                        <p>Registration takes less than 2 minutes.</p>
+                    </div>
+
+                </div>
+                <div class="col-md-6 offset2">
+                    @if (TempData["signupemail"] != null && TempData["isSignupSuccess"] != null)
+                    {
+                        if (Convert.ToInt32(TempData["isSignupSuccess"]) == 1)
+                        {
+                        <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <p>Registration for @TempData["signupemail"].ToString() Successfull!</p>
+                            <p><a href="/Login">Click Here to Go to Login Page</a></p>
+                        </div>
+                        }
+                        else
+                        {
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <p>Registration for @TempData["signupemail"].ToString() Failed!</p>
+                        </div>
+                        }
+                    }
+                    <div>
+                        <div class="alert alert-error hide" id="SGE001">Invalid email address.</div>
+                        <div class="alert alert-error hide" id="SGE002">An account already exists for this email address.</div>
+                        <div class="alert alert-error hide" id="SGE003">An account is already activated for this email address.</div>
+                        <div class="alert alert-error hide" id="SGE004">Email address cannot be empty.</div>
+                        <div class="alert alert-error hide" id="SGE005">Please enter business name.</div>
+                        <div class="alert alert-error hide">Please select business type.</div>
+                        <div class="alert alert-error hide" id="SGE006">Please Accespt terms and conditions.</div>
+                        <div class="alert alert-error hide">Invalid address.</div>
+                        <div class="alert alert-error hide">Invalid state.</div>
+                        <div class="alert alert-error hide">Invalid phone number.</div>
+                        <div class="alert alert-error hide" id="SGE010">Invalid ZIP code.</div>
+                        <div class="alert alert-error hide">Please enter missing information.</div>
+                        <div class="alert alert-error hide" id="SGE012">Password do not match</div>
+                        <div class="alert alert-error hide" id="SGE013">Password cannot be empty</div>
+                        <div class="alert alert-error hide">Please fill out security questions and answers.</div>
+                    </div>
+                    <div>
+                        <div id="reguser" style="padding: 10px 0px;">
+                            <span class="btn btn-info">Register User</span>
+                        </div>
+                        @using (Html.BeginForm("User", "Signup", FormMethod.Post, new { id = "usersignupform", @class = "hide" }))
+                        {
+                            
+                            
+                            <div id="usersignup">
+                                <div class="control-group">
+                                    <label class="control-label">Title:</label>
+                                    <div class="controls">
+                                        @Html.TextBoxFor(m => m.name, new { @class = "input-text", name = "title", id = "usertitle", placeholder = "Title" })
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Email:</label>
+                                    <div class="controls">
+                                        @Html.TextBoxFor(m => m.email, new { @class = "input-text", name = "signupemail", id = "signupemail", placeholder = "Enter Your Email ID" })
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Password:</label>
+                                    <div class="controls">
+                                        @Html.PasswordFor(m => m.password, new { @class = "input-text", name = "signuppassword", id = "signuppassword", placeholder = "Enter password" })
+                                        <p style="position: absolute;" id="security-container" class="hide"><small>password strength: <span id="security-level"></span></small></p>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Confirm Password:</label>
+                                    <div class="controls">
+                                        <input type="password" placeholder="Re-type Password" autocomplete="off" id="cpassword" tabindex="3">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <button class="btn btn-blue pull-left btn-primary" id="btusersignup">Sign up</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div style="clear: both;">
+                        <div id="regorg" style="padding: 10px 0px;">
+                            <span class="btn btn-info">Register Organization</span>
+                        </div>
+                        @using (Html.BeginForm("Organization", "Signup", FormMethod.Post, new { id = "orgsignupform", @class = "hide" }))
+                        {
+                            <div id="orgsignup">
+                                <div class="control-group">
+                                    <label class="control-label">Name:</label>
+                                    <div class="controls">
+                                        @Html.TextBoxFor(m => m.name, new { @class = "input-text", name = "title", id = "orgtitle", placeholder = "Enter Organization Name" })
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Email:</label>
+                                    <div class="controls">
+                                        @Html.TextBoxFor(m => m.email, new { @class = "input-text", name = "orgemail", id = "orgemail", placeholder = "Enter Your Email ID" })
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Password:</label>
+                                    <div class="controls">
+                                        @Html.PasswordFor(m => m.password, new { @class = "input-text", name = "orgpassword", id = "orgpassword", placeholder = "Enter password" })
+                                        <p style="position: absolute;" id="security-container1" class="hide"><small>password strength: <span id="security-level"></span></small></p>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Confirm Password:</label>
+                                    <div class="controls">
+                                        <input type="password" placeholder="Re-type Password" autocomplete="off" id="orgcpassword" tabindex="3">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <button class="btn btn-blue pull-left btn-primary" id="btorgsignup">Sign up</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="push"></div>
+                </div>
+            </div>
+        </div>
+    </article>
+    <div id="marketing-footer">
+        <footer class="container">
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+﻿@model List<UI.Models.Job>
+@{
+    ViewBag.Title = "Add Multiple Jobs";
+    ViewBag.highlight = "jobs";
+    Layout = "~/Views/Shared/_loggedin.cshtml";
+}
+
+
+
+<form id="attachmorecandidatesform">
+    <div>
+        <div>
+            <div>
+                <h3>Recruiter Info</h3>
+            </div>
+            <div>
+                <input type="text" id="recremailid" placeholder="Contact Email Id" />
+                <input type="text" id="recrcontactnumber" placeholder="Contact Number" />
+            </div>
+        </div>
+        <div>
+            <div>
+                <h3>Apply Multiple Resumes</h3>
+            </div>
+            <div>
+                <table class="jobtable">
+                    <tr>
+                        <td>
+                            <input type="text" placeholder="Name" />
+                        </td>
+                        <td>
+                            <input type="text" placeholder="Skills" />
+                        </td>
+                        <td>
+                            <input type="text" placeholder="Experience" />
+                        </td>
+                        <td>
+                            <select>
+                                <option>YES</option>
+                                <option>SPECIFIC</option>
+                                <option>NO</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="text" placeholder="Choose Locations" style="width: 100%;" />
+                            <input id="chosenlocations" type="hidden" />
+                        </td>
+
+                    </tr>
+
+                </table>
+                <table class="jobtable">
+                    <tr>
+                        <td>
+                            <input type="text" placeholder="Work Authorization" />
+                        </td>
+                        <td>
+                            <div style="padding: 0px 0px 10px 15px;" class="pull-left">
+                                <span class="btn btn-info">Browse Resume</span>
+                                <input type="file" id="candresume" class="hide" />
+                            </div>
+                            <div class="pull-left" style="padding: 5px 0px 10px 0px; margin-left: 10px;">
+                                <span>No Resume attached</span>
+                            </div>
+                        </td>
+                        <td colspan="2"></td>
+                    </tr>
+                </table>
+            </div>
+            <div style="padding: 15px 0px;">
+                <span class="btn btn-info" class="btnaddapplicant">Add More</span>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 50px; float: right;">
+        <span class="btn btn-success">Attach Resumes</span>
+    </div>
+</form>

@@ -1,0 +1,101 @@
+﻿@model UI.Models.TransactionCollection
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_PaymentTrackerMasterView.cshtml";
+}
+
+
+
+
+<div>
+    @Html.Partial("~/Views/common/_addExpense.cshtml", new UI.Models.expense())
+</div>
+
+<div class="row">
+    <div class="span10">
+       
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Due On</th>
+                    <th>BudgetAmount</th>
+                    <th>Amount</th>
+                    <th>status</th>
+                    <th>options</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.groupcollection.Count > 0)
+                {
+                    foreach (UI.Models.Transactiongroupcollection groupitem in Model.groupcollection)
+                    {
+                    <tr class="recordheader" style="width: 100%;" data-catid="@groupitem.categoryid" data-catname="@groupitem.categoryname">
+                        <td colspan="6" style="width: 100%; background-color: #ffffff !important;">
+                            <div class="paymentheader">
+                                <div>@groupitem.categoryname</div>
+                            </div>
+                        </td>
+
+                    </tr>
+                        foreach (UI.Models.TransactionItem txnitem in groupitem.groupitems)
+                        {
+                            if (txnitem.duemonth == DateTime.Now.Month)
+                            {        
+                                <tr data-accid="@txnitem.accountId" data-catid="@txnitem.categoryid" data-subcatid="@txnitem.subcatid" data-transactionid="@txnitem.transactionid" data-userid="@txnitem.userid" data-recurrence="year">
+                        <td>
+                            <div class="record-description">
+                                <div class="main" data-accid="@txnitem.accountId">@txnitem.accountName</div>
+                                <div class="subtitle" data-proid="@txnitem.providerid">@txnitem.providername</div>
+                            </div>
+
+                        </td>
+                        <td class="paydue" data-month="@txnitem.duemonth" data-date="@txnitem.duedate">@Html.Raw(txnitem.duemonth) / @Html.Raw(txnitem.duedate)</td>
+                        <td class="budget" data-budgetamount="@txnitem.budgetamount">@txnitem.budgetamount.ToString("C2")</td>
+                        <td>
+                            <input type="text" class="dueamount" placeholder="Enter Amount" /></td>
+                        <td>
+                            <div>
+                                <select style="width: 100px !important;" class="paymode">
+                                    <option>Paid Via</option>
+                                    <option>Cash</option>
+                                    <option>Check</option>
+                                    <option>Credit Card</option>
+                                    <option>Debit Card</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="btn btn-mini btn-block updatetransaction">Update</button>
+                        </td>
+                    </tr>
+                            }
+                        }
+                    }
+
+
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6">
+                            <section>
+                                <div class="page-header">
+                                    <h3>No Payments Now...</h3>
+                                </div>
+                            </section>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <div class="span2">
+       @* @Html.Partial("~/Views/common/_additionalOptionsMenu.cshtml", new UI.Models.expense())*@
+    </div>
+
+</div>
+@section Scripts{
+    <script src="~/Scripts/tracker/expenses.js"></script>
+}

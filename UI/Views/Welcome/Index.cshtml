@@ -1,0 +1,55 @@
+﻿@model UI.Models.AccountCollection
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Tracker : Payment Info</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/trackerjs")
+    <link href="/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/tracker/tracker.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="/css/webfonts.css" rel="stylesheet" />
+    <link href="~/css/tracker/xtrabootstrat.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <div class="container">
+            <div class="pull-left">
+                <h1>Accounts</h1>
+            </div>
+            <div class="pull-right" style=" margin: 10px 0px ;">
+            <div class="btn-group ">
+                <button class="btn btn-small">@Session["title"].ToString()</button>
+                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a tabindex="-1" href="#">Settings</a></li>
+                    <li><a tabindex="-1" href="#">Logout</a></li>
+                </ul>
+            </div>
+</div>
+
+        </div>
+    </div>
+    <div>
+        <div class="ptheader">
+            <div class="container">
+                This is Header area
+            </div>
+        </div>
+       
+    </div>
+    
+   
+</body>
+</html>

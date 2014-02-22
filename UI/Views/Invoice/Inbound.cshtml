@@ -1,0 +1,287 @@
+﻿@model List<UI.Models.PaymentInvoice>
+@{
+    Layout = "~/Views/Shared/_loggedin.cshtml";
+    ViewBag.Title = "Invoices : Inbound";
+}
+
+
+
+@section topbarmenu{
+
+    <div class="">
+        <ul class="nav nav-pills levelone">
+            <li class="" data-childmenuset="expense">
+                <a>Expenses</a>
+            </li>
+            <li class="active" data-childmenuset="invoice">
+                <a>Invoices</a>
+            </li>
+            <li class="" data-childmenuset="customer">
+                <a>Customers</a>
+            </li>
+        </ul>
+    </div>
+
+}
+<div class="navbar navbar-inverse" style="margin: 25px 0px;">
+    <div class="navbar-inner">
+        <div>
+            <ul class="nav">
+                <li style="color: white;">
+                    <h4>Incoming Invoices</h4>
+                </li>
+            </ul>
+            <ul class="nav pull-right">
+                <li style="color: white;">
+                    <h4><a href="#addinvoicemodal" data-toggle="modal" class="btn">Add</a></h4>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<table class="table table-striped table-bordered">
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (UI.Models.PaymentInvoice inv in Model.OrderByDescending(m => m.createddate))
+        {
+
+            try
+            {
+                System.Xml.Linq.XDocument doc = new System.Xml.Linq.XDocument();
+                doc = System.Xml.Linq.XDocument.Parse(inv.invoicedata);
+                System.DateTime dt = DateTime.Parse(inv.createddate);
+
+                string compname = doc.Descendants("compname").First().ToString();
+                string id = doc.Descendants("metadata").First().Descendants("id").First().ToString();
+                string totalamount = Convert.ToInt32(doc.Descendants("totalamount").First().Value.ToString()).ToString();
+        <tr class="invoicelist">
+
+            <td class="forceleft">@Html.Raw(compname)</td>
+            <td>@Html.Raw(id)</td>
+            <td>@Html.Raw(totalamount) </td>
+            @switch (inv.invstatus)
+            {
+                case "0":
+                <td class="warning">Draft</td>
+                    break;
+                case "1":
+                <td></td>
+                    break;
+                case "2":
+                <td></td>
+                    break;
+                case "3":
+                <td></td>
+                    break;
+                case "4":
+                <td></td>
+                    break;
+                case "5":
+                <td class="success">Submitted</td>
+                    break;
+            }
+            <td>
+                <div>
+                    <div class="invfulltime" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="@dt.ToString("MMMM dd, yyyy H:mm:ss tt")">@dt.ToString("MM-dd-yyyy")</div>
+                </div>
+            </td>
+            <td>@Html.ActionLink("View Invoice", "view", "invoice", new { invid = inv.invoiceid, tid = doc.Descendants("templateid").First().Value.ToString() }, new { id = "" })</td>
+        </tr>
+            }
+            catch (Exception e)
+            {
+                string exceptionmessage = e.Message;
+            }
+
+        }
+    }
+    else
+    {
+        <tr>
+            <td>
+                <div>
+                    <h2>You Have No Incoming Invoices... </h2>
+                    <h5>Invoices will be update here when you got one!</h5>
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+
+
+<div>
+    <div id="choosecustomermodal" class="modal hide fade">
+        <div class="modal-header">
+            <h3 id="modaltitle">Choose Supplier</h3>
+        </div>
+        <div class="modal-body">
+            <div id="chscutomer">
+                <div>
+                    <input type="text" placeholder="Select Customer" id="tags" />
+                    <button id="chssupplierselected" type="button" class="btn btn-info pull-right hide" value="Done">Done</button>
+                </div>
+                <div id="mancrcustblock" style="display: none;">
+                    <span>No Supplier Available...</span>
+                    <input type="button" value="Create Customer" id="mancrsutomer" class="btn btn-info" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="createCustomermodal" class="modal hide fade" data-backdrop="static">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="modaltitle1">Add New Supplier</h3>
+        </div>
+        <div class="modal-body">
+            <div id="crncustomer">
+                <div>
+                    <div>
+                        <input type="text" value="" id="newcustname" placeholder="Enter Customer Name" />
+                        <input type="text" value="" id="newcustemail" placeholder="Enter customer Email" />
+                    </div>
+                    <div>
+                        <input id="next1" type="button" value="Create New Supplier" class="btn btn-info" />
+                    </div>
+                </div>
+            </div>
+            <div id="crncustomeraddress" class="hide">
+                <div>
+                    <input type="hidden" id="customerid" />
+                    <input type="hidden" id="customeremail" />
+                    <div>
+                        <input type="text" value="" id="addline1" placeholder="Address Line 1" />
+                        <input type="text" value="" id="addline2" placeholder="Address Line 2" />
+                        <input type="text" value="" id="addzipcode" placeholder="Pincode" />
+                    </div>
+                    <div>
+                        <input id="next2" type="button" value="Add Address" class="btn btn-info" />
+                    </div>
+                </div>
+            </div>
+            <div id="crncustomercontact" class="hide">
+                <div>
+                    <div>
+                        <input type="text" value="" id="addtitle" placeholder="Title" />
+                        <input type="text" value="" id="addfname" placeholder="First name" />
+                        <input type="text" value="" id="addlname" placeholder="Last Name" />
+                        <input type="text" value="" id="addemail" placeholder="Email" />
+                        <input type="text" value="" id="addmob" placeholder="Mobile Number" />
+                    </div>
+                    <div>
+                        <input id="next3" type="button" value="Add Contact" class="btn btn-info" />
+                    </div>
+                </div>
+            </div>
+
+            <div id="crncustomerfinish" class="hide">
+                <div>
+                    <div>
+                        <label>Supplier Created Successfully</label>
+                    </div>
+                    <div>
+                        <input id="next4" type="button" value="Done" class="btn btn-info" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="addinvoicemodal" class="modal hide fade">
+
+        <div class="modal-header">
+            <h3 id="modaltitle2">Add Invoice</h3>
+        </div>
+        <div class="modal-body">
+            <div id="chsvendor" class="hide">
+                <div>
+                    <input type="text" placeholder="Select Customer" id="tags" />
+                    <button id="chsvendorselected" type="button" class="btn btn-info pull-right hide" value="Done">Done</button>
+                </div>
+                <div id="mancrvendblock" style="display: none;">
+                    <span>No Vendors Available...</span>
+                    <input type="button" value="Add Vendor" id="mancrvendor" class="btn btn-info" />
+                </div>
+            </div>
+            <div id="invemailbody">
+
+                @Html.Partial("ExternalInvoice", new UI.Models.ExternalInvoice())
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ruleholder">
+    <input id="viewid" type="hidden" value="invoice-inbound"/>
+    <input id="currenttemplate" type="hidden" value="" />.
+    <input id="currentcustomer" type="hidden" value="" />
+    <input id="currentcompanyid" type="hidden" value="" />
+</div>
+
+@section Scripts{
+    @*  <script src="~/Scripts/tracker/invoice.js"></script>*@
+
+   <script src="~/Scripts/tracker/generateinvoice.js"></script>
+
+    <script>
+        $(function () {
+            $("#tags").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/AjaxData/GetJsonCustomerlist",
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            tag: ''
+                        },
+                        success: function (data) {
+                            if (data.length > 0) {
+                                var result = $.parseJSON((JSON.stringify(data)));
+                                response($.map(result, function (k, v) {
+                                    return {
+                                        label: k.name,
+                                        value: k.id
+                                    }
+                                }))
+                            }
+                            else {
+                                $('#tags').hide();
+                                $('#mancrcustblock').show();
+                                
+                            }
+                        },
+                        error: function (data) {
+                        }
+                    })
+                },
+                select: function (event, ui) {
+                    try {
+                        $('#currentcustomer').val(ui.item.value);
+                        $('#vendorname').val(ui.item.label);
+                        $('#tags').val(ui.item.label);
+                        $('#chssupplierselected').removeClass('hide');
+
+                    }
+                    catch (e) { }
+                    return false;
+                },
+                open: function () {
+                    $('.ui-autocomplete li').last().after('<li id="crncust" class="ui-menu-item" role="presentation"><a  class="ui-corner-all" tabindex="-1">Create New Customer</a></li>');
+                    return {
+                        label: 'dummy',
+                        value: '00000000000000000000000000000000'
+                    }
+                },
+                focus: function () {
+
+                }
+
+            });
+
+
+
+        });
+    </script>
+}

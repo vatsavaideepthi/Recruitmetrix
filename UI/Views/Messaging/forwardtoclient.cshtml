@@ -1,0 +1,89 @@
+﻿@model UI.Models.MessagingObjectModel.forward
+@{
+    //string subject = Session["title"].ToString()+ " " +" has Shared jobs with you";
+    //Model.mailsubject = subject;
+}
+@using (Html.BeginForm("forward", "messaging", FormMethod.Post, new { enctype = "multipart/form-data", id = "ForwardtoClientForm", @style = "width:100%;background:#fff;margin:auto;position:relative;" }))
+{
+    <div class="modal-header" style="border-bottom-width:0px;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Forward to Client</h3>
+    </div>
+   
+    <div class="modal-body" style="padding: 0px;">
+        <div>
+            <div>
+                <div class="row" style="margin:0px;">
+                    <div class="col-md-8 nopad" style="padding:0px;">
+                        <input type="hidden" id="chosenaapplicantid" />
+                        <div style="border-bottom: 1px solid #e7e7e7;background: #e5e5e5;padding: 0px 5px;">
+                            @Html.TextBoxFor(m => m.recipientid, new { id = "mailrecipient", @class = "bm-mail-to", placeholder = "To", @style = "padding:0px 5px;height:29px;background: #e5e5e5;", autocomplete = "off" })
+                        </div>
+                        <div style="padding: 0px 5px;background: #e5e5e5;">
+                            @Html.TextBoxFor(m => m.recipientcc, new { id = "mailccrecipient", @class = "bm-mail-to ", placeholder = "Enter CC Address", @style = "padding:0px 5px;height:29px;background: #e5e5e5;", autocomplete = "off" })
+                        </div>
+                        <div style="padding: 0px 5px;background: #e5e5e5;">
+                            @Html.TextBoxFor(m => m.mailsubject, new { id = "mailmessagesubject", @class = "bm-mail-subject-holder ", placeholder = "Enter Subject", @style = "padding:0px 5px;height:29px;background: #e5e5e5;", autocomplete = "off" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div>
+                            <span id="showcc">ADD CC</span>
+                        </div>
+                        <div>
+                            <span id="showbcc">ADD CC</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="mailbodyholder" style="position: relative;">
+                    <div style=" border-bottom: 1px solid #eee; width: 100%; min-height: 300px;margin-top:30px;">
+                            <ul id="candidatelist" style="word-break: break-all; width: 100%;padding:0px;">
+                            </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer" style="background-color: #fff;">
+
+        @* @Html.HiddenFor(m => m.recipientid, new { id = "mailrecipient" })*@
+        @* @Html.HiddenFor(m => m.mailsubject, new { id = "mailmessagesubject" })*@
+        @Html.HiddenFor(m => m.messagebody, new { id = "mailmessagebody" })
+        @*  <a href="#" class="btn-grey btn-flat">Close</a>*@
+        <input type="submit" id="sendbulkemailtocandidates" class="btn-green btn-flat" value="Forward Profiles" />
+        <input type="hidden" value="@Session["usertoken"].ToString()" id="sessiontoken" />
+        <input type="hidden" value="@Session["companyid"].ToString()" id="companyid" />
+        <input type="hidden" value="@Session["companyname"].ToString()" id="companyname" />
+    </div>
+}
+<div>
+
+    <script>
+        $(function () {
+            $('#ForwardtoClientForm').submit(function (e) {
+                if ($('#mailrecipient').val() == "") {
+                    e.preventDefault();
+                    $('#emailemptyerroralert').show();
+                }
+                else {
+                    var bodyholderdata =  $('#mailbodyholder').clone();
+                    $(bodyholderdata).find('.commentbox,.availabilitybox,.tostartbox,.emailbox,.phonebox').attr('style', '');
+                    $('#mailmessagebody').val($(bodyholderdata).html())
+                }
+            });
+            $('#emailemptyhide').click(function () {
+                $('#emailemptyerroralert').hide();
+            });
+
+            $('#mailrecipient').on('input propertychange', function () {
+
+                if ($('#mailrecipient').val() == "") {
+                    $('#emailemptyerroralert').show();
+                }
+                else {
+                    $('#emailemptyerroralert').hide();
+                }
+            });
+        });
+    </script>
+</div>

@@ -1,0 +1,187 @@
+﻿@model UI.Models.PaymentInvoice
+@{
+    Layout = null;
+    System.Xml.Linq.XDocument document = new System.Xml.Linq.XDocument();
+    document = System.Xml.Linq.XDocument.Parse(Model.invoicedata);
+    System.Xml.Linq.XElement clientinfo = document.Descendants("client").First().Descendants("info").First();
+    System.Xml.Linq.XElement clinetaddress = document.Descendants("client").First().Descendants("address").First();
+    System.Xml.Linq.XElement selfinfo = document.Descendants("self").First().Descendants("info").First();
+    System.Xml.Linq.XElement selfaddress = document.Descendants("self").First().Descendants("address").First();
+}
+
+@*<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <table width="100%">
+        <tr style="text-align:center;">
+           <td ><img src="@Context.Server.MapPath("~/img/palni.jpg")" height="100" width="200"/></td> 
+        </tr>
+        
+    </table>
+    <p FONTWEIGHT="50%" style="font:100">
+            1901 North Roselle Road, #800, Scaumburg, IL 60195 Ph No: 847 592 7182, Fax: 847 890 6394
+        </p>
+    <table width="100%">
+        <tr>
+            <td>
+                <table>
+                    <tr><td>Billing Address:</td></tr>
+                     <tr><td>The Computer Merchant</td></tr>
+                     <tr><td>95 Longwater Circle</td></tr>
+                     <tr><td>Norwell,MA 02061</td></tr>
+                     <tr><td>Attn: Deborah DelPrete (ddelprete@tcml.com)</td></tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr><td>Invoice Summary:</td></tr>
+                     <tr><td>Consultant : Brandish Gor</td></tr>
+                     <tr><td>Invoice Number:AP103456</td></tr>
+                     <tr><td>Invoice Date:@DateTime.Now.ToShortDateString();</td></tr>
+                     <tr><td></td></tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+ 
+    <table width="100%"  cellpadding="2"  border="1" bordercolor="black">
+        <tr cellpadding="24">
+            <td >Description</td>
+            <td>Hours</td>
+            <td>Rate/Hour</td>
+            <td>Tax</td>
+            <td>Total</td>
+        </tr>
+        @foreach (System.Xml.Linq.XElement item in document.Descendants("item"))
+        {
+            <tr>
+                <td height="25%">@item.Descendants("description").First().Value.ToString()</td>
+                <td>@item.Descendants("quantity").First().Value.ToString()</td>
+                <td style="font-size: 8px;">@item.Descendants("price").First().Value.ToString()</td>
+                <td style="font-size: 8px;">0</td>
+                <td >@Convert.ToInt32(item.Descendants("total").First().Value).ToString("C2")</td>
+            </tr>
+        }
+        </table>
+    <table width="100%" cellpadding="5">
+        <tr>
+            <td colspan="3"><b>Check Payable to: Palni Inc</b></td>
+            <td>Sub Total</td>
+            <td>0</td>
+        </tr>
+        <tr style="padding-top:10;">
+            <td colspan="3">Any questions, please contact Siri at 847 592 7182 or email at siri@palniinc.com</td>
+            <td>Tax Total</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td colspan="3">Comments:</td>
+            <td>Total Amount Due</td>
+            <td>@Convert.ToInt32(document.Descendants("totalamount").First().Value).ToString("C2")</td>
+        </tr>
+    </table>
+</body>
+</html>*@
+
+<itext creationdate="@DateTime.Now.ToString()" producer="RazorPDF" pagesize="A4" orientation="landscape" >
+    
+    <table width="100%" cellpadding="0.0" cellspacing="0.0"  widths="5;5" >
+        <row>
+            <cell></cell>
+            <cell borderwidth="0.0" left="true" right="true" top="true" bottom="true" horizontalalign="Center" verticalalign="Default" size="10.0">
+                <image url="@Context.Server.MapPath("~/img/palni.jpg")"  plainwidth="180.0" plainheight="60.0"/>
+            </cell>
+            <cell></cell>
+            <cell></cell>
+            <cell></cell>
+        </row>
+ 
+        </table>
+<paragraph style="font-family:Helvetica;font-size:8;font-weight:bold;font-style:normal;align:center;">
+	<chunk red="0" green="0" blue="0"> 1901 North Roselle Road, #800, Scaumburg, IL 60195 Ph No: 847 592 7182, Fax: 847 890 6394</chunk>
+</paragraph>
+
+        <table width="100%" cellpadding="0.0" cellspacing="0.0"  widths="5;5" >
+        <row>
+            <cell>
+                
+                <table  cellpadding="1.0" cellspacing="1.0" >
+                    <row><cell><chunk font="Helvetica" size="9.0" fontstyle="bold">Billing Address:</chunk></cell></row>
+                     <row><cell><chunk font="Helvetica" size="9.0" fontstyle="bold">@clientinfo.Descendants("compname").First().Value.ToString()</chunk></cell></row>
+                     <row><cell><chunk font="Helvetica" size="9.0">@clinetaddress.Descendants("line1").First().Value.ToString()</chunk></cell></row>
+                     <row><cell><chunk font="Helvetica" size="9.0">@clinetaddress.Descendants("line2").First().Value.ToString()</chunk></cell></row>
+                     <row><cell><chunk font="Helvetica" size="9.0">Attn: @clientinfo.Descendants("email").First().Value.ToString()</chunk></cell></row>
+                </table>
+            </cell>
+            <cell>
+                <table cellpadding="1.0" cellspacing="1.0" columns="2" widths="2;98">
+                   
+                    <row><cell borderwidth="0.1" left="true" right="false" top="false" bottom="false" cellpadding="1.0" indent="30.0"></cell><cell ><chunk font="Helvetica" size="9.0" fontstyle="bold">Invoice Summary:</chunk></cell></row>
+                     <row><cell borderwidth="0.1" left="true" right="false" top="false" bottom="false" cellpadding="1.0" indent="30.0"></cell><cell><chunk font="Helvetica" size="9.0">Consultant : @document.Descendants("metadata").First().Descendants("desc").First().Value.ToString()</chunk></cell></row>
+                     <row><cell borderwidth="0.1" left="true" right="false" top="false" bottom="false" cellpadding="1.0" indent="30.0"></cell><cell><chunk font="Helvetica" size="9.0">Invoice Number:@document.Descendants("metadata").First().Descendants("id").First().Value.ToString()</chunk></cell></row>
+                     <row><cell borderwidth="0.1" left="true" right="false" top="false" bottom="false" cellpadding="1.0" indent="30.0"></cell><cell><chunk font="Helvetica" size="9.0">Invoice Date:@document.Descendants("metadata").First().Descendants("duedate").First().Value.ToString()</chunk></cell></row>
+                     
+                </table>
+            </cell>
+        </row>
+    </table>
+    <newline />
+    <chunk font="Helvetica" size="10.0" fontstyle="bold" verticalalign="Top" >Details</chunk>
+<table width="100%" columns="5" cellpadding="2.0" cellspacing="1.0"  widths="40.0;10.0;13.0;20.0;30.0"  borderwidth="2.0" left="true" right="true" top="true" bottom="true" horizontalalign="Default" verticalalign="Default">
+        <row borderwidth="0.1" left="true" right="true" top="true" bottom="true"  FixedHeight="90.0">
+            <cell borderwidth="0.1" left="true" right="true" top="true" bottom="true" horizontalalign="Center" verticalalign="TOP" minimumheight="90f"><phrase font="Helvetica" size="9.0" fontstyle="bold" verticalalign="Top" >Description</phrase></cell>
+            <cell borderwidth="0.1" left="true" right="true" top="true" bottom="true" horizontalalign="Center" verticalalign="Middle"><chunk font="Helvetica" size="9.0" fontstyle="bold">Hours</chunk></cell>
+            <cell borderwidth="0.1" left="true" right="true" top="true" bottom="true" horizontalalign="Center" verticalalign="Default"><chunk font="Helvetica" size="9.0" fontstyle="bold">Rate/Hour</chunk></cell>
+            <cell borderwidth="0.1" left="true" right="true" top="true" bottom="true" horizontalalign="Center" verticalalign="Default"><chunk font="Helvetica" size="9.0" fontstyle="bold">Tax</chunk></cell>
+            <cell borderwidth="0.1" left="true" right="true" top="true" bottom="true" horizontalalign="Center" ><phrase font="Helvetica" size="9.0" fontstyle="bold" verticalalign="Top" >Total</phrase></cell>
+        </row>
+     @foreach (System.Xml.Linq.XElement item in document.Descendants("item"))
+     {
+            <row>
+            <cell cellpadding="1.0" borderwidth="0.1" left="true" right="true" top="true" bottom="true" horizontalalign="Center" verticalalign="Default"><chunk font="Helvetica" size="9.0">@item.Descendants("description").First().Value.ToString()</chunk></cell>
+            <cell cellpadding="1.0" borderwidth="0.1" left="true" right="true" top="true" bottom="true" horizontalalign="Center" verticalalign="Center"><chunk font="Helvetica" size="9.0">@item.Descendants("quantity").First().Value.ToString()</chunk></cell>
+            <cell cellpadding="1.0" borderwidth="0.1" left="true" right="true" top="true" bottom="true" horizontalalign="Center" verticalalign="Center"><chunk font="Helvetica" size="9.0" align="center">@item.Descendants("price").First().Value.ToString()</chunk></cell>
+            <cell cellpadding="1.0" borderwidth="0.1" left="true" right="true" top="true" bottom="true" horizontalalign="Center" verticalalign="Center"><chunk font="Helvetica" size="9.0" align="center">0</chunk></cell>
+            <cell cellpadding="1.0" borderwidth="0.1" left="true" right="true" top="true" bottom="true" horizontalalign="Center" verticalalign="Center"><chunk font="Helvetica" size="9.0" align="center">@Convert.ToInt32(item.Descendants("total").First().Value).ToString()</chunk></cell>
+            </row>
+     }
+   <row>
+       <cell cellpadding="5.0" colspan="5" ></cell>
+   </row>
+    <row leading="30.0">
+            <cell borderwidth="2.0" left="true" right="true" top="true" bottom="true" horizontalalign="Defaulr" verticalalign="Default" colspan="3" indent="2.0" cellpadding="3.0"><chunk font="Helvetica" size="9.0" fontstyle="bold">Check Payable to: Palni Inc</chunk></cell>
+            <cell borderwidth="2.0" left="true" right="true" top="true" bottom="true"><chunk font="Helvetica" size="9.0" fontstyle="bold">Sub Total</chunk></cell>
+            <cell borderwidth="2.0" left="true" right="true" top="true" bottom="true"  horizontalalign="Center"><chunk font="Helvetica" size="9.0" fontstyle="bold">@Convert.ToInt32("0").ToString()</chunk></cell>
+        </row>
+        <row>
+            <cell borderwidth="2.0" left="true" right="true" top="true" bottom="true" colspan="3"><chunk font="Helvetica" size="8.0">Any questions, please contact Siri at 847 592 7182 or email at siri@palniinc.com</chunk></cell>
+            <cell borderwidth="2.0" left="true" right="true" top="true" bottom="true"><chunk font="Helvetica" size="9.0" fontstyle="bold">Tax Total</chunk></cell>
+            <cell borderwidth="2.0" left="true" right="true" top="true" bottom="true"  horizontalalign="Center"><chunk font="Helvetica" size="9.0" align="center" fontstyle="bold">@Convert.ToInt32("0").ToString()</chunk></cell>
+        </row>
+        <row>
+            <cell borderwidth="2.0" left="true" right="true" top="true" bottom="true" colspan="3"><chunk font="Helvetica" size="9.0" fontstyle="bold">Comments:</chunk></cell>
+            <cell borderwidth="2.0" left="true" right="true" top="true" bottom="true"><chunk font="Helvetica" size="9.0" fontstyle="bold">Total Amount Due</chunk></cell>
+            <cell borderwidth="2.0" left="true" right="true" top="true" bottom="true"  horizontalalign="Center"><chunk font="Helvetica" size="9.0" fontstyle="bold" >@Convert.ToInt32(document.Descendants("totalamount").First().Value).ToString()</chunk></cell>
+        </row>
+</table>
+ 
+
+ 
+@*<newline />
+ 
+<list numbered="true" symbolindent="15" font="unknown">
+    <listitem leading="18.0" font="Times" size="12.0" align="Default" indentationleft="15.0">
+        <chunk font="Times" size="12.0">List item</chunk>
+    </listitem>
+</list>
+ 
+<anchor fontstyle="normal, underline" red="0" green="0" blue="255" reference="http://nyveldt.com/blog/"> 
+My blog
+</anchor> *@
+ 
+</itext>
+
+

@@ -1,0 +1,86 @@
+﻿<div id="emailtocandidate" class="modal fade" style="min-width: 650px !important;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Email to Candidate</h3>
+    </div>
+    <div class="modal-body" style="padding:0px;">
+            <input type="hidden" id="chosenapplicantid" />
+           <input type="hidden" id="chosenemailid">
+            <input type="reset" id="resetupdquestionaireform" style="display: none;" />
+        <div style="border-bottom: 1px solid #e7e7e7;padding: 6px 5px;">
+            <span style="padding: 0px 5px;"><span id="relayrecipientid"></span> </span>
+        </div>
+        
+         <div style="border-bottom: 1px solid #e7e7e7;padding: 6px 5px;">
+        <input id="etcsubject" class="emailsubject" type="text" placeholder="Subject" style="width: 100%;padding: 0px 5px;" value="@Session["title"].ToString() has sent you a message" />
+        </div>
+            
+            <div style="margin: auto;">
+                <textarea id="emailtocandidatebody" class="jqeditor"></textarea>
+            </div>
+    </div>
+    <div class="modal-footer" style="">
+        <a id="sendmailtocandidate" class="btn-green btn-flat pull-right" style="margin-left: 10px;">Send Email</a>
+    </div>
+</div>
+
+          </div>
+    </div>
+<script>
+    $(document).ready(function () {
+
+        
+
+        //Data Pre Insertion
+        $('#sendmailtocandidate').on('hidden', function () {
+            // Use this code block to append text area with any signature (In case user allowed it...)
+
+            $(".jqeditor").jqteVal(); //this code code pre inserts data into the editor area ;)
+        })
+        $('#emailtocandidate').on('hide', function () {
+            $('#resetupdquestionaireform').click();
+        }
+
+);
+        //Send Email Initaiaor
+        $('#sendmailtocandidate').click(function () {
+           
+            emaildeliverysystem($('#relayrecipientid').text(),$('#emailtocandidatebody').val())
+          
+        });
+
+        function emaildeliverysystem(recipients, messagebody) {
+            $.ajax({
+                url: "/messaging/relaymailmessage",
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    mailrecipients: recipients,
+                    subject:$('#etcsubject').val(),
+                    messagebody: messagebody
+
+                },
+                async: false,
+                success: function (data) {
+                    $('#emailtocandidate').modal('hide');
+                    if (data = "OK") {
+                        var returndata = data;
+                        alert("sucessful")
+                    }
+                    else
+                    {
+                        alert("Failed to sent Mail")
+                    }
+                },
+                error: function (data) {
+                }
+
+            });
+            $('#emailtocandidate').modal('hide');
+        }
+    });
+</script>
+
+

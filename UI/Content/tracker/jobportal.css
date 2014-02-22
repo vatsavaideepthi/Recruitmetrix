@@ -1,0 +1,840 @@
+﻿
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+background-color: #fff;
+border: 1px solid #ccc;
+-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+-webkit-transition: border linear .2s,box-shadow linear .2s;
+-moz-transition: border linear .2s,box-shadow linear .2s;
+-o-transition: border linear .2s,box-shadow linear .2s;
+transition: border linear .2s,box-shadow linear .2s;
+}
+
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+display: inline-block;
+height: 40px;
+padding: 4px 6px;
+margin-bottom: 10px;
+font-size: 14px;
+line-height: 20px;
+color: #555;
+vertical-align: middle;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+}
+
+
+/*This Css Supporta the styling futures for the Job Portal Pages*/
+
+
+.jobtable td {
+    border: 0px solid #ccc !important;
+}
+
+
+.topbarmenu .nav-pills > .active > a, .nav-pills > .active > a:hover, .nav-pills > .active > a:focus {
+    color: #fff;
+    background-color: transparent;
+}
+
+.ui-autocomplete-loading {
+    background: url(../../Content/images/ajax-loader.gif) no-repeat top right;
+}
+
+.alertred {
+    border: 1px solid red !important;
+    height: 42px;
+}
+
+.job-desc-truncator {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: justify;
+}
+
+/*#region Buttons*/
+.btn-grey {
+    color: #fff;
+    display: inline-block;
+    background-color: #808080;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    text-shadow: 0 0px 0 rgba(0,0,0,0);
+    border: 0px;
+}
+
+    .btn-grey:hover, .btn-grey:focus, .btn-grey:active, .btn-grey.active, .btn-grey.disabled, .btn-grey[disabled] {
+        color: #fff;
+        background-color: #666666;
+        text-decoration: none;
+    }
+
+/*endregion*/
+.btn-green {
+    display: inline-block;
+    background-color: #26b89a;
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    text-shadow: 0 0px 0 rgba(0,0,0,0);
+    border: 0px;
+}
+
+    .btn-green:hover, .btn-green:focus, .btn-green:active, .btn-green.active, .btn-green.disabled, .btn-green[disabled] {
+        color: #fff;
+        background-color: #33A891;
+        text-decoration: none;
+    }
+
+    .btn-green.disabled, .btn-green[disabled] {
+        cursor: default;
+        background-image: none;
+        opacity: .65;
+        filter: alpha(opacity=65);
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .btn-green .caret {
+        margin-left: 0;
+    }
+
+.btn-group.open .btn-green.dropdown-toggle {
+    background-color: #0c7863;
+}
+
+.btn-flat {
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 2px !important;
+    padding: 6px 15px !important;
+}
+
+.btn-wide {
+    padding: 6px 40px !important;
+}
+
+.btn-shrink {
+    padding: 6px 12px !important;
+}
+
+.btn-group > .btn:first-child {
+    margin-left: 0;
+    -webkit-border-bottom-left-radius: 2px !important;
+    border-bottom-left-radius: 2px !important;
+    -webkit-border-top-left-radius: 2px !important;
+    border-top-left-radius: 2px !important;
+    -moz-border-radius-bottomleft: 2px !important;
+    -moz-border-radius-topleft: 2px !important;
+    border-top-right-radius: 0px !important;
+    -moz-border-radius-topright: 0px !important;
+    -webkit-border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+    -moz-border-radius-bottomright: 0px !important;
+    -webkit-border-bottom-right-radius: 0px !important;
+}
+
+.jobtitle {
+    color: #16a085;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+    .jobtitle:hover {
+        color: #16a085;
+    }
+
+.jobheader {
+    color: #000;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.job-subheader {
+    font-size: 13px;
+    color: #777;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.input-wide {
+    width: 230px;
+}
+
+.input-Xwide {
+    width: 500px !important;
+}
+
+.input-well {
+    min-height: 20px !important;
+    padding: 9px !important;
+    margin-bottom: 20px !important;
+    /*background-color: #eee !important;*/
+   /* border: 1px solid #e3e3e3;*/
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05) !important;
+    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05) !important;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.05) !important;
+}
+
+
+body.jobportal {
+    background: #FFFFFF !important;
+    font-size: 13px;
+    font-family: Helvetica !important;
+}
+
+
+/*Common Css Styles*/
+
+.pageheader {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.levelone li > a {
+    padding: 10px 30px 10px 30px;
+    font-size: 19px;
+    font-weight: bold;
+    color: rgba(218, 223, 221, 0.71);
+}
+
+.levelone.nav > li > a:hover, .levelone.nav > li > a:focus {
+    text-decoration: none;
+    background-color: #839192 !important;
+    border-radius: 2px;
+}
+
+.jobportal .navbar {
+    margin-bottom: 0px;
+}
+
+.jobportal .portal-navbar-inner {
+    background-color: rgba(0, 0, 0, 0);
+    background-image: none;
+    background-image: none;
+    background-image: none;
+    background-image: none;
+    background-image: none;
+    background-repeat: repeat-x;
+    border: 0px solid #d4d4d4;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    filter: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.portal-custom-h-menu {
+}
+
+    .portal-custom-h-menu ul {
+    }
+
+    .portal-custom-h-menu li {
+        list-style: none;
+        float: left;
+        margin: 5px 0px 5px 5px;
+        border-right: 1px solid #ccc;
+        padding-right: 5px;
+    }
+
+        .portal-custom-h-menu li:last-child {
+            border-right: 0px solid #CCC;
+            padding-right: 0px;
+        }
+
+.login-title {
+    color: #1f1e1e;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.input-prepend.input-append input:first-child {
+    border-top-left-radius: 4px !important;
+    border-bottom-left-radius: 4px !important;
+}
+
+.input-prepend.input-append input:last-child {
+    border-top-right-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
+}
+
+.info-header {
+    color: #000000;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.info-subheader {
+    color: #abb1b8;
+    clear: both;
+}
+
+.job-description-meta-holder {
+    background: #E2E2E2;
+    border-radius: 2px;
+    display: inline-block;
+    color: #777;
+    font-family: 'helvetica neue', helvetica, arial, sans-serif;
+}
+
+.contact-title {
+    color: #1f1e1e;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.jobrow {
+    padding: 5px;
+    width: 100%;
+    border: 1px solid #E4E9E7;
+    display: inline-block;
+    margin: 4px 0px;
+}
+
+.jobbox {
+    width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    color: #6F6F6F;
+}
+
+    .jobbox p {
+        margin-bottom: 2px;
+    }
+    .jobbox1 {
+    width: 100%;
+    border-bottom: 1px solid #E4E9E7;
+    vertical-align: middle;
+    color: #6F6F6F;
+}
+
+    .jobbox1 p {
+        margin-bottom: 2px;
+    }
+       .jobbox2 {
+     width: 100%;
+     display: inline-block;
+     border-right: 1px solid #E4E9E7;
+     vertical-align: middle;
+     color: #6F6F6F;
+}
+
+    .jobbox2 p {
+        margin-bottom: 2px;
+    }
+    .jobbox3 {
+     width: 100%;
+     display: inline-block;
+     vertical-align: middle;
+     color: #6F6F6F;
+}
+
+    .jobbox3 p {
+        margin-bottom: 2px;
+    }
+
+table.jobtable tbody tr {
+    height: auto;
+    line-height: 20px;
+}
+
+.custom-chosen .chosen-container {
+    height: 40px;
+}
+
+.custom-chosen .chosen-container-single .chosen-single {
+    height: 40px;
+    border: 1px solid #e3e3e3 !important;
+}
+
+    .custom-chosen .chosen-container-single .chosen-single span {
+        margin: 7px 0px 0px 0px !important;
+    }
+
+    .custom-chosen .chosen-container-single .chosen-single div {
+        margin-top: 8px;
+    }
+
+li.jobrow:hover {
+    border: 1px solid #CCC;
+}
+
+.questionairetable td {
+    vertical-align: middle;
+}
+
+.questionairetable .input-well {
+    margin-bottom: 0px !important;
+}
+
+.modal-header h3 {
+    font-size: 20px !important;
+}
+
+.ml10 {
+    margin-left: 10px;
+}
+
+
+/*Overriding bootstrap Alertclose */
+.alert .alertclose {
+    position: relative;
+    top: -2px;
+    right: -21px;
+    line-height: 20px;
+}
+
+.alertclose:hover, .alertclose:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: .4;
+    filter: alpha(opacity=40);
+}
+
+button.alertclose {
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    -webkit-appearance: none;
+}
+
+.alertclose {
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+    filter: alpha(opacity=20);
+}
+
+
+
+/*Styling rules for the Notes / Comments view page in Job applicants*/
+
+#noteslistholder li {
+list-style:none;
+}
+
+.notesrow td {
+    border:0px solid  red !important;
+
+}
+
+.notesrow {
+    display: inline-block;
+width: 100%;
+margin-bottom:5px;
+border-bottom: 1px solid #e9e9e9;
+padding-bottom: 5px;
+}
+
+    .notesrow:last-child {
+        border-bottom-color:transparent;
+    }
+.notes-container-block {
+padding:2px;
+}
+
+.notes-actions-set li {
+float:left;
+padding:0px 2px;
+text-decoration:none;
+}
+
+.notes-details:first-letter {
+text-transform: capitalize;
+}
+.notes-meta-data {
+color: #999;
+font-size:85%;
+}
+
+.notesdescription:first-letter {
+    text-transform: capitalize;
+}
+
+
+/*additional classess for JOBPORTAL CSS*/
+.forcehide {
+display:none !important;
+}
+
+.chosen-choices .search-field input {
+width:100% !important;
+height: 17px !important;
+margin: 3px 0px !important;
+}
+
+/* Css Styling for BUlk mail window in jobs page*/
+
+/*for job title*/
+
+.bm-job-title {
+}
+
+.bm-job-title:first-letter {text-transform:capitalize;
+}
+
+
+.chosen-choices {
+border-color:transparent !important;
+}
+
+.bm-mail-subject-holder 
+{
+width:100% !important;
+margin: 0px !important;
+border: 0px solid transparent !important;
+padding: 0px !important;
+padding-left: 7px !important;
+-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.00) !important;
+-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.00) !important;
+box-shadow: inset 0 1px 1px rgba(0,0,0,0.00) !important;
+}
+
+.bm-mail-to 
+{
+width:100% !important;
+margin: 0px !important;
+border: 0px solid transparent !important;
+padding: 0px !important;
+padding-left: 5px !important;
+-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.00) !important;
+-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.00) !important;
+box-shadow: inset 0 1px 1px rgba(0,0,0,0.00) !important;
+}
+
+#SendJobBulkMail .modal-footer {
+background-color: #fff !important;
+position: absolute!important;
+bottom: 0 !important;
+width: 100% !important;
+padding: 14px 1% !important;
+}
+
+
+
+
+#emailtocandidate .jqte, #forwardtoclient .jqte {
+margin-top:0px;
+border-color:transparent;
+border-width:0px;
+border-radius:0px;
+box-shadow:0px 0px 10px transparent;
+
+}
+
+#emailtocandidate .jqte_editor, #forwardtoclient .jqte_editor {
+    resize: none;
+}
+
+/*28 January 2014 Changes Migrating from bootstrap 2.3.2 to 3.0*/
+
+.appfooter {
+border-top:1px solid #e7e7e7;
+background: #FFF;
+}
+
+.glyphicon {
+color:black;
+}
+
+
+.jobportal .page-header-row {
+padding: 0px 0px 20px 0px;
+margin-bottom: 20px;
+clear: both;
+display: inline-block;
+width: 100%;
+border-bottom:1px solid #e5e5e5;
+}
+
+.jobportal .page-block-row {
+border-bottom:1px solid #e5e5e5;
+padding:10px 0px 9px 0px;
+margin:0px;
+}
+
+    .jobportal .page-block-row:last-child {
+    border-bottom-width:0px;
+    }
+    .jobportal .page-block-row .nopad {
+    padding:0px;
+    }
+
+
+    /*Chosen theme for bootstrap 3.0*/
+
+    select.form-control + .chosen-container.chosen-container-single .chosen-single {
+    display: block;
+    width: 100%;
+    height: 40px;
+    padding: 9px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #555;
+    vertical-align: middle;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    background-image:none;
+}
+
+select.form-control + .chosen-container.chosen-container-single .chosen-single div {
+    top:4px;
+    color:#000;
+}
+
+select.form-control + .chosen-container .chosen-drop {
+    background-color: #FFF;
+    border: 1px solid #CCC;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    background-clip: padding-box;
+    margin: 2px 0 0;
+
+}
+
+select.form-control + .chosen-container .chosen-search input[type=text] {
+    display: block;
+    width: 100%;
+    height: 40px;
+    padding: 9px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #555;
+    vertical-align: middle;
+    background-color: #FFF;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    background-image:none;
+}
+
+select.form-control + .chosen-container .chosen-results {
+    margin: 2px 0 0;
+    padding: 5px 0;
+    font-size: 14px;
+    list-style: none;
+    background-color: #fff;
+    margin-bottom: 5px;
+}
+
+select.form-control + .chosen-container .chosen-results li , 
+select.form-control + .chosen-container .chosen-results li.active-result {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.428571429;
+    color: #333;
+    white-space: nowrap;
+    background-image:none;
+}
+select.form-control + .chosen-container .chosen-results li:hover, 
+select.form-control + .chosen-container .chosen-results li.active-result:hover,
+select.form-control + .chosen-container .chosen-results li.highlighted
+{
+    color: #FFF;
+    text-decoration: none;
+    background-color: #428BCA;
+    background-image:none;
+}
+
+select.form-control + .chosen-container-multi .chosen-choices {
+    display: block;
+    width: 100%;
+    min-height: 40px;
+    padding: 9px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #555;
+    vertical-align: middle;
+    background-color: #FFF;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    background-image:none;
+}
+
+select.form-control + .chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+    height:auto;
+    padding:5px 0;
+}
+
+select.form-control + .chosen-container-multi .chosen-choices li.search-choice {
+
+    background-image: none;
+    padding: 3px 24px 3px 5px;
+    margin: 0 6px 0 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #333;
+    background-color: #FFF;
+    border-color: #CCC;
+}
+
+select.form-control + .chosen-container-multi .chosen-choices li.search-choice .search-choice-close {
+    top:8px;
+    right:6px;
+}
+
+select.form-control + .chosen-container-multi.chosen-container-active .chosen-choices,
+select.form-control + .chosen-container.chosen-container-single.chosen-container-active .chosen-single,
+select.form-control + .chosen-container .chosen-search input[type=text]:focus{
+    border-color: #66AFE9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+select.form-control + .chosen-container-multi .chosen-results li.result-selected{
+    display: list-item;
+    color: #ccc;
+    cursor: default;
+    background-color: white;
+}
+
+
+/*Style changes for JQTE*/
+
+.jqte_tool_label {
+    height: 20px !important;
+}
+
+.jobportal .modal-header {
+    padding: 2px 10px;
+}
+
+.jobportal .modal-header .close {
+margin-top:15px ;
+}
+
+.jobapplicantcollection td {
+    padding: 0px !important;
+}
+
+.jobportal .jobtable td {
+white-space:nowrap;
+}
+
+/*Styling rules for the timesheet*/
+
+.timesheet {
+}
+.timesheet-filled {
+    background-color:#99CC99;
+}
+.timesheet-empty {
+    background-color:#E9E9E9;
+    color:#000;
+}
+
+.timesheet-current-week {
+}
+
+.timesheet-row {
+height: 102px;
+min-height:102px;
+}
+
+    .timesheet-row .week-info {
+         width:9%;display:table;float:left;height: 102px;
+min-height:100px;clear:both;margin-right:1%;
+    }
+    .timesheet-row .sheet {
+        width:80%;display:table;float:left;height: 100px;
+min-height:100px;position:relative;
+    }
+    .timesheet-row .meta-info {
+         width:9%;display:table;float:right;height: 100px;
+min-height:100px;padding-left: 1%;
+border-left: 2px solid #e5e5e5;
+    }
+
+.sheet .daysheet {
+width: 14%;
+height: 100px;
+min-height:100px;
+padding: 0px 0px;
+border-radius:4px;
+
+}
+
+.sheet .weeksheet {
+width: 16% !important;
+margin:1px  0.143% 1px  0.143%;
+}
+
+.sheet-meta-info {
+width:100%;
+padding:5px;
+display:inline-block;
+}
+.sheet-date {
+
+}
+.sheet-data {
+padding:5px;
+}
+
+.week-meta-data {
+    padding: 5px;
+border-radius: 5px;
+background-color: #99CCFF;
+height:100px;
+}
+
+
+/*For admin Time Sheets*/
+
+ .timesheet-row .employee-info {
+         width:19%;float:left;height: 102px;
+min-height:100px;clear:both;margin-right:1%;
+    }
+   .timesheet-row .employee-sheet {
+        width:70% !important;
+    }
+   .timesheet-row .employee-sheet-meta-info {
+         width:9%;display:table;float:right;height: 100px;
+min-height:100px;padding-left: 1%;
+border-left: 2px solid #e5e5e5;
+    }

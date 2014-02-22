@@ -1,0 +1,447 @@
+﻿@model List<UI.Models.PortalContact>
+@{
+    ViewBag.Title = "Contacts";
+    ViewBag.highlight = "contacts";
+    Layout = "~/Views/Shared/_JobPortalMasterView.cshtml";
+    List<UI.Models.PortalContact> NormalContacts = (List<UI.Models.PortalContact>)Model.Where(m => m.objecttype.ToLower() == "contact").ToList();
+    List<UI.Models.PortalContact> ClientContacts = (List<UI.Models.PortalContact>)Model.Where(m => m.objecttype.ToLower() == "clicontact").ToList();
+}
+
+<div class="page-header-row">
+    <div class="pull-left">
+        <span class="pageheader">My Contacts</span>
+    </div>
+    <div class="pull-right">
+        <a href="/contacts/add" class="btn-green btn-flat">Add Contact</a>
+        @* <a href="/contacts/import" class="btn btn-info btn-grey btn-flat">Import Contacts</a>*@
+    </div>
+</div>
+
+<div class="tabbable">
+    <ul class="nav nav-tabs" style="border-bottom: none">
+        <li class="active"><a href="#clientcontacts" data-toggle="tab">Client Contacts</a></li>
+        <li><a href="#contacts" data-toggle="tab">Contacts</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="clientcontacts" class="tab-pane active">
+            <div>
+                <div>
+                    @if (ClientContacts != null && ClientContacts.Count > 0)
+                    {
+                        <table class="table table-hover" style="border: 1px solid #ddd" id="delete">
+                            <thead>
+                                <tr>
+                                    <td><span class="contact-title">Name</span></td>
+                                    <td><span class="contact-title">Details</span></td>
+                                    <td><span class="contact-title">Designation</span></td>
+                                    <td><span class="contact-title">Contact Information</span></td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                        try
+                        {
+                            foreach (UI.Models.PortalContact contact in ClientContacts)
+                            {
+                                    if (contact.emailaddress != "" && contact.emailaddress != null && contact.objecttype != null)
+                                    {
+                                    <tr>
+                                        <td>
+                                            <div class="pull-left" style="clear: both; padding: 2px 5px">
+                                                <span class="contact-title"data-contactid="@contact.id" data-cfname="@contact.firstname" data-clname="@contact.lastname">@contact.firstname
+                                                    @contact.lastname</span>
+                                            </div>
+                                            <div class="pull-left" style="clear: both; padding: 2px 5px">
+                                                <span><span style="color: #abb1b8;" class="contact-email" data-contactid="@contact.id">@(contact.emailaddress == "" ? "N/A" : contact.emailaddress)</span></span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="pull-left" style="padding: 2px 5px">
+                                                <span><span style="color: #abb1b8;" class="contact-companyname" data-contactid="@contact.id">@(contact.Companyname == "" ? "" : contact.Companyname)</span></span>
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <div class="pull-left" style="padding: 2px 5px">
+                                                <span><span style="color: #abb1b8;" class="contact-designation" data-contactid="@contact.id">@(contact.designation == "" ? "" : contact.designation)</span></span>
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <div class="pull-left" style="padding: 2px 5px">
+                                                <span><span style="color: #abb1b8;" class="contact-officephone" data-contactid="@contact.id">@(contact.officephone == "" ? "" : contact.officephone)</span></span>
+                                            </div>
+                                            <div class="pull-left" style="clear: both; padding: 2px 5px">
+                                                <span><span style="color: #abb1b8;" class="contact-mobilephone" data-contactid="@contact.id">@(contact.mobilephone == "" ? "" : contact.mobilephone)</span></span>
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <div style="padding: 0px 10px" class="pull-right">
+                                                <i id="editcontact" class="glyphicon glyphicon-edit editcontact" title="Edit Contact" data-contactid="@contact.id"data-objecttype="@contact.objecttype" style="cursor:pointer;"></i>
+                                                <i id="deletecontact" class=" glyphicon glyphicon-trash deletecontact" title="Delete Contact" data-contactid="@contact.id" data-contactname="@contact.firstname @contact.lastname" style="cursor:pointer;"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    }
+                            }
+                        }
+                        catch { } 
+                                }
+                            </tbody>
+                        </table>
+
+                    }
+                    else
+                    {
+                        <div class="well">
+                            <div class="pull-left" style="margin: 5px 0px 10px 0px; font-size: 25px; font-weight: bold;">
+                                <span>Ohh..No Contacts Found</span>
+                            </div>
+                            <div class="pull-right" style="margin: 0px 0px 10px 0px;">
+                                <span><a href="/contacts/add" class="btn btn-green btn-flat btn-info">Add Contacts</a> </span>
+                            </div>
+                        </div>
+                    }
+                    <div style="padding-top: 25px; clear: both;">
+                        @*<div class="pagination pagination-centered">
+                        <ul>
+                            <li class="disabled"><a href="#">Prev</a></li>
+                            <li class="disabled"><a href="#" class="disabled">1</a></li>
+                            <li class="disabled"><a href="#" class="disabled">2</a></li>
+                            <li class="disabled"><a href="#" class="disabled">3</a></li>
+                            <li class="disabled"><a href="#" class="disabled">4</a></li>
+                            <li class="disabled"><a href="#" class="disabled">5</a></li>
+                            <li class="disabled"><a href="#" class="disabled">Next</a></li>
+                        </ul>
+                    </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="contacts" class="tab-pane">
+            <div>
+                <div>
+                    @if (NormalContacts != null && NormalContacts.Count > 0)
+                    {
+                        <table class="table table-hover" style="border: 1px solid #ddd" id="delete">
+                            <thead>
+                                <tr>
+                                    <td><span class="contact-title">Name</span></td>
+                                    <td><span class="contact-title">Details</span></td>
+                                    <td><span class="contact-title">Designation</span></td>
+                                    <td><span class="contact-title">Contact Information</span></td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                        try
+                        {
+                            foreach (UI.Models.PortalContact contact in NormalContacts)
+                            {
+
+                                if (contact.emailaddress != "" && contact.emailaddress != null && contact.objecttype != null)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="pull-left" style="clear: both; padding: 2px 5px">
+                                                <span class="contact-title"data-contactid="@contact.id" data-cfname="@contact.firstname" data-clname="@contact.lastname">@contact.firstname
+                                                    @contact.lastname</span>
+                                            </div>
+                                            <div class="pull-left" style="clear: both; padding: 2px 5px">
+                                                <span><span style="color: #abb1b8;" class="contact-email" data-contactid="@contact.id">@(contact.emailaddress == "" ? "N/A" : contact.emailaddress)</span></span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="pull-left" style="padding: 2px 5px">
+                                                <span><span style="color: #abb1b8;" class="contact-companyname" data-contactid="@contact.id">@(contact.Companyname == "" ? "" : contact.Companyname)</span></span>
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <div class="pull-left" style="padding: 2px 5px">
+                                                <span><span style="color: #abb1b8;" class="contact-designation" data-contactid="@contact.id">@(contact.designation == "" ? "" : contact.designation)</span></span>
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <div class="pull-left" style="padding: 2px 5px">
+                                                <span><span style="color: #abb1b8;" class="contact-officephone" data-contactid="@contact.id">@(contact.officephone == "" ? "" : contact.officephone)</span></span>
+                                            </div>
+                                            <div class="pull-left" style="clear: both; padding: 2px 5px">
+                                                <span><span style="color: #abb1b8;" class="contact-mobilephone" data-contactid="@contact.id">@(contact.mobilephone == "" ? "" : contact.mobilephone)</span></span>
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <div style="padding: 0px 10px" class="pull-right">
+                                                <i id="editcontact" class="glyphicon glyphicon-edit editcontact" title="Edit Contact" data-contactid="@contact.id"data-objecttype="@contact.objecttype" style="cursor:pointer;"></i>
+                                                <i id="deletecontact" class=" glyphicon glyphicon-trash deletecontact" title="Delete Contact" data-contactid="@contact.id" data-contactname="@contact.firstname.ToString() @contact.lastname.ToString()" style="cursor:pointer;"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        }
+                        catch { } 
+                                }
+                            </tbody>
+                        </table>
+
+                    }
+                    else
+                    {
+                        <div class="well">
+                            <div class="pull-left" style="margin: 5px 0px 10px 0px; font-size: 25px; font-weight: bold;">
+                                <span>Ohh..No Contacts Found</span>
+                            </div>
+                            <div class="pull-right" style="margin: 0px 0px 10px 0px;">
+                                <span><a href="/contacts/add" class="btn btn-green btn-flat btn-info">Add Contacts</a> </span>
+                            </div>
+                        </div>
+                    }
+                    <div style="padding-top: 25px; clear: both;">
+                        @*<div class="pagination pagination-centered">
+                        <ul>
+                            <li class="disabled"><a href="#">Prev</a></li>
+                            <li class="disabled"><a href="#" class="disabled">1</a></li>
+                            <li class="disabled"><a href="#" class="disabled">2</a></li>
+                            <li class="disabled"><a href="#" class="disabled">3</a></li>
+                            <li class="disabled"><a href="#" class="disabled">4</a></li>
+                            <li class="disabled"><a href="#" class="disabled">5</a></li>
+                            <li class="disabled"><a href="#" class="disabled">Next</a></li>
+                        </ul>
+                    </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*</div>*@
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.editcontact').click(function () {
+            $('#currentcontactid').val($(this).attr('data-contactid'));
+            $('#currentobjecttype').val($(this).attr('data-objecttype'));
+            var parenttr = $(this).parents().closest('tr');
+            var contacttitle = $(parenttr).find('.contact-title');
+            var contactemail = $(parenttr).find('.contact-email');
+            var companyname = $(parenttr).find('.contact-companyname');
+            var designation = $(parenttr).find('.contact-designation');
+            var officephone = $(parenttr).find('.contact-officephone');
+            var mobilephone = $(parenttr).find('.contact-mobilephone');
+            $('.edittablefname').val($(contacttitle).data('cfname'));
+            $('.edittable').val($(contacttitle).data('clname'));
+            $('.editemail').val($(contactemail).text());
+            $('.edit-companyname').val($(companyname).text());
+            $('.edit-designation').val($(designation).text());
+            $('.edit-officephone').val($(officephone).text());
+            $('.edit-mobilephone').val($(mobilephone).text());
+            $('#myModal').modal('show');
+
+        });
+
+        $('#updatecontactinformation').click(function () {
+            $.ajax({
+                url: "/Contacts/Edit",
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    contactid: $('#currentcontactid').val(),
+                    unid: '',
+                    designation: $('.edit-designation').val(),
+                    title: 'Mr.',
+                    firstname: $('.edittablefname').val(),
+                    lastname: $('.edittable').val(),
+                    emailaddress: $('.editemail').val(),
+                    mobilephone: $('.edit-officephone').val(),
+                    secondaryemail: '',
+                    phone: $('.edit-mobilephone').val(),
+                    companyname: $('.edit-companyname').val(),
+                    type: 'contact',
+                    objecttype: $('#currentobjecttype').val(),
+                    contactgroup: '',
+                },
+                async: false,
+                success: function (data) {
+                    $('#myModal').modal('hide');
+                },
+                error: function (data) {
+                }
+
+            });
+            $('#myModal').modal('hide');
+            location.reload();
+
+        });
+
+    });
+</script>
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+       <div class="modal-dialog">
+        <div class="modal-content">
+    <div class="modal-header">
+   
+       @* <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>*@
+        <h3 id="myModalLabel">Edit Contact</h3>
+    </div>
+    <div class="modal-body">
+
+        <form>
+            <input type="hidden" id="currentcontactid" />
+            <input type="hidden" id="currentobjecttype">
+            <div style="margin: auto;">
+
+                <table class="table jobtable questionairetable">
+                    <tbody>
+                        <tr>
+                            <td><span style="float: left;">Work Information</span></td>
+                            <td>:</td>
+                            <td>
+                                <div>
+                                    <input class="edit-companyname" type="text" value="" placeholder="Company Name" style="width: 150px;" />
+                                    <input class="edit-designation" type="text" value="" placeholder="Designation" style="width: 150px;" />
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><span style="float: left;">Name</span></td>
+                            <td>:</td>
+                            <td>
+                                <div>
+                                    <input class="edittablefname" type="text" value="" placeholder="First Name" style="width: 150px;" />
+                                    <input class="edittable" type="text" value="" placeholder="Last Name" style="width: 150px;" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span style="float: left;">Email</span></td>
+                            <td>:</td>
+                            <td>
+                                <div>
+                                    <input class="editemail" type="text" value="" placeholder="Email" style="width: 191px;" />
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><span style="float: left;">Contact Phone</span></td>
+                            <td>:</td>
+                            <td>
+                                <div>
+                                    <input class="edit-officephone" type="text" value="" placeholder="Office Phone" style="width: 150px;" />
+                                    <input class="edit-mobilephone" type="text" value="" placeholder="Mobile Phone" style="width: 150px;" />
+                                </div>
+
+                    </tbody>
+                </table>
+            </div>
+        </form>
+      
+    </div>
+    <div class="modal-footer">
+       <span id="editcontacno" class="btn-grey btn-flat pull-right" style="margin-left: 10px;" data-dismiss="modal">Cancel</span>
+        <span id="updatecontactinformation" class="btn-green btn-flat pull-right" style="margin-left: 10px;">Update</span>
+    </div>
+</div>
+             </div>
+            </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.deletecontact').click(function () {
+            $(this).closest('tr').addClass('abouttodelete');
+            $('#chosencontactid').val($(this).attr('data-contactid'));
+            $('#contactname').text($(this).attr('data-contactname'));
+            //$(this).parents().closest('tr').addClass(abouttohide);
+            $('#deletecontactpop').modal('show');
+        });
+
+        $('#deletecontact1').click(function () {
+            $(this).closest('tr').addClass('abouttodelete');
+            $('#chosencontactid').val($(this).attr('data-contactid'));
+            $('#contactname').text($(this).attr('data-contactname'));
+            //  $(this).parents().closest('tr').hide();
+            $('#deletecontactpop').modal('show');
+        });
+
+        $('#deletecontactyes').click(function () {
+
+            var currentcontactid = $('#chosencontactid').val();
+            $.ajax({
+                url: "/Contacts/DeleteContact",
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    contactid: currentcontactid,
+                },
+                async: false,
+                success: function (data) {
+                    if (data == "true") {
+                        $('tr.abouttodelete').remove();
+                        alert("sucessfully deleted contcat")
+                        $('#deletecontactpop').modal('hide');
+                    }
+                    else {
+                    }
+
+                },
+                error: function (data) {
+                }
+            });
+            $('#deletecontactpop').modal('hide');
+          //  location.reload();
+        });
+
+        $('#deletecontactno').click(function () {
+            $('#deletecontactpop').modal('hide');
+
+        });
+    });
+</script>
+
+<div id="deletecontactpop" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+     <div class="modal-dialog">
+        <div class="modal-content">
+    <div class="modal-header">
+        <h3>Delete Contact</h3>
+    </div>
+    <div class="modal-body">
+        <form>
+            <input type="hidden" id="chosencontactid">
+
+            <div>
+                @* <span class="jobtitle">Questionaire</span>*@
+            </div>
+            <div style="margin: auto;">
+                <table class="table jobtable questionairetable">
+                    <tbody>
+
+                        <tr>
+                            <td><span style="float: left;">Are you sure want to delete your contact <span id="contactname" style="font-weight: bold; text-transform: capitalize;"></span>?</span></td>
+
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer" style="">
+        <a id="deletecontactno" class="btn-grey btn-flat pull-right" style="margin-left: 10px;">No</a>
+        <a id="deletecontactyes" class="btn-green btn-flat pull-right" style="margin-left: 10px;">Yes</a>
+
+    </div>
+</div>
+         </div>
+
+    </div>

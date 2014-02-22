@@ -1,0 +1,46 @@
+﻿<div id="addTimeSheetBlock" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Add Time Sheet <span>For Month</span></h3>
+            </div>
+            <div class="modal-body">
+                <div class="modal-inputcontent">
+                    <div class="">
+                        <input type="text" class="form-control" placeholder="Add time Sheet Title" />
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 nopad">
+                            <input id="timeSheetStartDate" type="text" class="form-control" />
+                        </div>
+                        <div class="col-md-6 nopad">
+                            <input id="timeSheetEndDate" type="text" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-alerts">
+                    <div id="timesheettitleempty" class="alert alert-warning fade hide">
+                        <button type="button" class="alertclose" data-dismiss="alert" aria-hidden="true">×</button>
+                        <span>Time Shett title cannot be Empty !</span>
+                    </div>
+                    <div id="timesheetstartdateselect" class="alert alert-warning fade hide">
+                        <button type="button" class="alertclose" data-dismiss="alert" aria-hidden="true">×</button>
+                        <span>Select Start date for time sheet !</span>
+                    </div>
+                    <div id="timesheetenddateselect" class="alert alert-warning fade hide">
+                        <button type="button" class="alertclose" data-dismiss="alert" aria-hidden="true">×</button>
+                        <span>Select time sheet end date!</span>
+                    </div>
+                    <div id="timeSheetCreatingFailed" class="alert alert-error fade hide">
+                        <button type="button" class="alertclose" data-dismiss="alert" aria-hidden="true">×</button>
+                        <span>Time Sheet creating failed !</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a id="updateApplicant" class="btn-flat btn-green pull-right" data-text-loading="Creating Time Sheet ...">Create</a>
+            </div>
+        </div>
+    </div>
+</div>

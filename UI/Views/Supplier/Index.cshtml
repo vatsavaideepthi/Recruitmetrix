@@ -1,0 +1,79 @@
+﻿@model List<UI.Models.Supplier>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Supplier/_SupplierMasterView.cshtml";
+}
+
+<div class="page-header-row">
+    <div class="col-md-8">
+        <span class="pageheader jobheader">Suppliers</span>
+    </div>
+    <div class="col-md-4">
+        @*@Html.ActionLink("Add Candidate", "index", "jobs", null, new Dictionary<string, object> {{ "data-target", "#addcandidatemodal" },{ "data-toggle=", "modal" },{"class","btn-wide pull-right btn-flat btn-grey"}})*@
+        <span class="btn-wide pull-right btn-flat btn-grey" data-toggle="modal" data-target="#addsuppliermodal">Add Supplier</span>
+    </div>
+</div>
+<div>
+    <table class="table table-hover table-striped" style="border: 1px solid #ddd" id="delete">
+        <thead>
+            <tr>
+                <td><span class="contact-title">Name</span></td>
+                <td><span class="contact-title">Contact</span></td>
+                <td><span class="contact-title">Company</span></td>
+                <td><span class="contact-title">Location</span></td>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Count > 0)
+            {
+                foreach (UI.Models.Supplier Supplier in Model)
+                {
+                    if (Supplier.email!= "" && Supplier.email != null)
+                    {
+                <tr>
+                    <td>
+                        <div class="pull-left" style="clear: both; padding: 2px 5px">
+                            <span class="contact-title" data-supplierid="@Supplier.id" data-cfname="" data-clname="">@Supplier.fname
+                                @Supplier.lname</span>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="pull-left" style="clear: both; padding: 2px 5px">
+                            <span class="contact-" data-contactid="" data-cfname="" data-clname="">@Supplier.email</span>
+                        </div>
+                        <div class="pull-left" style="clear: both; padding: 2px 5px">
+                            <span class="contact-" data-contactid="" data-cfname="" data-clname=""></span>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="pull-left" style="clear: both; padding: 2px 5px">
+                            <span class="contact-" data-contactid="" data-cfname="" data-clname=""></span>
+                        </div>
+                        <div class="pull-left" style="clear: both; padding: 2px 5px">
+                            <span class="contact-" data-contactid="" data-cfname="" data-clname=""></span>
+                        </div>
+                    </td>
+                    <td>
+                         <div class="pull-left" style="clear: both; padding: 2px 5px">
+                            <span class="contact-" data-contactid="" data-cfname="" data-clname=""></span>
+                        </div>
+                    </td>
+                </tr>
+                    }
+
+
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4"><span>No Suppliers Available !...</span></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+

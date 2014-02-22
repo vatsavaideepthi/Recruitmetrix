@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Drafts";
+    ViewBag.submenuhighlight = "drafts";
+    Layout = "~/Views/communication/_CommunicationMasterView.cshtml";
+}
+
+@section communicationsubtitle{
+    <h2>Drafts</h2>
+    }
+
+<div class="" style="clear: both; display: inline-block; width: 100%;">
+    @*Page content*@
+
+    <table class="table table-hover" style="border: 1px solid #ddd;" id="allmails">
+        <tbody>
+            <tr>
+                <td>
+                   <div>
+                       <input type="checkbox" data-mailid=""/>
+                   </div>
+                </td>
+                <td>
+                    <div>
+                        <span class="mailfrom">Lakshmi Bhargav</span>
+                    </div>
+                </td>
+                <td>
+                    <div data-mailid="">
+                        <span data-mailid="" class="mailbrief">Sample mail data</span>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <span data-mailid="" class="mailtime"> 3 minutes ago</span>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <span>NO Mails .....</span>
+    </div>
+</div>

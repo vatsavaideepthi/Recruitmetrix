@@ -1,0 +1,2690 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="objectServicesWebappVer2" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://192.168.1.252:5000/WsObjectServicesWebappVer2.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://192.168.1.252:5000/WsObjectServicesWebappVer2.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MexServices" />
+      <xsd:import schemaLocation="http://192.168.1.252:5000/WsObjectServicesWebappVer2.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://192.168.1.252:5000/WsObjectServicesWebappVer2.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://192.168.1.252:5000/WsObjectServicesWebappVer2.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IobjectServicesWebappVer2_HelloWorld_InputMessage">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_HelloWorld_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_HelloWorld_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/MexServices" name="detail" element="q1:CustomException" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetReadFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReadFile" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetReadFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReadFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetWriteFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWriteFile" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetWriteFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWriteFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_SetWriteSuccess_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetWriteSuccess" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_SetWriteSuccess_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetWriteSuccessResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_DeleteFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFile" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_DeleteFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetMyFolders_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyFolders" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetMyFolders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyFoldersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetMyFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyFiles" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetMyFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetSharedFolders_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSharedFolders" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetSharedFolders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSharedFoldersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetSharedFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSharedFiles" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetSharedFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSharedFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateFolder_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateFolder" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateFolder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_AddFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddFile" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_AddFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RenameFolderItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:RenameFolderItem" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RenameFolderItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RenameFolderItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_MoveFolderItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:MoveFolderItem" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_MoveFolderItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MoveFolderItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RemoveFolderItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFolderItem" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RemoveFolderItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFolderItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateFolderProperties_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateFolderProperties" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateFolderProperties_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateFolderPropertiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetNotifications_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotifications" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetNotifications_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotificationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateNotificationMaster_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNotificationMaster" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateNotificationMaster_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNotificationMasterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RemoveNotificationMaster_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveNotificationMaster" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RemoveNotificationMaster_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveNotificationMasterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RespondNotification_InputMessage">
+    <wsdl:part name="parameters" element="tns:RespondNotification" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RespondNotification_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RespondNotificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_AddNotificationRecipients_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddNotificationRecipients" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_AddNotificationRecipients_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddNotificationRecipientsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetNotificationRecipients_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotificationRecipients" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetNotificationRecipients_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotificationRecipientsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RegisterUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterUser" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RegisterUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetUserObject_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserObject" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetUserObject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserObjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_LogOut_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogOut" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_LogOut_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogOutResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsers" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_ValidateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateUser" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_ValidateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_AuthenticateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:AuthenticateUser" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_AuthenticateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AuthenticateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_PublishResourceGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:PublishResourceGroup" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_PublishResourceGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PublishResourceGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UnPublishResourceGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnPublishResourceGroup" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UnPublishResourceGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnPublishResourceGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetPublishedResources_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPublishedResources" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetPublishedResources_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPublishedResourcesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetMyPublishedResources_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyPublishedResources" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetMyPublishedResources_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyPublishedResourcesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_LoginNetworkApp_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoginNetworkApp" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_LoginNetworkApp_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginNetworkAppResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RegisterNetworkAppUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterNetworkAppUser" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RegisterNetworkAppUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterNetworkAppUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RegisterNetworkUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterNetworkUser" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RegisterNetworkUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterNetworkUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_LoginNetwork_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoginNetwork" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_LoginNetwork_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginNetworkResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetAccessibleUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAccessibleUsers" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetAccessibleUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAccessibleUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetAccessibleObjects_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAccessibleObjects" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetAccessibleObjects_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAccessibleObjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_IsObjectAccessible_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsObjectAccessible" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_IsObjectAccessible_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsObjectAccessibleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GrantPermission_InputMessage">
+    <wsdl:part name="parameters" element="tns:GrantPermission" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GrantPermission_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GrantPermissionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetGroups_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroups" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetGroups_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetMyGroups_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyGroups" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetMyGroups_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyGroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateGroup" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RemoveGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveGroup" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RemoveGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetGroupMembers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupMembers" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetGroupMembers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupMembersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RequestGroupSubscription_InputMessage">
+    <wsdl:part name="parameters" element="tns:RequestGroupSubscription" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RequestGroupSubscription_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RequestGroupSubscriptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CancelRequestGroupSubscription_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelRequestGroupSubscription" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CancelRequestGroupSubscription_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelRequestGroupSubscriptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetGroupPendingSubscriptionRequests_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupPendingSubscriptionRequests" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetGroupPendingSubscriptionRequests_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupPendingSubscriptionRequestsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_ApproveGroupSubscription_InputMessage">
+    <wsdl:part name="parameters" element="tns:ApproveGroupSubscription" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_ApproveGroupSubscription_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ApproveGroupSubscriptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_DisApproveGroupSubscription_InputMessage">
+    <wsdl:part name="parameters" element="tns:DisApproveGroupSubscription" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_DisApproveGroupSubscription_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisApproveGroupSubscriptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_InviteGroupSubscription_InputMessage">
+    <wsdl:part name="parameters" element="tns:InviteGroupSubscription" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_InviteGroupSubscription_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InviteGroupSubscriptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CancelInviteGroupSubscription_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelInviteGroupSubscription" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CancelInviteGroupSubscription_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelInviteGroupSubscriptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetGroupPendingSubscriptionInvitations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupPendingSubscriptionInvitations" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetGroupPendingSubscriptionInvitations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGroupPendingSubscriptionInvitationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_AcceptInviteGroupSubscription_InputMessage">
+    <wsdl:part name="parameters" element="tns:AcceptInviteGroupSubscription" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_AcceptInviteGroupSubscription_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AcceptInviteGroupSubscriptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RejectInviteGroupSubscription_InputMessage">
+    <wsdl:part name="parameters" element="tns:RejectInviteGroupSubscription" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RejectInviteGroupSubscription_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RejectInviteGroupSubscriptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetChildren_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetChildren" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetChildren_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetChildrenResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetParents_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetParents" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetParents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetParentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_AddRelation_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRelation" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_AddRelation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRelationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RemoveRelation_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveRelation" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RemoveRelation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveRelationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetStaticdata_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStaticdata" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetStaticdata_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStaticdataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateStaticdata_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateStaticdata" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateStaticdata_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateStaticdataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_ShareFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:ShareFile" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_ShareFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ShareFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_ShareFolder_InputMessage">
+    <wsdl:part name="parameters" element="tns:ShareFolder" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_ShareFolder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ShareFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UnShareFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnShareFile" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UnShareFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnShareFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UnShareFolder_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnShareFolder" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UnShareFolder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnShareFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetFileSharingUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFileSharingUsers" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetFileSharingUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFileSharingUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetFolderSharingUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFolderSharingUsers" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetFolderSharingUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFolderSharingUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateActivityMaster_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateActivityMaster" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateActivityMaster_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateActivityMasterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_DeleteActivityMaster_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteActivityMaster" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_DeleteActivityMaster_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteActivityMasterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_DeleteActivityStream_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteActivityStream" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_DeleteActivityStream_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteActivityStreamResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetMyActivity_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyActivity" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetMyActivity_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyActivityResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetActivityStream_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetActivityStream" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetActivityStream_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetActivityStreamResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetFBRedirectUrl_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFBRedirectUrl" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetFBRedirectUrl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFBRedirectUrlResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetFBToken_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFBToken" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetFBToken_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFBTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateFBFeed_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateFBFeed" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateFBFeed_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateFBFeedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetUserFriendsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserFriendsList" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetUserFriendsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserFriendsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetUserDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserDetails" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetUserDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GettestFBRedirectUrl_InputMessage">
+    <wsdl:part name="parameters" element="tns:GettestFBRedirectUrl" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GettestFBRedirectUrl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GettestFBRedirectUrlResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_FBLogout_InputMessage">
+    <wsdl:part name="parameters" element="tns:FBLogout" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_FBLogout_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FBLogoutResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateVideoFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateVideoFile" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateVideoFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateVideoFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_InsertProfile_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertProfile" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_InsertProfile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetUserProfile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserProfile" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetUserProfile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateProfile_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateProfile" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateProfile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateAchivementbyProfileId_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAchivementbyProfileId" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateAchivementbyProfileId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAchivementbyProfileIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateAddressbyProfileId_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAddressbyProfileId" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateAddressbyProfileId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAddressbyProfileIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateContactbyProfileId_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateContactbyProfileId" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateContactbyProfileId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateContactbyProfileIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateEdubyProfileId_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateEdubyProfileId" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateEdubyProfileId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateEdubyProfileIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateOtherProfilebyId_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOtherProfilebyId" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateOtherProfilebyId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOtherProfilebyIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdatePesonalProfilebyId_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePesonalProfilebyId" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdatePesonalProfilebyId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePesonalProfilebyIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_InsertProfilebyId_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertProfilebyId" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_InsertProfilebyId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertProfilebyIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetUserProfilebyId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserProfilebyId" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetUserProfilebyId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserProfilebyIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetLocation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLocation" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetLocation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetUserbyId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserbyId" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetUserbyId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserbyIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetSearchUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSearchUsers" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetSearchUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSearchUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_DeleteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_DeleteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_Changepassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:Changepassword" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_Changepassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangepasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetComments_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetComments" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetComments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCommentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_InsertComment_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertComment" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_InsertComment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertCommentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateComment_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateComment" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateComment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCommentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetReciviedMesages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReciviedMesages" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetReciviedMesages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReciviedMesagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateMesageMaster_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateMesageMaster" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateMesageMaster_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateMesageMasterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RemoveMesageMaster_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveMesageMaster" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RemoveMesageMaster_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveMesageMasterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RespondMesage_InputMessage">
+    <wsdl:part name="parameters" element="tns:RespondMesage" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RespondMesage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RespondMesageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_AddMesageRecipients_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddMesageRecipients" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_AddMesageRecipients_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddMesageRecipientsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetMesageRecipients_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMesageRecipients" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetMesageRecipients_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMesageRecipientsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetAllMesages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllMesages" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetAllMesages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllMesagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateMesageStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMesageStatus" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateMesageStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMesageStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetReciviedFeeds_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReciviedFeeds" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetReciviedFeeds_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReciviedFeedsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateFeedMaster_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateFeedMaster" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateFeedMaster_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateFeedMasterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetFeedRecipients_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFeedRecipients" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetFeedRecipients_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFeedRecipientsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetAllFeeds_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllFeeds" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetAllFeeds_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllFeedsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateFeedStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateFeedStatus" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateFeedStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateFeedStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetReciviedInvitations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReciviedInvitations" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetReciviedInvitations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReciviedInvitationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateInvitationMaster_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateInvitationMaster" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateInvitationMaster_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateInvitationMasterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetInvitationRecipients_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInvitationRecipients" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetInvitationRecipients_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInvitationRecipientsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetAllInvitations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllInvitations" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetAllInvitations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllInvitationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateInvitationStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateInvitationStatus" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateInvitationStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateInvitationStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetReciviedGeneralMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReciviedGeneralMessages" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetReciviedGeneralMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReciviedGeneralMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateGeneralMessageMaster_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateGeneralMessageMaster" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateGeneralMessageMaster_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateGeneralMessageMasterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetGeneralMessageRecipients_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGeneralMessageRecipients" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetGeneralMessageRecipients_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGeneralMessageRecipientsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetAllGeneralMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllGeneralMessages" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetAllGeneralMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllGeneralMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateGeneralMessageStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateGeneralMessageStatus" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateGeneralMessageStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateGeneralMessageStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetFilesbyUserId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFilesbyUserId" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetFilesbyUserId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFilesbyUserIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetFriendFriends_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriendFriends" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetFriendFriends_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriendFriendsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetDList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDList" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetDList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateDList_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDList" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateDList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateDList_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDList" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateDList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RemoveDList_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveDList" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_RemoveDList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveDListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateGroup" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetWriteFileSimple_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWriteFileSimple" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetWriteFileSimple_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWriteFileSimpleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetMyContent_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyContent" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetMyContent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMyContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetAddresses_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAddresses" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetAddresses_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAddressesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateAddress_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAddress" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_CreateAddress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateAddress_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAddress" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_UpdateAddress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_SearchAddressesByKeywords_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchAddressesByKeywords" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_SearchAddressesByKeywords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchAddressesByKeywordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_SearchProfileByKeywords_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchProfileByKeywords" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_SearchProfileByKeywords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchProfileByKeywordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetListContent_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListContent" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetListContent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_DeleteRelation_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRelation" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_DeleteRelation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRelationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetMimeType_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMimeType" />
+  </wsdl:message>
+  <wsdl:message name="IobjectServicesWebappVer2_GetMimeType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMimeTypeResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IobjectServicesWebappVer2">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:documentation>this is hello world method</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/HelloWorld" message="tns:IobjectServicesWebappVer2_HelloWorld_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/HelloWorldResponse" message="tns:IobjectServicesWebappVer2_HelloWorld_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IObjectServicesWebapp/HelloWorldCustomExceptionFault" name="CustomExceptionFault" message="tns:IobjectServicesWebappVer2_HelloWorld_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReadFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetReadFile" message="tns:IobjectServicesWebappVer2_GetReadFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetReadFileResponse" message="tns:IobjectServicesWebappVer2_GetReadFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWriteFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetWriteFile" message="tns:IobjectServicesWebappVer2_GetWriteFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetWriteFileResponse" message="tns:IobjectServicesWebappVer2_GetWriteFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetWriteSuccess">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/SetWriteSuccess" message="tns:IobjectServicesWebappVer2_SetWriteSuccess_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/SetWriteSuccessResponse" message="tns:IobjectServicesWebappVer2_SetWriteSuccess_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/DeleteFile" message="tns:IobjectServicesWebappVer2_DeleteFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/DeleteFileResponse" message="tns:IobjectServicesWebappVer2_DeleteFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyFolders">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetMyFolders" message="tns:IobjectServicesWebappVer2_GetMyFolders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetMyFoldersResponse" message="tns:IobjectServicesWebappVer2_GetMyFolders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyFiles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetMyFiles" message="tns:IobjectServicesWebappVer2_GetMyFiles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetMyFilesResponse" message="tns:IobjectServicesWebappVer2_GetMyFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSharedFolders">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetSharedFolders" message="tns:IobjectServicesWebappVer2_GetSharedFolders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetSharedFoldersResponse" message="tns:IobjectServicesWebappVer2_GetSharedFolders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSharedFiles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetSharedFiles" message="tns:IobjectServicesWebappVer2_GetSharedFiles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetSharedFilesResponse" message="tns:IobjectServicesWebappVer2_GetSharedFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateFolder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/CreateFolder" message="tns:IobjectServicesWebappVer2_CreateFolder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/CreateFolderResponse" message="tns:IobjectServicesWebappVer2_CreateFolder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/AddFile" message="tns:IobjectServicesWebappVer2_AddFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/AddFileResponse" message="tns:IobjectServicesWebappVer2_AddFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RenameFolderItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/RenameFolderItem" message="tns:IobjectServicesWebappVer2_RenameFolderItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/RenameFolderItemResponse" message="tns:IobjectServicesWebappVer2_RenameFolderItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MoveFolderItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/MoveFolderItem" message="tns:IobjectServicesWebappVer2_MoveFolderItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/MoveFolderItemResponse" message="tns:IobjectServicesWebappVer2_MoveFolderItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFolderItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/RemoveFolderItem" message="tns:IobjectServicesWebappVer2_RemoveFolderItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/RemoveFolderItemResponse" message="tns:IobjectServicesWebappVer2_RemoveFolderItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFolderProperties">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/UpdateFolderProperties" message="tns:IobjectServicesWebappVer2_UpdateFolderProperties_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/UpdateFolderPropertiesResponse" message="tns:IobjectServicesWebappVer2_UpdateFolderProperties_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNotifications">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetNotifications" message="tns:IobjectServicesWebappVer2_GetNotifications_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetNotificationsResponse" message="tns:IobjectServicesWebappVer2_GetNotifications_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNotificationMaster">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/CreateNotificationMaster" message="tns:IobjectServicesWebappVer2_CreateNotificationMaster_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/CreateNotificationMasterResponse" message="tns:IobjectServicesWebappVer2_CreateNotificationMaster_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveNotificationMaster">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/RemoveNotificationMaster" message="tns:IobjectServicesWebappVer2_RemoveNotificationMaster_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/RemoveNotificationMasterResponse" message="tns:IobjectServicesWebappVer2_RemoveNotificationMaster_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RespondNotification">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/RespondNotification" message="tns:IobjectServicesWebappVer2_RespondNotification_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/RespondNotificationResponse" message="tns:IobjectServicesWebappVer2_RespondNotification_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddNotificationRecipients">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/AddNotificationRecipients" message="tns:IobjectServicesWebappVer2_AddNotificationRecipients_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/AddNotificationRecipientsResponse" message="tns:IobjectServicesWebappVer2_AddNotificationRecipients_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNotificationRecipients">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetNotificationRecipients" message="tns:IobjectServicesWebappVer2_GetNotificationRecipients_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetNotificationRecipientsResponse" message="tns:IobjectServicesWebappVer2_GetNotificationRecipients_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/Login" message="tns:IobjectServicesWebappVer2_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/LoginResponse" message="tns:IobjectServicesWebappVer2_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/RegisterUser" message="tns:IobjectServicesWebappVer2_RegisterUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/RegisterUserResponse" message="tns:IobjectServicesWebappVer2_RegisterUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserObject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetUserObject" message="tns:IobjectServicesWebappVer2_GetUserObject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetUserObjectResponse" message="tns:IobjectServicesWebappVer2_GetUserObject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/LogOut" message="tns:IobjectServicesWebappVer2_LogOut_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/LogOutResponse" message="tns:IobjectServicesWebappVer2_LogOut_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetUsers" message="tns:IobjectServicesWebappVer2_GetUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetUsersResponse" message="tns:IobjectServicesWebappVer2_GetUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/ValidateUser" message="tns:IobjectServicesWebappVer2_ValidateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/ValidateUserResponse" message="tns:IobjectServicesWebappVer2_ValidateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/AuthenticateUser" message="tns:IobjectServicesWebappVer2_AuthenticateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/AuthenticateUserResponse" message="tns:IobjectServicesWebappVer2_AuthenticateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PublishResourceGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/PublishResourceGroup" message="tns:IobjectServicesWebappVer2_PublishResourceGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/PublishResourceGroupResponse" message="tns:IobjectServicesWebappVer2_PublishResourceGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnPublishResourceGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/UnPublishResourceGroup" message="tns:IobjectServicesWebappVer2_UnPublishResourceGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/UnPublishResourceGroupResponse" message="tns:IobjectServicesWebappVer2_UnPublishResourceGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPublishedResources">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetPublishedResources" message="tns:IobjectServicesWebappVer2_GetPublishedResources_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetPublishedResourcesResponse" message="tns:IobjectServicesWebappVer2_GetPublishedResources_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyPublishedResources">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetMyPublishedResources" message="tns:IobjectServicesWebappVer2_GetMyPublishedResources_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetMyPublishedResourcesResponse" message="tns:IobjectServicesWebappVer2_GetMyPublishedResources_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginNetworkApp">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/LoginNetworkApp" message="tns:IobjectServicesWebappVer2_LoginNetworkApp_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/LoginNetworkAppResponse" message="tns:IobjectServicesWebappVer2_LoginNetworkApp_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterNetworkAppUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/RegisterNetworkAppUser" message="tns:IobjectServicesWebappVer2_RegisterNetworkAppUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/RegisterNetworkAppUserResponse" message="tns:IobjectServicesWebappVer2_RegisterNetworkAppUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterNetworkUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/RegisterNetworkUser" message="tns:IobjectServicesWebappVer2_RegisterNetworkUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/RegisterNetworkUserResponse" message="tns:IobjectServicesWebappVer2_RegisterNetworkUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginNetwork">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/LoginNetwork" message="tns:IobjectServicesWebappVer2_LoginNetwork_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/LoginNetworkResponse" message="tns:IobjectServicesWebappVer2_LoginNetwork_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccessibleUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetAccessibleUsers" message="tns:IobjectServicesWebappVer2_GetAccessibleUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetAccessibleUsersResponse" message="tns:IobjectServicesWebappVer2_GetAccessibleUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccessibleObjects">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetAccessibleObjects" message="tns:IobjectServicesWebappVer2_GetAccessibleObjects_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetAccessibleObjectsResponse" message="tns:IobjectServicesWebappVer2_GetAccessibleObjects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsObjectAccessible">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/IsObjectAccessible" message="tns:IobjectServicesWebappVer2_IsObjectAccessible_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/IsObjectAccessibleResponse" message="tns:IobjectServicesWebappVer2_IsObjectAccessible_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GrantPermission">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GrantPermission" message="tns:IobjectServicesWebappVer2_GrantPermission_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GrantPermissionResponse" message="tns:IobjectServicesWebappVer2_GrantPermission_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroups">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetGroups" message="tns:IobjectServicesWebappVer2_GetGroups_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetGroupsResponse" message="tns:IobjectServicesWebappVer2_GetGroups_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyGroups">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetMyGroups" message="tns:IobjectServicesWebappVer2_GetMyGroups_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetMyGroupsResponse" message="tns:IobjectServicesWebappVer2_GetMyGroups_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/CreateGroup" message="tns:IobjectServicesWebappVer2_CreateGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/CreateGroupResponse" message="tns:IobjectServicesWebappVer2_CreateGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/RemoveGroup" message="tns:IobjectServicesWebappVer2_RemoveGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/RemoveGroupResponse" message="tns:IobjectServicesWebappVer2_RemoveGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupMembers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetGroupMembers" message="tns:IobjectServicesWebappVer2_GetGroupMembers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetGroupMembersResponse" message="tns:IobjectServicesWebappVer2_GetGroupMembers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestGroupSubscription">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/RequestGroupSubscription" message="tns:IobjectServicesWebappVer2_RequestGroupSubscription_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/RequestGroupSubscriptionResponse" message="tns:IobjectServicesWebappVer2_RequestGroupSubscription_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelRequestGroupSubscription">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/CancelRequestGroupSubscription" message="tns:IobjectServicesWebappVer2_CancelRequestGroupSubscription_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/CancelRequestGroupSubscriptionResponse" message="tns:IobjectServicesWebappVer2_CancelRequestGroupSubscription_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupPendingSubscriptionRequests">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetGroupPendingSubscriptionRequests" message="tns:IobjectServicesWebappVer2_GetGroupPendingSubscriptionRequests_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetGroupPendingSubscriptionRequestsResponse" message="tns:IobjectServicesWebappVer2_GetGroupPendingSubscriptionRequests_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ApproveGroupSubscription">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/ApproveGroupSubscription" message="tns:IobjectServicesWebappVer2_ApproveGroupSubscription_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/ApproveGroupSubscriptionResponse" message="tns:IobjectServicesWebappVer2_ApproveGroupSubscription_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DisApproveGroupSubscription">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/DisApproveGroupSubscription" message="tns:IobjectServicesWebappVer2_DisApproveGroupSubscription_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/DisApproveGroupSubscriptionResponse" message="tns:IobjectServicesWebappVer2_DisApproveGroupSubscription_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InviteGroupSubscription">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/InviteGroupSubscription" message="tns:IobjectServicesWebappVer2_InviteGroupSubscription_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/InviteGroupSubscriptionResponse" message="tns:IobjectServicesWebappVer2_InviteGroupSubscription_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelInviteGroupSubscription">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/CancelInviteGroupSubscription" message="tns:IobjectServicesWebappVer2_CancelInviteGroupSubscription_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/CancelInviteGroupSubscriptionResponse" message="tns:IobjectServicesWebappVer2_CancelInviteGroupSubscription_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupPendingSubscriptionInvitations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetGroupPendingSubscriptionInvitations" message="tns:IobjectServicesWebappVer2_GetGroupPendingSubscriptionInvitations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetGroupPendingSubscriptionInvitationsResponse" message="tns:IobjectServicesWebappVer2_GetGroupPendingSubscriptionInvitations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AcceptInviteGroupSubscription">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/AcceptInviteGroupSubscription" message="tns:IobjectServicesWebappVer2_AcceptInviteGroupSubscription_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/AcceptInviteGroupSubscriptionResponse" message="tns:IobjectServicesWebappVer2_AcceptInviteGroupSubscription_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RejectInviteGroupSubscription">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/RejectInviteGroupSubscription" message="tns:IobjectServicesWebappVer2_RejectInviteGroupSubscription_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/RejectInviteGroupSubscriptionResponse" message="tns:IobjectServicesWebappVer2_RejectInviteGroupSubscription_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChildren">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetChildren" message="tns:IobjectServicesWebappVer2_GetChildren_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetChildrenResponse" message="tns:IobjectServicesWebappVer2_GetChildren_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetParents">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetParents" message="tns:IobjectServicesWebappVer2_GetParents_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetParentsResponse" message="tns:IobjectServicesWebappVer2_GetParents_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRelation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/AddRelation" message="tns:IobjectServicesWebappVer2_AddRelation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/AddRelationResponse" message="tns:IobjectServicesWebappVer2_AddRelation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveRelation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/RemoveRelation" message="tns:IobjectServicesWebappVer2_RemoveRelation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/RemoveRelationResponse" message="tns:IobjectServicesWebappVer2_RemoveRelation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStaticdata">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetStaticdata" message="tns:IobjectServicesWebappVer2_GetStaticdata_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetStaticdataResponse" message="tns:IobjectServicesWebappVer2_GetStaticdata_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateStaticdata">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/CreateStaticdata" message="tns:IobjectServicesWebappVer2_CreateStaticdata_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/CreateStaticdataResponse" message="tns:IobjectServicesWebappVer2_CreateStaticdata_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ShareFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/ShareFile" message="tns:IobjectServicesWebappVer2_ShareFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/ShareFileResponse" message="tns:IobjectServicesWebappVer2_ShareFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ShareFolder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/ShareFolder" message="tns:IobjectServicesWebappVer2_ShareFolder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/ShareFolderResponse" message="tns:IobjectServicesWebappVer2_ShareFolder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnShareFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/UnShareFile" message="tns:IobjectServicesWebappVer2_UnShareFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/UnShareFileResponse" message="tns:IobjectServicesWebappVer2_UnShareFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnShareFolder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/UnShareFolder" message="tns:IobjectServicesWebappVer2_UnShareFolder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/UnShareFolderResponse" message="tns:IobjectServicesWebappVer2_UnShareFolder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileSharingUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetFileSharingUsers" message="tns:IobjectServicesWebappVer2_GetFileSharingUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetFileSharingUsersResponse" message="tns:IobjectServicesWebappVer2_GetFileSharingUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFolderSharingUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetFolderSharingUsers" message="tns:IobjectServicesWebappVer2_GetFolderSharingUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetFolderSharingUsersResponse" message="tns:IobjectServicesWebappVer2_GetFolderSharingUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateActivityMaster">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/CreateActivityMaster" message="tns:IobjectServicesWebappVer2_CreateActivityMaster_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/CreateActivityMasterResponse" message="tns:IobjectServicesWebappVer2_CreateActivityMaster_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteActivityMaster">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/DeleteActivityMaster" message="tns:IobjectServicesWebappVer2_DeleteActivityMaster_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/DeleteActivityMasterResponse" message="tns:IobjectServicesWebappVer2_DeleteActivityMaster_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteActivityStream">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/DeleteActivityStream" message="tns:IobjectServicesWebappVer2_DeleteActivityStream_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/DeleteActivityStreamResponse" message="tns:IobjectServicesWebappVer2_DeleteActivityStream_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyActivity">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetMyActivity" message="tns:IobjectServicesWebappVer2_GetMyActivity_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetMyActivityResponse" message="tns:IobjectServicesWebappVer2_GetMyActivity_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActivityStream">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetActivityStream" message="tns:IobjectServicesWebappVer2_GetActivityStream_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetActivityStreamResponse" message="tns:IobjectServicesWebappVer2_GetActivityStream_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFBRedirectUrl">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetFBRedirectUrl" message="tns:IobjectServicesWebappVer2_GetFBRedirectUrl_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetFBRedirectUrlResponse" message="tns:IobjectServicesWebappVer2_GetFBRedirectUrl_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFBToken">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetFBToken" message="tns:IobjectServicesWebappVer2_GetFBToken_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetFBTokenResponse" message="tns:IobjectServicesWebappVer2_GetFBToken_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateFBFeed">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/CreateFBFeed" message="tns:IobjectServicesWebappVer2_CreateFBFeed_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/CreateFBFeedResponse" message="tns:IobjectServicesWebappVer2_CreateFBFeed_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserFriendsList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetUserFriendsList" message="tns:IobjectServicesWebappVer2_GetUserFriendsList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetUserFriendsListResponse" message="tns:IobjectServicesWebappVer2_GetUserFriendsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetUserDetails" message="tns:IobjectServicesWebappVer2_GetUserDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GetUserDetailsResponse" message="tns:IobjectServicesWebappVer2_GetUserDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GettestFBRedirectUrl">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GettestFBRedirectUrl" message="tns:IobjectServicesWebappVer2_GettestFBRedirectUrl_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/GettestFBRedirectUrlResponse" message="tns:IobjectServicesWebappVer2_GettestFBRedirectUrl_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FBLogout">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/FBLogout" message="tns:IobjectServicesWebappVer2_FBLogout_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/FBLogoutResponse" message="tns:IobjectServicesWebappVer2_FBLogout_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateVideoFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IObjectServicesWebapp/CreateVideoFile" message="tns:IobjectServicesWebappVer2_CreateVideoFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IObjectServicesWebapp/CreateVideoFileResponse" message="tns:IobjectServicesWebappVer2_CreateVideoFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertProfile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/InsertProfile" message="tns:IobjectServicesWebappVer2_InsertProfile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/InsertProfileResponse" message="tns:IobjectServicesWebappVer2_InsertProfile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserProfile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetUserProfile" message="tns:IobjectServicesWebappVer2_GetUserProfile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetUserProfileResponse" message="tns:IobjectServicesWebappVer2_GetUserProfile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProfile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateProfile" message="tns:IobjectServicesWebappVer2_UpdateProfile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateProfileResponse" message="tns:IobjectServicesWebappVer2_UpdateProfile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAchivementbyProfileId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateAchivementbyProfileId" message="tns:IobjectServicesWebappVer2_UpdateAchivementbyProfileId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateAchivementbyProfileIdResponse" message="tns:IobjectServicesWebappVer2_UpdateAchivementbyProfileId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAddressbyProfileId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateAddressbyProfileId" message="tns:IobjectServicesWebappVer2_UpdateAddressbyProfileId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateAddressbyProfileIdResponse" message="tns:IobjectServicesWebappVer2_UpdateAddressbyProfileId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContactbyProfileId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateContactbyProfileId" message="tns:IobjectServicesWebappVer2_UpdateContactbyProfileId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateContactbyProfileIdResponse" message="tns:IobjectServicesWebappVer2_UpdateContactbyProfileId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEdubyProfileId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateEdubyProfileId" message="tns:IobjectServicesWebappVer2_UpdateEdubyProfileId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateEdubyProfileIdResponse" message="tns:IobjectServicesWebappVer2_UpdateEdubyProfileId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOtherProfilebyId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateOtherProfilebyId" message="tns:IobjectServicesWebappVer2_UpdateOtherProfilebyId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateOtherProfilebyIdResponse" message="tns:IobjectServicesWebappVer2_UpdateOtherProfilebyId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePesonalProfilebyId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdatePesonalProfilebyId" message="tns:IobjectServicesWebappVer2_UpdatePesonalProfilebyId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdatePesonalProfilebyIdResponse" message="tns:IobjectServicesWebappVer2_UpdatePesonalProfilebyId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertProfilebyId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/InsertProfilebyId" message="tns:IobjectServicesWebappVer2_InsertProfilebyId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/InsertProfilebyIdResponse" message="tns:IobjectServicesWebappVer2_InsertProfilebyId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserProfilebyId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetUserProfilebyId" message="tns:IobjectServicesWebappVer2_GetUserProfilebyId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetUserProfilebyIdResponse" message="tns:IobjectServicesWebappVer2_GetUserProfilebyId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetLocation" message="tns:IobjectServicesWebappVer2_GetLocation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetLocationResponse" message="tns:IobjectServicesWebappVer2_GetLocation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserbyId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetUserbyId" message="tns:IobjectServicesWebappVer2_GetUserbyId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetUserbyIdResponse" message="tns:IobjectServicesWebappVer2_GetUserbyId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSearchUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetSearchUsers" message="tns:IobjectServicesWebappVer2_GetSearchUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetSearchUsersResponse" message="tns:IobjectServicesWebappVer2_GetSearchUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/DeleteUser" message="tns:IobjectServicesWebappVer2_DeleteUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/DeleteUserResponse" message="tns:IobjectServicesWebappVer2_DeleteUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateUser" message="tns:IobjectServicesWebappVer2_UpdateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateUserResponse" message="tns:IobjectServicesWebappVer2_UpdateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Changepassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/Changepassword" message="tns:IobjectServicesWebappVer2_Changepassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/ChangepasswordResponse" message="tns:IobjectServicesWebappVer2_Changepassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetComments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetComments" message="tns:IobjectServicesWebappVer2_GetComments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetCommentsResponse" message="tns:IobjectServicesWebappVer2_GetComments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertComment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/InsertComment" message="tns:IobjectServicesWebappVer2_InsertComment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/InsertCommentResponse" message="tns:IobjectServicesWebappVer2_InsertComment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateComment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateComment" message="tns:IobjectServicesWebappVer2_UpdateComment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateCommentResponse" message="tns:IobjectServicesWebappVer2_UpdateComment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReciviedMesages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetReciviedMesages" message="tns:IobjectServicesWebappVer2_GetReciviedMesages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetReciviedMesagesResponse" message="tns:IobjectServicesWebappVer2_GetReciviedMesages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateMesageMaster">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/CreateMesageMaster" message="tns:IobjectServicesWebappVer2_CreateMesageMaster_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/CreateMesageMasterResponse" message="tns:IobjectServicesWebappVer2_CreateMesageMaster_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveMesageMaster">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/RemoveMesageMaster" message="tns:IobjectServicesWebappVer2_RemoveMesageMaster_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/RemoveMesageMasterResponse" message="tns:IobjectServicesWebappVer2_RemoveMesageMaster_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RespondMesage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/RespondMesage" message="tns:IobjectServicesWebappVer2_RespondMesage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/RespondMesageResponse" message="tns:IobjectServicesWebappVer2_RespondMesage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddMesageRecipients">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/AddMesageRecipients" message="tns:IobjectServicesWebappVer2_AddMesageRecipients_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/AddMesageRecipientsResponse" message="tns:IobjectServicesWebappVer2_AddMesageRecipients_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMesageRecipients">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetMesageRecipients" message="tns:IobjectServicesWebappVer2_GetMesageRecipients_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetMesageRecipientsResponse" message="tns:IobjectServicesWebappVer2_GetMesageRecipients_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMesages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetAllMesages" message="tns:IobjectServicesWebappVer2_GetAllMesages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetAllMesagesResponse" message="tns:IobjectServicesWebappVer2_GetAllMesages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMesageStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateMesageStatus" message="tns:IobjectServicesWebappVer2_UpdateMesageStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateMesageStatusResponse" message="tns:IobjectServicesWebappVer2_UpdateMesageStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReciviedFeeds">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetReciviedFeeds" message="tns:IobjectServicesWebappVer2_GetReciviedFeeds_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetReciviedFeedsResponse" message="tns:IobjectServicesWebappVer2_GetReciviedFeeds_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateFeedMaster">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/CreateFeedMaster" message="tns:IobjectServicesWebappVer2_CreateFeedMaster_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/CreateFeedMasterResponse" message="tns:IobjectServicesWebappVer2_CreateFeedMaster_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFeedRecipients">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetFeedRecipients" message="tns:IobjectServicesWebappVer2_GetFeedRecipients_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetFeedRecipientsResponse" message="tns:IobjectServicesWebappVer2_GetFeedRecipients_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFeeds">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetAllFeeds" message="tns:IobjectServicesWebappVer2_GetAllFeeds_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetAllFeedsResponse" message="tns:IobjectServicesWebappVer2_GetAllFeeds_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFeedStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateFeedStatus" message="tns:IobjectServicesWebappVer2_UpdateFeedStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateFeedStatusResponse" message="tns:IobjectServicesWebappVer2_UpdateFeedStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReciviedInvitations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetReciviedInvitations" message="tns:IobjectServicesWebappVer2_GetReciviedInvitations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetReciviedInvitationsResponse" message="tns:IobjectServicesWebappVer2_GetReciviedInvitations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateInvitationMaster">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/CreateInvitationMaster" message="tns:IobjectServicesWebappVer2_CreateInvitationMaster_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/CreateInvitationMasterResponse" message="tns:IobjectServicesWebappVer2_CreateInvitationMaster_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInvitationRecipients">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetInvitationRecipients" message="tns:IobjectServicesWebappVer2_GetInvitationRecipients_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetInvitationRecipientsResponse" message="tns:IobjectServicesWebappVer2_GetInvitationRecipients_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllInvitations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetAllInvitations" message="tns:IobjectServicesWebappVer2_GetAllInvitations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetAllInvitationsResponse" message="tns:IobjectServicesWebappVer2_GetAllInvitations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateInvitationStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateInvitationStatus" message="tns:IobjectServicesWebappVer2_UpdateInvitationStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateInvitationStatusResponse" message="tns:IobjectServicesWebappVer2_UpdateInvitationStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReciviedGeneralMessages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetReciviedGeneralMessages" message="tns:IobjectServicesWebappVer2_GetReciviedGeneralMessages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetReciviedGeneralMessagesResponse" message="tns:IobjectServicesWebappVer2_GetReciviedGeneralMessages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateGeneralMessageMaster">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/CreateGeneralMessageMaster" message="tns:IobjectServicesWebappVer2_CreateGeneralMessageMaster_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/CreateGeneralMessageMasterResponse" message="tns:IobjectServicesWebappVer2_CreateGeneralMessageMaster_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGeneralMessageRecipients">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetGeneralMessageRecipients" message="tns:IobjectServicesWebappVer2_GetGeneralMessageRecipients_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetGeneralMessageRecipientsResponse" message="tns:IobjectServicesWebappVer2_GetGeneralMessageRecipients_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGeneralMessages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetAllGeneralMessages" message="tns:IobjectServicesWebappVer2_GetAllGeneralMessages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetAllGeneralMessagesResponse" message="tns:IobjectServicesWebappVer2_GetAllGeneralMessages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateGeneralMessageStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateGeneralMessageStatus" message="tns:IobjectServicesWebappVer2_UpdateGeneralMessageStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateGeneralMessageStatusResponse" message="tns:IobjectServicesWebappVer2_UpdateGeneralMessageStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFilesbyUserId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetFilesbyUserId" message="tns:IobjectServicesWebappVer2_GetFilesbyUserId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetFilesbyUserIdResponse" message="tns:IobjectServicesWebappVer2_GetFilesbyUserId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFriendFriends">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetFriendFriends" message="tns:IobjectServicesWebappVer2_GetFriendFriends_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetFriendFriendsResponse" message="tns:IobjectServicesWebappVer2_GetFriendFriends_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetDList" message="tns:IobjectServicesWebappVer2_GetDList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetDListResponse" message="tns:IobjectServicesWebappVer2_GetDList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/CreateDList" message="tns:IobjectServicesWebappVer2_CreateDList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/CreateDListResponse" message="tns:IobjectServicesWebappVer2_CreateDList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateDList" message="tns:IobjectServicesWebappVer2_UpdateDList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateDListResponse" message="tns:IobjectServicesWebappVer2_UpdateDList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/RemoveDList" message="tns:IobjectServicesWebappVer2_RemoveDList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/RemoveDListResponse" message="tns:IobjectServicesWebappVer2_RemoveDList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateGroup" message="tns:IobjectServicesWebappVer2_UpdateGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateGroupResponse" message="tns:IobjectServicesWebappVer2_UpdateGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWriteFileSimple">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetWriteFileSimple" message="tns:IobjectServicesWebappVer2_GetWriteFileSimple_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetWriteFileSimpleResponse" message="tns:IobjectServicesWebappVer2_GetWriteFileSimple_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyContent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetMyContent" message="tns:IobjectServicesWebappVer2_GetMyContent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetMyContentResponse" message="tns:IobjectServicesWebappVer2_GetMyContent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAddresses">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetAddresses" message="tns:IobjectServicesWebappVer2_GetAddresses_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetAddressesResponse" message="tns:IobjectServicesWebappVer2_GetAddresses_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateAddress">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/CreateAddress" message="tns:IobjectServicesWebappVer2_CreateAddress_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/CreateAddressResponse" message="tns:IobjectServicesWebappVer2_CreateAddress_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAddress">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateAddress" message="tns:IobjectServicesWebappVer2_UpdateAddress_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/UpdateAddressResponse" message="tns:IobjectServicesWebappVer2_UpdateAddress_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchAddressesByKeywords">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/SearchAddressesByKeywords" message="tns:IobjectServicesWebappVer2_SearchAddressesByKeywords_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/SearchAddressesByKeywordsResponse" message="tns:IobjectServicesWebappVer2_SearchAddressesByKeywords_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchProfileByKeywords">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/SearchProfileByKeywords" message="tns:IobjectServicesWebappVer2_SearchProfileByKeywords_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/SearchProfileByKeywordsResponse" message="tns:IobjectServicesWebappVer2_SearchProfileByKeywords_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListContent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetListContent" message="tns:IobjectServicesWebappVer2_GetListContent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetListContentResponse" message="tns:IobjectServicesWebappVer2_GetListContent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRelation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/DeleteRelation" message="tns:IobjectServicesWebappVer2_DeleteRelation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/DeleteRelationResponse" message="tns:IobjectServicesWebappVer2_DeleteRelation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMimeType">
+      <wsdl:input wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetMimeType" message="tns:IobjectServicesWebappVer2_GetMimeType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IobjectServicesWebappVer2/GetMimeTypeResponse" message="tns:IobjectServicesWebappVer2_GetMimeType_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IobjectServicesWebappVer2" type="tns:IobjectServicesWebappVer2">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetReadFile">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetReadFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWriteFile">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetWriteFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetWriteSuccess">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/SetWriteSuccess" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFile">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/DeleteFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyFolders">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetMyFolders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyFiles">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetMyFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSharedFolders">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetSharedFolders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSharedFiles">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetSharedFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateFolder">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/CreateFolder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFile">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/AddFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RenameFolderItem">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/RenameFolderItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MoveFolderItem">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/MoveFolderItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFolderItem">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/RemoveFolderItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFolderProperties">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/UpdateFolderProperties" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNotifications">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetNotifications" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNotificationMaster">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/CreateNotificationMaster" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveNotificationMaster">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/RemoveNotificationMaster" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RespondNotification">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/RespondNotification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNotificationRecipients">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/AddNotificationRecipients" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNotificationRecipients">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetNotificationRecipients" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterUser">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/RegisterUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserObject">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetUserObject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/LogOut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUser">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/ValidateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateUser">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/AuthenticateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PublishResourceGroup">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/PublishResourceGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnPublishResourceGroup">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/UnPublishResourceGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPublishedResources">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetPublishedResources" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyPublishedResources">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetMyPublishedResources" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginNetworkApp">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/LoginNetworkApp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterNetworkAppUser">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/RegisterNetworkAppUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterNetworkUser">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/RegisterNetworkUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginNetwork">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/LoginNetwork" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccessibleUsers">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetAccessibleUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccessibleObjects">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetAccessibleObjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsObjectAccessible">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/IsObjectAccessible" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GrantPermission">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GrantPermission" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroups">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetGroups" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyGroups">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetMyGroups" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateGroup">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/CreateGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveGroup">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/RemoveGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupMembers">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetGroupMembers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestGroupSubscription">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/RequestGroupSubscription" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelRequestGroupSubscription">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/CancelRequestGroupSubscription" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupPendingSubscriptionRequests">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetGroupPendingSubscriptionRequests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApproveGroupSubscription">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/ApproveGroupSubscription" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisApproveGroupSubscription">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/DisApproveGroupSubscription" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InviteGroupSubscription">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/InviteGroupSubscription" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelInviteGroupSubscription">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/CancelInviteGroupSubscription" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupPendingSubscriptionInvitations">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetGroupPendingSubscriptionInvitations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcceptInviteGroupSubscription">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/AcceptInviteGroupSubscription" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RejectInviteGroupSubscription">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/RejectInviteGroupSubscription" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChildren">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetChildren" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetParents">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetParents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRelation">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/AddRelation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveRelation">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/RemoveRelation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStaticdata">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetStaticdata" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateStaticdata">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/CreateStaticdata" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShareFile">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/ShareFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShareFolder">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/ShareFolder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnShareFile">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/UnShareFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnShareFolder">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/UnShareFolder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileSharingUsers">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetFileSharingUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFolderSharingUsers">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetFolderSharingUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateActivityMaster">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/CreateActivityMaster" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteActivityMaster">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/DeleteActivityMaster" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteActivityStream">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/DeleteActivityStream" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyActivity">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetMyActivity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActivityStream">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetActivityStream" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFBRedirectUrl">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetFBRedirectUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFBToken">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetFBToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateFBFeed">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/CreateFBFeed" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserFriendsList">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetUserFriendsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDetails">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GetUserDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GettestFBRedirectUrl">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/GettestFBRedirectUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FBLogout">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/FBLogout" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateVideoFile">
+      <soap:operation soapAction="http://tempuri.org/IObjectServicesWebapp/CreateVideoFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertProfile">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/InsertProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserProfile">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetUserProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProfile">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/UpdateProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAchivementbyProfileId">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/UpdateAchivementbyProfileId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAddressbyProfileId">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/UpdateAddressbyProfileId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContactbyProfileId">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/UpdateContactbyProfileId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEdubyProfileId">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/UpdateEdubyProfileId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOtherProfilebyId">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/UpdateOtherProfilebyId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePesonalProfilebyId">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/UpdatePesonalProfilebyId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertProfilebyId">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/InsertProfilebyId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserProfilebyId">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetUserProfilebyId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocation">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetLocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserbyId">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetUserbyId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSearchUsers">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetSearchUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Changepassword">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/Changepassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetComments">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetComments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertComment">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/InsertComment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateComment">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/UpdateComment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReciviedMesages">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetReciviedMesages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateMesageMaster">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/CreateMesageMaster" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveMesageMaster">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/RemoveMesageMaster" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RespondMesage">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/RespondMesage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMesageRecipients">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/AddMesageRecipients" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMesageRecipients">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetMesageRecipients" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMesages">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetAllMesages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMesageStatus">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/UpdateMesageStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReciviedFeeds">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetReciviedFeeds" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateFeedMaster">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/CreateFeedMaster" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFeedRecipients">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetFeedRecipients" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFeeds">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetAllFeeds" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFeedStatus">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/UpdateFeedStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReciviedInvitations">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetReciviedInvitations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateInvitationMaster">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/CreateInvitationMaster" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvitationRecipients">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetInvitationRecipients" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllInvitations">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetAllInvitations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateInvitationStatus">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/UpdateInvitationStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReciviedGeneralMessages">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetReciviedGeneralMessages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateGeneralMessageMaster">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/CreateGeneralMessageMaster" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGeneralMessageRecipients">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetGeneralMessageRecipients" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGeneralMessages">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetAllGeneralMessages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateGeneralMessageStatus">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/UpdateGeneralMessageStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFilesbyUserId">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetFilesbyUserId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFriendFriends">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetFriendFriends" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDList">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetDList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDList">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/CreateDList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDList">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/UpdateDList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDList">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/RemoveDList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateGroup">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/UpdateGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWriteFileSimple">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetWriteFileSimple" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyContent">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetMyContent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAddresses">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetAddresses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAddress">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/CreateAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAddress">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/UpdateAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchAddressesByKeywords">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/SearchAddressesByKeywords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchProfileByKeywords">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/SearchProfileByKeywords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListContent">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetListContent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRelation">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/DeleteRelation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMimeType">
+      <soap:operation soapAction="http://tempuri.org/IobjectServicesWebappVer2/GetMimeType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="objectServicesWebappVer2">
+    <wsdl:port name="BasicHttpBinding_IobjectServicesWebappVer2" binding="tns:BasicHttpBinding_IobjectServicesWebappVer2">
+      <soap:address location="http://192.168.1.252:5000/WsObjectServicesWebappVer2.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

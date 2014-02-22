@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title </title>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+    <script src="~/Scripts/jquery-2.0.2.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.10.3.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    
+    <script src="~/Scripts/tracker/PaymentTrackerData.js"></script>
+    <script src="~/Scripts/tracker/interactions.js"></script>
+    <script src="~/Scripts/tracker/data.js"></script>
+    <script src="~/Scripts/tracker/utilities.js"></script>
+
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="~/Content/themes/smoothness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" />
+
+
+    <link href="~/css/tracker/tracker.css" rel="stylesheet" />
+
+
+    <link href="~/Plugins/Chosen/chosen.css" rel="stylesheet" />
+    <script src="~/Plugins/Chosen/chosen.jquery.min.js"></script>
+    <link href="~/Plugins/Chosen/chosen.min.css" rel="stylesheet" />
+
+
+    @RenderSection("customstyles", required: false)
+</head>
+<body>
+    <header>
+        <div class="navbar ">
+            <div class="navbar-inner">
+                <a href="/invoice" class="brand"></a>
+                <ul class="nav pull-right">
+                    <li>
+                        <div style="margin: 10px 0px;">
+                            <div class="btn-group ">
+                                <button class="btn btn-small"><i class="icon glyphicon-user glyphicon-black"></i></button>
+                                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a tabindex="-1" href="/settings"><i class="glyphicon-cog glyphicon-black"></i>Settings</a></li>
+                                    <li><a tabindex="-1" href="/logout"><i class="glyphicon-off glyphicon-black"></i>Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                @RenderSection("actionset", required: false)
+            </div>
+        </div>
+    </header>
+    <div id="body" class="container">
+        <div class="topbarmenu" style="padding:5px 0px 25px 0px;">
+            @RenderSection("topbarmenu", required: false)
+            <div class="">
+                <ul class="nav nav-pills leveltwo hide" data-menuset="invoice">
+                    <li class="">
+                        <a href="/invoice">All Invoices</a>
+                    </li>
+                    <li class="">
+                        <a href="/invoice/outbound">Outgoing Invoices</a>
+                    </li>
+                    <li class="">
+                        <a href="/invoice/inbound">Incoming Invoices</a>
+                    </li>
+                    <li class="">
+                        <a href="/invoice/create">Create Invoice</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="">
+                <ul class="nav nav-pills leveltwo hide" data-menuset="expense">
+                    <li class="">
+                        <a href="/payments">All Expenses</a>
+                    </li>
+                    <li class="">
+                        <a href="/payments/add">Add Expense</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="">
+                <ul class="nav nav-pills leveltwo hide" data-menuset="customer">
+                    <li class="">
+                        <a href="/Customer">Customers</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>
+    <footer class="container clear-top">
+        <div class="navbar navbar-fixed-bottom">
+            <div class="navbar-inner" style="text-align: center;">
+                <span style="padding: 10px 0px;">&copy; @DateTime.Now.Year - Payment Tracker :: Simplify your Expenses</span>
+            </div>
+        </div>
+    </footer>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

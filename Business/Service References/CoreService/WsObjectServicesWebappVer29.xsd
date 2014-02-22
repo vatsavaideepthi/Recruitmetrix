@@ -1,0 +1,2443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.1.252:5000/WsObjectServicesWebappVer2.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MexServices" />
+  <xs:import schemaLocation="http://192.168.1.252:5000/WsObjectServicesWebappVer2.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="HelloWorld">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="type" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="HelloWorldResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="HelloWorldResult" nillable="true" type="q1:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReadFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ContentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReadFileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetReadFileResult" nillable="true" type="q2:ResourceToken" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWriteFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Filename" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWriteFileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetWriteFileResult" nillable="true" type="q3:ResourceToken" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetWriteSuccess">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ContentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetWriteSuccessResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetWriteSuccessResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ContentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteFileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteFileResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMyFolders">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="parentid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMyFoldersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetMyFoldersResult" nillable="true" type="q4:ArrayOfMyFolder" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMyFiles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="parentid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMyFilesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetMyFilesResult" nillable="true" type="q5:ArrayOfMyFile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSharedFolders">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSharedFoldersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetSharedFoldersResult" nillable="true" type="q6:ArrayOfMyFolder" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSharedFiles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSharedFilesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetSharedFilesResult" nillable="true" type="q7:ArrayOfMyFile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateFolder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="parentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="prop" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateFolderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="CreateFolderResult" nillable="true" type="q8:MyFolder" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ResourceId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="parentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="prop" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddFileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="AddFileResult" nillable="true" type="q9:MyFile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RenameFolderItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="itemid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RenameFolderItemResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RenameFolderItemResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MoveFolderItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="itemid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="toid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MoveFolderItemResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="MoveFolderItemResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveFolderItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="itemid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveFolderItemResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RemoveFolderItemResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateFolderProperties">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="itemid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="prop" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateFolderPropertiesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateFolderPropertiesResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNotifications">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sendorid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="expiryTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="downPlayTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNotificationsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetNotificationsResult" nillable="true" type="q10:ArrayOfMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateNotificationMaster">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sendorId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="MessageTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ExpiryTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="recipients" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="messagetype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="subject" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="downPlayTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="prop" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateNotificationMasterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="CreateNotificationMasterResult" nillable="true" type="q11:MessageMaster" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveNotificationMaster">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="messagemasterid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveNotificationMasterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RemoveNotificationMasterResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RespondNotification">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="messageid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="responsedata" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="downPlayTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="prop" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RespondNotificationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RespondNotificationResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddNotificationRecipients">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="messageid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="recipients" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="type" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddNotificationRecipientsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddNotificationRecipientsResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNotificationRecipients">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="messageid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNotificationRecipientsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetNotificationRecipientsResult" nillable="true" type="q12:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Login">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ServiceName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LoginResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegisterUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="logintype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="imageUrl" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Firstname" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="lastName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegisterUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RegisterUserResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserObject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserObjectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetUserObjectResult" nillable="true" type="q13:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LogOut">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LogOutResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LogOutResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUsers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUsersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetUsersResult" nillable="true" type="q14:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidateUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="uniqueid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidateUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ValidateUserResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AuthenticateUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="uniqueid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="cpuid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AuthenticateUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AuthenticateUserResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PublishResourceGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="groupid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="resourceid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PublishResourceGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PublishResourceGroupResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnPublishResourceGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="groupid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="resourceid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnPublishResourceGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UnPublishResourceGroupResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPublishedResources">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="groupid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPublishedResourcesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetPublishedResourcesResult" nillable="true" type="q15:ArrayOfContent" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMyPublishedResources">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="groupid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMyPublishedResourcesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetMyPublishedResourcesResult" nillable="true" type="q16:ArrayOfContent" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginNetworkApp">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ServiceName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="networkid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="appid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginNetworkAppResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LoginNetworkAppResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegisterNetworkAppUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="networkid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="appid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegisterNetworkAppUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RegisterNetworkAppUserResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegisterNetworkUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="networkid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegisterNetworkUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RegisterNetworkUserResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginNetwork">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ServiceName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NetworkId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginNetworkResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LoginNetworkResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAccessibleUsers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objectid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAccessibleUsersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetAccessibleUsersResult" nillable="true" type="q17:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAccessibleObjects">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAccessibleObjectsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetAccessibleObjectsResult" nillable="true" type="q18:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsObjectAccessible">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="objectid" nillable="true" type="xs:string" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="permission" type="q19:Permission" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsObjectAccessibleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsObjectAccessibleResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GrantPermission">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="objectid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userid" nillable="true" type="xs:string" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="permission" type="q20:Permission" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GrantPermissionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GrantPermissionResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGroups">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="parentid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGroupsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetGroupsResult" nillable="true" type="q21:ArrayOfGroup" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMyGroups">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="parentid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMyGroupsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetMyGroupsResult" nillable="true" type="q22:ArrayOfGroup" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="parentid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="prop" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="autoSubScribe" type="xs:boolean" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="CreateGroupResult" nillable="true" type="q23:Group" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="groupid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RemoveGroupResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGroupMembers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="groupid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGroupMembersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetGroupMembersResult" nillable="true" type="q24:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RequestGroupSubscription">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="groupid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RequestGroupSubscriptionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RequestGroupSubscriptionResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelRequestGroupSubscription">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="groupid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelRequestGroupSubscriptionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CancelRequestGroupSubscriptionResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGroupPendingSubscriptionRequests">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="groupid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGroupPendingSubscriptionRequestsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetGroupPendingSubscriptionRequestsResult" nillable="true" type="q25:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ApproveGroupSubscription">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="groupid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ApproveGroupSubscriptionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ApproveGroupSubscriptionResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DisApproveGroupSubscription">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="groupid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DisApproveGroupSubscriptionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DisApproveGroupSubscriptionResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InviteGroupSubscription">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="groupid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InviteGroupSubscriptionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="InviteGroupSubscriptionResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelInviteGroupSubscription">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="groupid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelInviteGroupSubscriptionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CancelInviteGroupSubscriptionResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGroupPendingSubscriptionInvitations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="groupid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGroupPendingSubscriptionInvitationsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetGroupPendingSubscriptionInvitationsResult" nillable="true" type="q26:ArrayOfGroup" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AcceptInviteGroupSubscription">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="groupid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AcceptInviteGroupSubscriptionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AcceptInviteGroupSubscriptionResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RejectInviteGroupSubscription">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="groupid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RejectInviteGroupSubscriptionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RejectInviteGroupSubscriptionResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetChildren">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="parentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetChildrenResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetChildrenResult" nillable="true" type="q27:ArrayOfRelation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetParents">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objectid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetParentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetParentsResult" nillable="true" type="q28:ArrayOfRelation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddRelation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="childId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddRelationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="AddRelationResult" nillable="true" type="q29:Relation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveRelation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="childId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveRelationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RemoveRelationResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStaticdata">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="type" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="parentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStaticdataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetStaticdataResult" nillable="true" type="q30:ArrayOfMList" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateStaticdata">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="parentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="type" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="prop" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateStaticdataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="CreateStaticdataResult" nillable="true" type="q31:MList" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ShareFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fileid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ShareFileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ShareFileResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ShareFolder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="folderid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userid" nillable="true" type="xs:string" />
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="permission" type="q32:Permission" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ShareFolderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ShareFolderResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnShareFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fileid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnShareFileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UnShareFileResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnShareFolder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="folderid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnShareFolderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UnShareFolderResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFileSharingUsers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fileid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFileSharingUsersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetFileSharingUsersResult" nillable="true" type="q33:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFolderSharingUsers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="folderid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFolderSharingUsersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetFolderSharingUsersResult" nillable="true" type="q34:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateActivityMaster">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="text" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="TargetId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="activitytime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="subject" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateActivityMasterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="CreateActivityMasterResult" nillable="true" type="q35:ActivityStream" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteActivityMaster">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="activitymasterid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteActivityMasterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteActivityMasterResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteActivityStream">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="activitystreamid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteActivityStreamResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteActivityStreamResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMyActivity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMyActivityResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetMyActivityResult" nillable="true" type="q36:ArrayOfActivityStream" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetActivityStream">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="recipientid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetActivityStreamResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetActivityStreamResult" nillable="true" type="q37:ArrayOfActivityStream" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFBRedirectUrl">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RedirectUrl" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFBRedirectUrlResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetFBRedirectUrlResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFBToken">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RequestCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CallBackURl" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFBTokenResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetFBTokenResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateFBFeed">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Token" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="msg" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateFBFeedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateFBFeedResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserFriendsList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Token" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserFriendsListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetUserFriendsListResult" nillable="true" type="q38:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserDetails">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Token" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserDetailsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetUserDetailsResult" nillable="true" type="q39:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GettestFBRedirectUrl">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RedirectUrl" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GettestFBRedirectUrlResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GettestFBRedirectUrlResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FBLogout">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RedirectUrl" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FBLogoutResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="FBLogoutResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateVideoFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="filename" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="storageId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateVideoFileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="CreateVideoFileResult" nillable="true" type="q40:ResourceToken" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProfileType" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Cityid" type="xs:int" />
+        <xs:element minOccurs="0" name="Stateid" type="xs:int" />
+        <xs:element minOccurs="0" name="Countryid" type="xs:int" />
+        <xs:element minOccurs="0" name="LocateId" type="xs:int" />
+        <xs:element minOccurs="0" name="Categoryid" type="xs:int" />
+        <xs:element minOccurs="0" name="SubCategoryid" type="xs:int" />
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="Education" nillable="true" type="q41:ArrayOfSchoolInfo" />
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="Certification" nillable="true" type="q42:ArrayOfAchivement" />
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="Address" nillable="true" type="q43:ArrayOfAddress" />
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="ContactInfo" nillable="true" type="q44:Contact" />
+        <xs:element minOccurs="0" name="AvalibilityInfo" nillable="true" type="xs:string" />
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="PersonalProfileInfo" nillable="true" type="q45:PersonalProfile" />
+        <xs:element minOccurs="0" name="NV1" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NV2" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NV3" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NV4" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NV5" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NV6" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Prop" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Usertoken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertProfileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="InsertProfileResult" nillable="true" type="q46:UserProfile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UserToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserProfileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetUserProfileResult" nillable="true" type="q47:UserProfile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="profileId" type="xs:int" />
+        <xs:element minOccurs="0" name="ProfileType" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Cityid" type="xs:int" />
+        <xs:element minOccurs="0" name="Stateid" type="xs:int" />
+        <xs:element minOccurs="0" name="Countryid" type="xs:int" />
+        <xs:element minOccurs="0" name="LocateId" type="xs:int" />
+        <xs:element minOccurs="0" name="Categoryid" type="xs:int" />
+        <xs:element minOccurs="0" name="SubCategoryid" type="xs:int" />
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="Education" nillable="true" type="q48:ArrayOfSchoolInfo" />
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="Certification" nillable="true" type="q49:ArrayOfAchivement" />
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="Address" nillable="true" type="q50:ArrayOfAddress" />
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="ContactInfo" nillable="true" type="q51:Contact" />
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="personalInfo" nillable="true" type="q52:PersonalProfile" />
+        <xs:element minOccurs="0" name="AvalibilityInfo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Prop" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NV1" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NV2" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NV3" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NV4" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NV5" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NV6" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="UserToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateProfileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="UpdateProfileResult" nillable="true" type="q53:UserProfile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateAchivementbyProfileId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProfileId" type="xs:int" />
+        <xs:element xmlns:q54="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="AchivementInfo" nillable="true" type="q54:ArrayOfAchivement" />
+        <xs:element minOccurs="0" name="UserToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateAchivementbyProfileIdResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateAddressbyProfileId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProfileId" type="xs:int" />
+        <xs:element xmlns:q55="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="AddressInfo" nillable="true" type="q55:ArrayOfAddress" />
+        <xs:element minOccurs="0" name="UserToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateAddressbyProfileIdResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateContactbyProfileId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProfileId" type="xs:int" />
+        <xs:element xmlns:q56="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="ContactInfo" nillable="true" type="q56:Contact" />
+        <xs:element minOccurs="0" name="UserToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateContactbyProfileIdResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateEdubyProfileId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProfileId" type="xs:int" />
+        <xs:element xmlns:q57="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="Education" nillable="true" type="q57:ArrayOfSchoolInfo" />
+        <xs:element minOccurs="0" name="UserToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateEdubyProfileIdResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateOtherProfilebyId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="profileId" type="xs:int" />
+        <xs:element minOccurs="0" name="ProfileType" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="cityId" type="xs:int" />
+        <xs:element minOccurs="0" name="stateId" type="xs:int" />
+        <xs:element minOccurs="0" name="countryId" type="xs:int" />
+        <xs:element minOccurs="0" name="locatedId" type="xs:int" />
+        <xs:element minOccurs="0" name="categoryId" type="xs:int" />
+        <xs:element minOccurs="0" name="subCategoryId" type="xs:int" />
+        <xs:element minOccurs="0" name="LastLoginCityId" type="xs:int" />
+        <xs:element minOccurs="0" name="lastLoginDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="AvalibleInfo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="prop" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NV1" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NV2" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NV3" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NV4" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NV5" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NV6" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="UserToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateOtherProfilebyIdResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePesonalProfilebyId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProfileId" type="xs:int" />
+        <xs:element xmlns:q58="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="personalInfo" nillable="true" type="q58:PersonalProfile" />
+        <xs:element minOccurs="0" name="UserToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePesonalProfilebyIdResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertProfilebyId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProfileType" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Cityid" type="xs:int" />
+        <xs:element minOccurs="0" name="Stateid" type="xs:int" />
+        <xs:element minOccurs="0" name="Countryid" type="xs:int" />
+        <xs:element minOccurs="0" name="LocateId" type="xs:int" />
+        <xs:element minOccurs="0" name="Categoryid" type="xs:int" />
+        <xs:element minOccurs="0" name="SubCategoryid" type="xs:int" />
+        <xs:element xmlns:q59="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="Education" nillable="true" type="q59:ArrayOfSchoolInfo" />
+        <xs:element xmlns:q60="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="Certification" nillable="true" type="q60:ArrayOfAchivement" />
+        <xs:element xmlns:q61="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="Address" nillable="true" type="q61:ArrayOfAddress" />
+        <xs:element xmlns:q62="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="ContactInfo" nillable="true" type="q62:Contact" />
+        <xs:element minOccurs="0" name="AvalibilityInfo" nillable="true" type="xs:string" />
+        <xs:element xmlns:q63="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="PersonalProfileInfo" nillable="true" type="q63:PersonalProfile" />
+        <xs:element minOccurs="0" name="NV1" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NV2" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NV3" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NV4" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NV5" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NV6" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Prop" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SubjectId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Usertoken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertProfilebyIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q64="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="InsertProfilebyIdResult" nillable="true" type="q64:UserProfile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserProfilebyId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SubjectId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="UserToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserProfilebyIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q65="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetUserProfilebyIdResult" nillable="true" type="q65:UserProfile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLocation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IpAddress" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="UserToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLocationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q66="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetLocationResult" nillable="true" type="q66:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserbyId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserbyIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q67="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetUserbyIdResult" nillable="true" type="q67:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSearchUsers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="keywords" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSearchUsersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q68="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetSearchUsersResult" nillable="true" type="q68:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteUserResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="usrId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Logintype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ImageUrl" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Firstname" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="lastname" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="prop" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="deleted" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateUserResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Changepassword">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="oldPassword" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="newPassword" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangepasswordResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ChangepasswordResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetComments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SubjectId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SubjectType" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="parentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objType" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="visibility" type="xs:int" />
+        <xs:element minOccurs="0" name="UserToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCommentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q69="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetCommentsResult" nillable="true" type="q69:ArrayOfComment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertComment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SubjectId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SubjectType" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="parentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objType" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Des" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="visibility" type="xs:int" />
+        <xs:element minOccurs="0" name="prop" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="UserToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertCommentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateComment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CommentId" type="xs:int" />
+        <xs:element minOccurs="0" name="SubjectId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SubjectType" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="parentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objType" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Des" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="visibility" type="xs:int" />
+        <xs:element minOccurs="0" name="prop" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="UserToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCommentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReciviedMesages">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sendorid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="expiryTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="downPlayTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReciviedMesagesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q70="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetReciviedMesagesResult" nillable="true" type="q70:ArrayOfMesage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateMesageMaster">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sendorId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="MessageTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ExpiryTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="recipients" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="messagetype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="subject" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="downPlayTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sendertype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="recipienttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="MasterParentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="InvitationParentid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="prop" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateMesageMasterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q71="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="CreateMesageMasterResult" nillable="true" type="q71:MesageMaster" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveMesageMaster">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="messagemasterid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveMesageMasterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RemoveMesageMasterResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RespondMesage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="messageid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="responsedata" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="downPlayTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="prop" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RespondMesageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RespondMesageResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddMesageRecipients">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="messageid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="recipients" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="type" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sendertype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="recipienttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="InvitationParentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddMesageRecipientsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddMesageRecipientsResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMesageRecipients">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="messageid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMesageRecipientsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q72="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetMesageRecipientsResult" nillable="true" type="q72:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllMesages">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sendorid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="expiryTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="downPlayTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllMesagesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q73="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetAllMesagesResult" nillable="true" type="q73:ArrayOfMesage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateMesageStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="messageId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateMesageStatusResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReciviedFeeds">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sendorid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="expiryTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="downPlayTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReciviedFeedsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q74="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetReciviedFeedsResult" nillable="true" type="q74:ArrayOfFeed" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateFeedMaster">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="feed" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sendorId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="expiryTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="recipients" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="messagetype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="subject" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="downPlayTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sendertype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="recipienttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="MasterParentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="InvitationParentid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="prop" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateFeedMasterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q75="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="CreateFeedMasterResult" nillable="true" type="q75:FeedMaster" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFeedRecipients">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="feedid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFeedRecipientsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q76="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetFeedRecipientsResult" nillable="true" type="q76:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllFeeds">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sendorid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="expiryTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="downPlayTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllFeedsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q77="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetAllFeedsResult" nillable="true" type="q77:ArrayOfFeed" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateFeedStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="feedId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateFeedStatusResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReciviedInvitations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sendorid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="expiryTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="downPlayTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReciviedInvitationsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q78="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetReciviedInvitationsResult" nillable="true" type="q78:ArrayOfInvitation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateInvitationMaster">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Invitation" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sendorId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="expiryTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="recipients" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="messagetype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="subject" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="downPlayTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sendertype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="recipienttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="MasterParentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="InvitationParentid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="prop" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateInvitationMasterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q79="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="CreateInvitationMasterResult" nillable="true" type="q79:InvitationMaster" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetInvitationRecipients">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Invitationid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetInvitationRecipientsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q80="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetInvitationRecipientsResult" nillable="true" type="q80:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllInvitations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sendorid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="expiryTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="downPlayTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllInvitationsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q81="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetAllInvitationsResult" nillable="true" type="q81:ArrayOfInvitation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateInvitationStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="InvitationId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateInvitationStatusResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReciviedGeneralMessages">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sendorid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="expiryTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="downPlayTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReciviedGeneralMessagesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q82="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetReciviedGeneralMessagesResult" nillable="true" type="q82:ArrayOfGeneralMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateGeneralMessageMaster">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GeneralMessage" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sendorId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="expiryTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="recipients" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="messagetype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="subject" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="downPlayTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sendertype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="recipienttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="MasterParentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="InvitationParentid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="prop" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateGeneralMessageMasterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q83="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="CreateGeneralMessageMasterResult" nillable="true" type="q83:GeneralMessageMaster" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGeneralMessageRecipients">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GeneralMessageid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGeneralMessageRecipientsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q84="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetGeneralMessageRecipientsResult" nillable="true" type="q84:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllGeneralMessages">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sendorid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="expiryTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="downPlayTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllGeneralMessagesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q85="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetAllGeneralMessagesResult" nillable="true" type="q85:ArrayOfGeneralMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateGeneralMessageStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GeneralMessageId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateGeneralMessageStatusResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFilesbyUserId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="parentid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sourceId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFilesbyUserIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q86="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetFilesbyUserIdResult" nillable="true" type="q86:ArrayOfMyFile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFriendFriends">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFriendFriendsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q87="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetFriendFriendsResult" nillable="true" type="q87:ArrayOfFriend" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="type" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="parentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q88="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetDListResult" nillable="true" type="q88:ArrayOfMList" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="parentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="type" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="prop" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateDListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q89="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="CreateDListResult" nillable="true" type="q89:MList" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Id" type="xs:int" />
+        <xs:element minOccurs="0" name="listId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="parentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="prop" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q90="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="UpdateDListResult" nillable="true" type="q90:MList" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveDList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="listId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="parentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveDListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RemoveDListResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="groupId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="prop" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateGroupResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWriteFileSimple">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="filename" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWriteFileSimpleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q91="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetWriteFileSimpleResult" nillable="true" type="q91:ResourceToken" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMyContent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMyContentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q92="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetMyContentResult" nillable="true" type="q92:ArrayOfResourceToken" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAddresses">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="addressId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="subjectId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="subjectType" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="addressTypeId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="addressSubTypeId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="cityId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="localityId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAddressesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q93="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetAddressesResult" nillable="true" type="q93:ArrayOfAddress" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateAddress">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="subjectId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="subjectType" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="addressTypeId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="addressSubTypeId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Line1" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Line2" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="zipcode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="cityId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="cityName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="cityLatitude" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="cityLogitude" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="localityId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="localityName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="localityLatitude" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="localityLagitude" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="country" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateAddressResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q94="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="CreateAddressResult" nillable="true" type="q94:Address" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateAddress">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="addressId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="addressTypeId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="addressSubTypeId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Line1" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Line2" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="zipcode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="cityId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="cityName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="cityLatitude" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="cityLogitude" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="localityId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="localityName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="localityLatitude" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="localityLagitude" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="country" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateAddressResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q95="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="UpdateAddressResult" nillable="true" type="q95:Address" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchAddressesByKeywords">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cityId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="addressTypeId" nillable="true" type="xs:string" />
+        <xs:element xmlns:q96="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="subjectType" type="q96:Subject" />
+        <xs:element xmlns:q97="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="addressSubTypeId" nillable="true" type="q97:ArrayOfstring" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchAddressesByKeywordsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q98="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="SearchAddressesByKeywordsResult" nillable="true" type="q98:ArrayOfAddress" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchProfileByKeywords">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cityId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="addressTypeId" nillable="true" type="xs:string" />
+        <xs:element xmlns:q99="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="addressSubTypeId" nillable="true" type="q99:ArrayOfstring" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchProfileByKeywordsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q100="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="SearchProfileByKeywordsResult" nillable="true" type="q100:ArrayOfUserProfile" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetListContent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="since" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="parentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetListContentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q101="http://schemas.datacontract.org/2004/07/MexServices" minOccurs="0" name="GetListContentResult" nillable="true" type="q101:ArrayOfResourceToken" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteRelation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="childId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="parentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="objecttype" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="userToken" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteRelationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteRelationResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMimeType">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMimeTypeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetMimeTypeResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

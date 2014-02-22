@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "~/Views/Shared/_JobPortalMasterView.cshtml";
+    ViewBag.highlight = "communication";
+}
+
+
+@{
+    string subhighlighter = Convert.ToString(ViewBag.submenuhighlight);
+    int value = 0;
+    switch (subhighlighter)
+    {
+        case "allmails":
+            value = 1;
+            break;
+        case "inbox":
+            value = 2;
+            break;
+        case "sent":
+            value = 3;
+            break;
+        case "drafts":
+            value = 4;
+            break;
+    }
+}
+
+
+<div class="container">
+    <div class="row" style="margin-bottom:20px;">
+       @RenderSection("communicationsubtitle", required: false)
+    </div>
+    <div class="row">
+        <div class="col-md-3" >
+            <!--Sidebar content-->
+            <ul class="nav nav-pills nav-stacked">
+                 <li class="@(value==1 ? "active" : "")"><a href="/communication">All <span class="badge badge-info pull-right">8</span></a></li>
+                <li class="@(value==2 ? "active" : "")"><a href="/communication/inbox">Inbox <span class="badge badge-info pull-right">8</span></a></li>
+                <li class="@(value==3 ? "active" : "")"><a href="/communication/sent">Sent <span class="badge badge-info pull-right">8</span></a></li>
+                <li class="@(value==4 ? "active" : "")"><a href="/communication/drafts">Drafts <span class="badge badge-info pull-right">8</span></a></li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <!--Body content-->
+            <div>
+
+            </div>
+            @RenderBody()
+        </div>
+    </div>
+</div>
+

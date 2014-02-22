@@ -1,0 +1,345 @@
+﻿@model List<UI.Models.Job>
+@{
+    ViewBag.Title = "Jobs";
+    ViewBag.highlight = "jobs";
+    Layout = "~/Views/Shared/_JobPortalMasterView.cshtml";
+}
+
+<span class="pageheader">Requirements</span>
+
+<div style="padding-bottom: 15px;" class="pull-right">
+
+    <a href="/jobs/add" target="_self" class="btn-green btn-flat btn-wide">Add Job</a>
+    <a id="popbulkemail" class=" disabled btn-green btn-flat btn-wide btn-disabled" @*href="#SendJobBulkMail"*@ role="button" data-toggle="modal">Bulk Email</a>
+    <div class="btn-group">
+        <div class="dropdown">
+            <button class="btn-green btn-flat btn-shrink" data-toggle="dropdown">
+                Actions&nbsp;&nbsp;<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li class=" disabled action-item"><a tabindex="-1" href="#">Deactiavate Job</a></li>
+                <li class="disabled action-item"><a tabindex="-1" href="#">Assign to Employee</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="requirementjobcollection" class="divjob" style="display: block;">
+    @if (Model != null && Model.Count > 0)
+    { <ul>
+        @foreach (UI.Models.Job job in Model)
+        {
+            bool candname = false;
+            try
+            {
+                var decodeddata = Json.Decode(job.jobdata);
+
+                candname = decodeddata.payratenegotaible;
+            }
+            catch { }
+       
+
+            <li class="listRow jobrow"  data-jobid="@job.JobId" data-jobposteddate="@job.PostDate.ToString()" style="position:relative;padding:0px;">
+                @if (job.Status.ToLower() == "hot")
+                {
+                    <div style="position: absolute; background-color: orange; width: 7px; height: 100%;" title="Hot Job"></div>
+                }
+                <div class="jobbox" style="padding: 8px 2px;">
+                    <div style="padding: 0px 10px;" class="pull-left">
+                        <input type="checkbox" class="chkjob" />
+                    </div>
+                    <div style="width: 30%; margin: 0px 10px;" class="pull-left">
+                        <div>
+                            <p>@Html.ActionLink(job.JobName, "show", "jobs", new { jobid = job.JobId }, new { @class = "jobtitle", title = "View Job" })
+                                <a href="jobs/edit?jobid=@job.JobId" target="_self" class=" glyphicon glyphicon-edit " title="Edit Job"></a>
+                                @*<a href="jobs/jobspage?jobid=@job.JobId" target="_self" class=" glyphicon glyphicon-edit hide " title="new"></a>*@
+
+
+                            </p>
+                            <span class="experience">@job.Exp</span> Years Experience in <span class="gridLabelValues location">@job.State</span>
+                        </div>
+                        <div style="margin-top: 3px; word-break: break-all">
+                            <span class="jobskills">@job.PrefSkills</span>
+                        </div>
+                    </div>
+
+                    <div style="width: 30%;" class="pull-left">
+                        <table class="normal-table jobtable">
+                            <tr>
+                                <td>Expires On</td>
+                                <td>&nbsp;<span> : </span>&nbsp; </td>
+                                <td><span class="expiry" data-jobid="@job.JobId">@job.ExpiryDate.ToShortDateString()</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Pay Rate</td>
+                                <td>&nbsp;<span> : </span>&nbsp;</td>
+                                @{
+            var jobpayratemode = job.payratemode != null ? job.payratemode.ToUpper() : "<i class='glyphicon glyphicon-exclamation-sign' title='Update the payrate mode' style='color:red;'></i>";
+                                }
+                                <td><span>$ <span class="payrate" data-payrate="@job.PayRate" >@job.PayRate / @Html.Raw(jobpayratemode)</span>
+                                    @if (candname)
+                                    {
+                                        <i class="glyphicon glyphicon-star" title="Pay Rate Negotiable"></i>
+                                    }
+                                </span></td>
+                            </tr>
+                            <tr>
+                                <td>Job Type</td>
+                                <td>&nbsp;<span> : </span>&nbsp;</td>
+                                <td><span class="jobtype" style="white-space:normal;">@job.postype</span></td>
+                            </tr>
+                            <tr>
+                                <td>Job Length</td>
+                                <td>&nbsp;<span> : </span>&nbsp;</td>
+                                <td><span class="additionaldetails">@job.additionaldetails</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="width: 30%;" class="pull-left">
+                        <table class="normal-table jobtable">
+                            <tr>
+                                <td>Posted On</td>
+                                <td>&nbsp;<span> : </span>&nbsp;</td>
+                                <td>@job.StartDate.ToShortDateString()</td>
+                            </tr>
+                            <tr>
+                                <td>Assigned To</td>
+                                <td>&nbsp;<span> : </span>&nbsp;</td>
+                                <td><span class="">Assigned to No One</span></td>
+                            </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td>&nbsp;<span> : </span>&nbsp;</td>
+                                <td><span>@job.Status<i class="glyphicon glyphicon-edit updjobstatus" title="Edit Job Status" data-jobid="@job.JobId" style="margin-left:5px;"></i></span></td>
+                            </tr>
+                            <tr>
+                                <td>Applicants</td>
+                                <td>&nbsp;<span> : </span>&nbsp; </td>
+                                <td>@Html.ActionLink((job.applications.Count > 0 ? (job.applications.Count == 1 ? job.applications.Count + " Applicant" : job.applications.Count + " Applicants") : "No Applicants Available"), "show", "jobs", new { jobid = job.JobId }, new { title = "View Job" })
+                                </td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+
+
+                    <div style="display: inline-block; float: right; padding: 5px;">
+                        @if (job.jobmailstatus == "1")
+                        {
+                            <div>
+                                <img src="~/Content/images/email-send-icon.png" style="width: 20px; height: 21px;" title="Bulk Mail Sent" />
+                            </div>
+                        }
+                        <div>
+                            <a style="cursor: pointer;" class="getjobnotes" data-jobid="@job.JobId"><i class="glyphicon glyphicon-list" title="Notes"></i></a>
+                        </div>
+                        <div>
+                            <i class="add-candidate glyphicon glyphicon-user" title="Add Applicant" data-jobid="@job.JobId" data-title="@job.JobName"  style="cursor:pointer;"></i>
+                        </div>
+                        <div>
+                            <i class="delete-job glyphicon glyphicon-trash" title="Delete job" data-jobid="@job.JobId" data-title="@job.JobName"  style="cursor:pointer;"></i>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+    }
+    else
+    {<ul style="padding-top: 40px;">
+        <li style="list-style: none;">
+            <div class="well">
+                <div class="pull-left" style="margin: 5px 0px 10px 0px; font-size: 25px; font-weight: bold;">
+                    <span>No Requirements posted Yet...</span>
+                </div>
+
+            </div>
+        </li>
+    </ul>
+    }
+</div>
+
+<div class="row">
+
+    <div id="SendJobBulkMail" class="modal fade " style="width: 100%; border-radius: 0px; left: 0; background-color: transparent; margin: auto;">
+        <div class="modal-dialog" style="width: 80%;">
+            <div class="modal-content">
+                @Html.Partial("~/Views/common/Messaging/_BulkEmailJobsToCandidates.cshtml", new UI.Models.MessagingObjectModel.JObsBulkMail())
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="UpdateJobStatus" class="modal fade" style="min-width: 650px !important;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Update Job Status</h3>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="chosenqjobid" />
+                    <input type="reset" id="resetupdjobstatusform" style="display: none;" />
+                    <div>
+                        @* <span class="jobtitle">Questionaire</span>*@
+                    </div>
+                    <div style="margin: auto;">
+                        <table class="table jobtable questionairetable">
+                            <tbody>
+
+                                <tr>
+                                    <td><span style="float: right;">Job Status</span></td>
+                                    <td>:</td>
+                                    <td>
+                                        <div>
+                                            <select id="modal-upd-jobstatus" class="modal-upd-wrkauth input-wide input-well" style="width: 281px !important; height: 40px;">
+                                                <option>Active</option>
+                                                <option>Inactive</option>
+                                                <option>On Hold</option>
+                                                <option>Filled</option>
+                                                <option>Expired</option>
+                                                <option>Closed</option>
+                                                <option>Hot</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" style="">
+                <a id="updatecurrentjobstatus" class="btn-green btn-flat pull-right" style="margin-left: 10px;">Update</a>
+                @* <a class="btn-flat btn-grey close " data-dismiss="modal" aria-hidden="true" style="margin-left: 10px; opacity: 1;">Cancel</a>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="jobnotescontainer" class="modal fade" style="min-width: 650px !important;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div id="notesactionscontainer" style="display: inline-block; float: right;">
+                    <div class="top-action-set">
+                        <span style="cursor: pointer; margin-top: 10px;" id="btnaddnewnotesjob" class="btn-flat btn-green pull-right">Add New</span>
+                    </div>
+                </div>
+
+                <h3 id="jobnotesmodelheader">Notes</h3>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="currentjobid" />
+                    <input type="hidden" id="notesdata">
+                    <input type="hidden" id="notesapplicationid">
+                    <input type="reset" id="resetnotesjobform" style="display: none;" />
+                    <input type="hidden" id="currentmodifyingnotesid" />
+                    <input type="hidden" id="currentownerid" />
+                    <div>
+                        <div id="jobnoteslistholder" class="hide">
+                            <ul class="jobnotes">
+                            </ul>
+                        </div>
+                        <div id="emptyjobnotesholder" class="hide">
+                            <span>No Notes Available for this Entry</span>
+                        </div>
+
+                        <div id="jobnewnotesholder" class="hide">
+                            <div>
+                                <textarea id="jobnewnotescontent" style="width: 98%; resize-horizontal: none; max-width: 98%;" placeholder="Add something to notes"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div id="jobnotesactioncontainer" class="hide">
+                    <a id="jobcancelnotes" class="btn-flat btn-grey -right" style="margin-left: 10px;">Cancel </a>
+                    <a id="jobsavenewnotes" class="btn-flat btn-green pull-right" style="margin-left: 10px;">Save</a>
+                </div>
+                <div id="updjobnotes" class="hide">
+                    <a id="cancelnotesupdate" class="btn-flat btn-grey pull-right" style="margin-left: 10px;">Cancel </a>
+                    <a id="updatebuttonjobnotes" class="btn-green btn-flat pull-right" data-noteid="" style="margin-left: 10px;">Update</a>
+                </div>
+                <div id="back">
+                    <span class="btn-wide pull-right btn-flat btn-grey" data-dismiss="modal" aria-hidden="true">Done</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="deletejob" class="modal fade" style="min-width: 650px !important;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Delete Job</h3>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="chosenjobid" />
+                    <div>
+                        @* <span class="jobtitle">Questionaire</span>*@
+                    </div>
+                    <div style="margin: auto;">
+                        <table class="table jobtable questionairetable">
+                            <tbody>
+
+                                <tr>
+                                    <td><span style="float: left;">Are you sure to delete this <span id="jobtitle"></span>job?</span></td>
+
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" style="">
+                <a id="deletejobno" class="btn-grey btn-flat pull-right" style="margin-left: 10px;">No</a>
+                <a id="deletejobyes" class="btn-green btn-flat pull-right" style="margin-left: 10px;">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div id="candidatesaddtoapplicant" class="modal fade " style="width: 100%; border-radius: 0px; left: 0; background-color: transparent; margin: auto;">
+        <div class="modal-dialog" style="width: 60%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Add Candidate</h3>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="chosenappjobid" />
+                   
+                    <div id="candidates">
+                     
+                      <ul class="getcandidates">
+
+                      </ul>
+                    </div>
+                    
+                </form>
+            </div>
+              <div class="modal-footer">
+        <div id="" class="">
+            <a id="" class="btn-flat btn-grey -right" style="margin-left: 10px;">Cancel </a>
+            <a id="addcandidates" class="btn-flat btn-green pull-right" style="margin-left: 10px;">Add</a>
+        </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/jobportal/PortalJobs.js"></script>
+    <script src="~/Scripts/jobportal/portalcandidates.js"></script>
+    <script src="~/Plugins/JqueryTE/jquery-te-1.4.0.min.js"></script>
+}
